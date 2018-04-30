@@ -1,6 +1,7 @@
 <template lang="html">
-<div class="home">
-  home
+<div>
+  singers
+
 </div>
 </template>
 
@@ -10,8 +11,4 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.home {
-  flex: 1;
-  background-color: black;
-}
 </style>

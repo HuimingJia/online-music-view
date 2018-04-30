@@ -8,7 +8,6 @@
       </transition>
       <side-bar></side-bar>
       <router-view class="board"></router-view>
-
     </div>
     <play-bar></play-bar>
     <Footer></Footer>
@@ -45,15 +44,15 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  height: 100vh;
-  width: 100%;
-  background: #eee;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 #cotent {
-  position: fixed;
-  top: 50px;
-  bottom: 100px;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
   width: 100%;
   background-color: yellow;
 }

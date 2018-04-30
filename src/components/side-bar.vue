@@ -1,6 +1,12 @@
 <template lang="html">
 <div id="sidebar">
-side-bar
+<h5>Explore</h5>
+<hr></hr>
+<ul>
+  <li>For-Me</li>
+  <li>Billboard</li>
+  <li>Singers</li>
+</ul>
 </div>
 </template>
 
@@ -12,7 +18,6 @@ export default {
 <style lang="css" scoped>
 #sidebar {
   width: 200px;
-  height: 100%;
   background-color: red;
 }
 </style>

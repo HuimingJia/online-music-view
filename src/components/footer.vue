@@ -11,10 +11,7 @@ export default {
 
 <style lang="css" scoped>
 .footer {
-  position: fixed;
-  bottom: 0px;
   height: 25px;
-  width: 100%;
   text-decoration: underline;
 }
 </style>
