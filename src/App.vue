@@ -1,13 +1,40 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <Header></Header>
+    <div id="cotent">
+      <transition name="scale">
+        <play-card-sm v-if="{playcardsize}"></play-card-sm>
+        <play-card-lg v-else></play-card-lg>
+      </transition>
+      <side-bar></side-bar>
+      <router-view class="board"></router-view>
+
+    </div>
+    <play-bar></play-bar>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
+import Header from "@/components/header"
+import Footer from "@/components/footer"
+import SideBar from "@/components/side-bar"
+import PlayBar from "@/components/play-bar"
+import PlayCardSm from "@/components/play-card-sm"
+import PlayCardLg from "@/components/play-card-lg"
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    Header,
+    Footer,
+    SideBar,
+    PlayBar,
+    PlayCardSm,
+    PlayCardLg
+  },
+  data: {
+    playcardsize: true
+  }
 }
 </script>
 
@@ -18,6 +45,20 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  height: 100vh;
+  width: 100%;
+  background: #eee;
+}
+
+#cotent {
+  position: fixed;
+  top: 50px;
+  bottom: 100px;
+  width: 100%;
+  background-color: yellow;
+}
+
+.board {
+  background-color:#00FF00;
 }
 </style>
