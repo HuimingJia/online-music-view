@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header></Header>
-    <div id="cotent">
+    <div id="cotent" :style="{ backgroundImage: 'url(' + require('@/assets/imgs/app-bg.jpg') + ')'}">
       <transition name="scale">
         <play-card-sm v-if="{playcardsize}"></play-card-sm>
         <play-card-lg v-else></play-card-lg>
@@ -54,10 +54,9 @@ export default {
   flex-direction: row;
   flex: 1;
   width: 100%;
-  background-color: yellow;
+  background-size: cover;
 }
 
 .board {
-  background-color:#00FF00;
 }
 </style>

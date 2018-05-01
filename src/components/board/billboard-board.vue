@@ -1,7 +1,6 @@
 <template lang="html">
   <div>
     billboard
-
   </div>
 </template>
 

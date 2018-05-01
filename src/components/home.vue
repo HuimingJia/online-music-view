@@ -12,6 +12,5 @@ export default {
 <style lang="css" scoped>
 .home {
   flex: 1;
-  background-color: black;
 }
 </style>
