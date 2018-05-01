@@ -1,15 +1,45 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import home from '@/components/home'
-
+import ForMeBoard from '@/components/board/for-me-board'
+import BillboardBoard from '@/components/board/billboard-board'
+import SingersBoard from '@/components/board/singers-board'
+import AlbumBoard from '@/components/board/album-board'
+import SearchResBoard from '@/components/board/search-res-board'
+import SongListBoard from '@/components/board/song-list-board'
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: home
+      redirect: 'for-me',
+      children: [
+        {
+          path: '/for-me',
+          name: 'for-me',
+          component: ForMeBoard
+        },{
+          path: '/billboard',
+          name: 'billboard',
+          component: BillboardBoard
+        },{
+          path: '/singers',
+          name: 'singers',
+          component: SingersBoard
+        },{
+          path: '/album',
+          name: 'album',
+          component: AlbumBoard
+        },{
+          path: '/search-res',
+          name: 'search-res',
+          component: SearchResBoard
+        },{
+          path: '/song-list',
+          name: 'song-list',
+          component: SongListBoard
+        }
+      ]
     }
   ]
 })

@@ -2,9 +2,9 @@
 <div id="sidebar">
 <h5>Explore</h5>
 <hr></hr>
-<sidebar-button text="For Me" icon="" link=""></sidebar-button>
-<sidebar-button text="Billboard" icon="" link=""></sidebar-button>
-<sidebar-button text="Singers" icon="" link=""></sidebar-button>
+<sidebar-button text="For Me" icon="" link="for-me"></sidebar-button>
+<sidebar-button text="Billboard" icon="" link="billboard"></sidebar-button>
+<sidebar-button text="Singers" icon="" link="singers"></sidebar-button>
 <!-- <ul>
   <li>For-Me</li>
   <li>Billboard</li>

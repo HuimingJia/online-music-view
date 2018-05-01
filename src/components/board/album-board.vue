@@ -1,7 +1,7 @@
 <template lang="html">
-<div>
-  for-me
-</div>
+  <div>
+album-board
+  </div>
 </template>
 
 <script>
@@ -9,5 +9,5 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="css">
 </style>

@@ -1,6 +1,6 @@
 <template lang="html">
 <div>
-  for-me
+song-list-board
 </div>
 </template>
 
@@ -9,5 +9,5 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="css">
 </style>
