@@ -12,44 +12,32 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-
-
-
-      //
-      // path: '/',
-      // name: 'home',
-      // component: home,
-      //
       path: '/',
+      redirect: 'home',
+    },{
+      path: '/home',
       name: 'home',
-      redirect: '/home',
-
-      children: [
-        {
-          path: 'home',
-          component: ForMeBoard
-        },{
-          path: 'billboard',
-          name: 'billboard',
-          component: BillboardBoard
-        },{
-          path: '/singers',
-          name: 'singers',
-          component: SingersBoard
-        },{
-          path: 'album',
-          name: 'album',
-          component: AlbumBoard
-        },{
-          path: 'search-res',
-          name: 'search-res',
-          component: SearchResBoard
-        },{
-          path: 'song-list',
-          name: 'song-list',
-          component: SongListBoard
-        }
-      ]
+      component: ForMeBoard
+    },{
+      path: 'billboard',
+      name: 'billboard',
+      component: BillboardBoard
+    },{
+      path: '/singers',
+      name: 'singers',
+      component: SingersBoard
+    },{
+      path: 'album',
+      name: 'album',
+      component: AlbumBoard
+    },{
+      path: 'search-res',
+      name: 'search-res',
+      component: SearchResBoard
+    },{
+      path: 'song-list',
+      name: 'song-list',
+      component: SongListBoard
     }
   ]
 })
