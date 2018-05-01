@@ -1,5 +1,5 @@
 <template lang="html">
-<div>
+<div id="singers-board">
   singers
 
 </div>
@@ -11,4 +11,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+#singers-board{
+  flex: 1;
+}
 </style>

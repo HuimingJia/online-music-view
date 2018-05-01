@@ -23,24 +23,24 @@ export default {
 .playbar {
   height: 75px;
   width: 100%;
-  background-color: green;
   display: flex;
+  background-color: rgb(255, 255, 255, 1);
   flex-direction: row;
 }
 
 #volume-bar {
   width: 200px;
-  background: blue;
+  background-color: rgb(255, 255, 255, 1);
 }
 
 #play-progress-bar {
   flex: 1;
-  background-color: black;
+  background-color: rgb(255, 255, 255, 1);
 }
 
 #play-control-button-group{
   width: 200px;
-  background-color: yellow;
+  background-color: rgb(255, 255, 255, 1);
 }
 
 #play-list-btn {

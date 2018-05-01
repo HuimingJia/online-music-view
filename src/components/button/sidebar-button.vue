@@ -1,8 +1,8 @@
 <template lang="html">
-<div class="side-bar-btn">
-  <v-icon :name="icon"></v-icon>
-  <router-link :to="{ name: '', params: {} }">{{text}}</router-link>
-</div>
+  <router-link class="side-bar-btn" :to="{ name: link }" tag="li">
+    <v-icon class="my-auto" :name="icon"></v-icon>
+    <div class="link my-auto">{{text}}</div>
+  </router-link>
 </template>
 
 <script>
@@ -28,9 +28,29 @@ export default {
 .side-bar-btn {
   display: flex;
   flex-direction: row;
+  height: 50px;
+  background-color: rgb(255, 255, 255, 0.8);
+  transition: all 0.5s;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-bottom: 15px;
+  border-radius: 5px;
 }
 
-.v-icon {
+.side-bar-btn:hover {
+  background-color: rgb(0, 0, 0, 0.8);
+  color: white;
+}
+
+.icon {
   height: 24px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.link {
+  flex: 1;
+  height: 24px;
+  overflow: hidden;
 }
 </style>

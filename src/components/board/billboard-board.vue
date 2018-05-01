@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div id="for-me-board">
     billboard
   </div>
 </template>
@@ -10,4 +10,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+#for-me-board{
+  flex: 1;
+}
 </style>

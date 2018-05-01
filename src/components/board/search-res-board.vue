@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div class="search-res-board">
     search-res-board
   </div>
 </template>
@@ -10,4 +10,7 @@ export default {
 </script>
 
 <style lang="css">
+#search-res-board{
+  flex: 1;
+}
 </style>

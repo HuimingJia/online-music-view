@@ -7,7 +7,10 @@
         <play-card-lg v-else></play-card-lg>
       </transition>
       <side-bar></side-bar>
-      <router-view class="board"></router-view>
+      <router-view></router-view>
+      <!-- <transition name="fade">
+
+      </transition> -->
     </div>
     <play-bar></play-bar>
     <Footer></Footer>
@@ -31,8 +34,10 @@ export default {
     PlayCardSm,
     PlayCardLg
   },
-  data: {
-    playcardsize: true
+  data() {
+    return {
+      playcardsize: true
+    }
   }
 }
 </script>
@@ -42,7 +47,6 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   display: flex;
   min-height: 100vh;
@@ -58,5 +62,6 @@ export default {
 }
 
 .board {
+  background-color: rgb(255, 255, 255, 0.5);
 }
 </style>

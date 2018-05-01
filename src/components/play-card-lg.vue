@@ -16,6 +16,5 @@ export default {
   position:absolute;
   bottom:0;
   float: left;
-  background: blue;
 }
 </style>

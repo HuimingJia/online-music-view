@@ -1,8 +1,10 @@
 <template lang="html">
 <div class="play-card-sm">
-  <img class="play-card-img-sm" src="" alt="">
+  <!-- <img class="play-card-img-sm" :src="img" :alt="song_name"> -->
+  <img class="play-card-img-sm">
   <div class="play-card-des-sm">
-play-card-des-sm
+    <h5>Song Name</h5>
+    <p>Signer Name</p>
   </div>
 </div>
 </template>
@@ -14,22 +16,25 @@ export default {
 
 <style lang="css" scoped>
 .play-card-sm {
-  width: 200px;
-  height: 75px;
+  width: 250px;
+  height: 100px;
   position:absolute;
   bottom: 100px;
   float: left;
-  background: blue;
   display: flex;
   flex-direction: row;
+  background-color: rgb(255, 255, 255, 0.8);
 }
 
 .play-card-img-sm {
-  background-color: green;
+  background-color: black;
   width: 75px;
+  margin: 15px;
 }
 
 .play-card-des-sm {
+  display: flex;
+  flex-direction: column;
   flex: 1;
 }
 </style>

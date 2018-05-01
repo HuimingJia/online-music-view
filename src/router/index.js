@@ -6,20 +6,30 @@ import SingersBoard from '@/components/board/singers-board'
 import AlbumBoard from '@/components/board/album-board'
 import SearchResBoard from '@/components/board/search-res-board'
 import SongListBoard from '@/components/board/song-list-board'
+import home from '@/components/home'
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
+
+
+
+      //
+      // path: '/',
+      // name: 'home',
+      // component: home,
+      //
       path: '/',
-      redirect: 'for-me',
+      name: 'home',
+      redirect: '/home',
+
       children: [
         {
-          path: '/for-me',
-          name: 'for-me',
+          path: 'home',
           component: ForMeBoard
         },{
-          path: '/billboard',
+          path: 'billboard',
           name: 'billboard',
           component: BillboardBoard
         },{
@@ -27,15 +37,15 @@ export default new Router({
           name: 'singers',
           component: SingersBoard
         },{
-          path: '/album',
+          path: 'album',
           name: 'album',
           component: AlbumBoard
         },{
-          path: '/search-res',
+          path: 'search-res',
           name: 'search-res',
           component: SearchResBoard
         },{
-          path: '/song-list',
+          path: 'song-list',
           name: 'song-list',
           component: SongListBoard
         }

@@ -1,6 +1,6 @@
 <template lang="html">
-  <div>
-album-board
+  <div id="album-board">
+    album-board
   </div>
 </template>
 
@@ -10,4 +10,7 @@ export default {
 </script>
 
 <style lang="css">
+#album-board{
+  flex: 1;
+}
 </style>
