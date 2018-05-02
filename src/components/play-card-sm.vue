@@ -18,9 +18,10 @@ export default {
 .play-card-sm {
   width: 250px;
   height: 100px;
-  position:absolute;
   bottom: 100px;
   float: left;
+  position: absolute;
+  z-index: 10;
   display: flex;
   flex-direction: row;
   background-color: rgb(255, 255, 255, 0.8);

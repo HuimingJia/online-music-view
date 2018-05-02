@@ -7,6 +7,9 @@
     <sidebar-button text="For Me" icon="target" link="home"></sidebar-button>
     <sidebar-button text="Billboard" icon="award" link="billboard"></sidebar-button>
     <sidebar-button text="Singers" icon="users" link="singers"></sidebar-button>
+    <transition name="scale">
+      <play-card-sm></play-card-sm>
+    </transition>
     <!-- <ul>
     <li>For-Me</li>
     <li>Billboard</li>
@@ -17,9 +20,11 @@
 
 <script>
 import SidebarButton from '@/components/button/sidebar-button.vue'
+import PlayCardSm from "@/components/play-card-sm"
 export default {
   components: {
-    SidebarButton
+    SidebarButton,
+    PlayCardSm,
   }
 }
 </script>
@@ -27,7 +32,7 @@ export default {
 <style lang="css" scoped>
 #sidebar {
   width: 250px;
-  background-color: rgb(255,255,255,0.5);
+  background-color: rgb(255,255,255,0.6);
 }
 
 .sidebar-title {

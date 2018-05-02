@@ -11,6 +11,7 @@ export default {
 
 <style lang="css">
 #search-res-board{
+  background-color: rgb(255, 255, 255, 0);
   flex: 1;
 }
 </style>

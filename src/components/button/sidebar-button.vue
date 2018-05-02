@@ -51,6 +51,7 @@ export default {
 .link {
   flex: 1;
   height: 24px;
+  margin-right: 15px;
   overflow: hidden;
 }
 </style>

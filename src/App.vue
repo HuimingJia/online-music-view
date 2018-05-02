@@ -2,12 +2,8 @@
   <div id="app">
     <Header></Header>
     <div id="cotent" :style="{ backgroundImage: 'url(' + require('@/assets/imgs/app-bg.jpg') + ')'}">
-      <transition name="scale">
-        <play-card-sm v-if="{playcardsize}"></play-card-sm>
-        <play-card-lg v-else></play-card-lg>
-      </transition>
       <side-bar></side-bar>
-      <router-view></router-view>
+      <router-view class="board"></router-view>
       <!-- <transition name="fade">
 
       </transition> -->
@@ -22,7 +18,7 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import SideBar from "@/components/side-bar"
 import PlayBar from "@/components/play-bar"
-import PlayCardSm from "@/components/play-card-sm"
+
 import PlayCardLg from "@/components/play-card-lg"
 export default {
   name: 'App',
@@ -31,8 +27,6 @@ export default {
     Footer,
     SideBar,
     PlayBar,
-    PlayCardSm,
-    PlayCardLg
   },
   data() {
     return {
@@ -49,7 +43,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
+  width: 100vw;
+  min-width: 780px;
+  min-height: 600px;
   flex-direction: column;
 }
 
@@ -62,6 +59,11 @@ export default {
 }
 
 .board {
+  overflow: scroll;
   background-color: rgb(255, 255, 255, 0.5);
+}
+
+.board::-webkit-scrollbar {
+  display: none;
 }
 </style>
