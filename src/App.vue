@@ -3,10 +3,11 @@
     <Header></Header>
     <div id="cotent" :style="{ backgroundImage: 'url(' + require('@/assets/imgs/app-bg.jpg') + ')'}">
       <side-bar></side-bar>
-      <router-view class="board"></router-view>
-      <!-- <transition name="fade">
-
-      </transition> -->
+      <transition name="fade">
+        <keep-alive>
+          <router-view class="board"></router-view>
+        </keep-alive>
+      </transition>
     </div>
     <play-bar></play-bar>
     <Footer></Footer>
@@ -65,5 +66,19 @@ export default {
 
 .board::-webkit-scrollbar {
   display: none;
+}
+
+.fade-enter-active {
+  transition: all 0.5s;
+}
+.fade-leave-active {
+  transition: all 0s;
+}
+.fade-enter-to, .fade-leave {
+  opacity: 1;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>

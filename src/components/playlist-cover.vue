@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="playlist-cover">
+  <div class="playlist-cover" @click="goTo(id)">
     <div class="playlist-cover-above">
       <img class="playlist-cover-img" width="100%" v-lazy="img" :alt="alt">
     </div>
@@ -34,6 +34,12 @@ export default {
       type: String,
       default: null
     }
+  },
+  methods: {
+    goTo: function(id) {
+      alert("Goto Page " + id)
+      this.$router.push({name: 'billboard', params: {id: id}})
+    }
   }
 }
 </script>
@@ -45,6 +51,24 @@ export default {
   overflow: hidden;
   background-color: rgb(255, 255, 255, 0.5);
   margin-bottom: 15px;
+  transition: all 1s;
+}
+
+.playlist-cover-auth {
+  font-size: 15px;
+  height: 20px;
+  overflow: hidden;
+  color: grey;
+  transition: all 1s;
+}
+
+.playlist-cover:hover {
+  background-color: rgb(0, 0, 0, 0.5);
+  color: white;
+}
+
+.playlist-cover:hover .playlist-cover-auth{
+  color: white;
 }
 
 .playlist-cover-above {
@@ -69,16 +93,9 @@ export default {
   height: 50px;
 }
 
-.playlist-cover-des {
+.playlist-cover-desc {
   font-size: 14px;
   height: 20px;
   overflow: hidden;
-}
-
-.playlist-cover-auth {
-  font-size: 15px;
-  height: 20px;
-  overflow: hidden;
-  color: grey
 }
 </style>

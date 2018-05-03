@@ -1,15 +1,17 @@
 <template lang="html">
-  <div class="mv-cover">
+  <div class="mv-cover" @click="goTo(id)">
     <div class="mv-cover-left">
       <img class="mv-cover-img" height="100%" v-lazy="img">
       <div class="mv-cover-btn"></div>
     </div>
     <div class="mv-cover-right my-auto">
       <div class="mv-cover-title">{{title}}</div>
-      <div class="mv-cover-singer">singer - {{singer}}</div>
-      <div class="mv-cover-desc">about - {{desc}}</div>
-      <div class="mv-cover-date">release date - {{date}}</div>
-      <div class="mv-cover-views">views - {{views}}</div>
+      <div class="mv-cover-right-items my-auto">
+        <div class="mv-cover-singer">Singer: {{singer}}</div>
+        <div class="mv-cover-desc">About: {{desc}}</div>
+        <div class="mv-cover-date">Release: {{date}}</div>
+        <div class="mv-cover-views">Views: {{views}}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -53,6 +55,12 @@ export default {
       type: Number,
       default: null,
     }
+  },
+  methods: {
+    goTo: function(id) {
+      alert("Goto Page " + id)
+      this.$router.push({name: 'billboard', params: {id: id}})
+    }
   }
 }
 </script>
@@ -66,6 +74,12 @@ export default {
   overflow: hidden;
   background-color: rgb(255, 255, 255, 0.5);
   margin-bottom: 15px;
+  transition: all 1s;
+}
+
+.mv-cover:hover {
+  background-color: rgb(0, 0, 0, 0.5);
+  color: white;
 }
 
 .mv-cover-left {
@@ -79,19 +93,33 @@ export default {
 }
 
 .mv-cover-right {
+  padding-top: 15px;
   flex: 1;
   display: flex;
   flex-direction: column;
   margin-left: 15px;
+  margin-right: 15px;
+  height: 100%;
+}
+
+.mv-cover-right-items {
+  display: flex;
+  flex-direction: column;
 }
 
 .mv-cover-title{
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .mv-cover-singer {
   font-size: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .mv-cover-desc {
@@ -100,9 +128,15 @@ export default {
 
 .mv-cover-date {
   font-size: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .mv-cover-views {
   font-size: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 </style>

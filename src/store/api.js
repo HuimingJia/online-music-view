@@ -14,14 +14,17 @@ function apiFactory(api) {
 
 export default {
   actions: {
-    getHomePage({}, id){
-      return apiFactory(API.home_page_data)()
+    getFirstPage({}){
+      return apiFactory(API.first_page_data)()
+    },
+    getRankList({}){
+      return apiFactory(API.rank_list)()
     },
     getRankSongs({}, id){
       return apiFactory(API.rank_songs)(id)
     },
-    getRankList({}){
-      return apiFactory(API.rank_list)()
+    getSingerList({}, pagenum){
+      return apiFactory(API.singer_list)(pagenum)
     },
     getAlbum({}, id){
       return apiFactory(API.album)(id)
@@ -34,9 +37,6 @@ export default {
     },
     getHotKey({}){
       return apiFactory(API.hotkey)()
-    },
-    getRecommands({}){
-      return apiFactory(API.first_page_data)()
     },
     getCdList({},id){
       return apiFactory(API.cd)(id)

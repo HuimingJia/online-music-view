@@ -1,11 +1,31 @@
 export default {
-  home_page_data: {
-    url: 'https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg',
+  first_page_data:{
+    url:"https://c.y.qq.com/v8/fcg-bin/fcg_first_yqq.fcg",
+    params(){
+      return{
+        format:'jsonp',
+        tpl:'v12',
+        page:'other',
+        rnd:0,
+        g_tk:new Date().getTime(),
+        loginUin:0,
+        hostUin:0,
+        inCharset:'utf8',
+        outCharset:'GB2312',
+        notice:0,
+        platform:'yqq',
+        needNewCode:0
+      }
+    },
+    jsonp: 'jsonpCallback'
+  },
+  rank_list: {
+    url: 'https://c.y.qq.com/v8/fcg-bin/fcg_myqq_toplist.fcg',
     params: () => {
       return {
+        format: 'jsonp',
         g_tk: 5381,
         uin: 0,
-        format: 'jsonp',
         inCharset: 'utf-8',
         outCharset: 'utf-8',
         notice: 0,
@@ -37,23 +57,6 @@ export default {
     },
     jsonp: 'jsonpCallback'
   },
-  rank_list: {
-    url: 'https://c.y.qq.com/v8/fcg-bin/fcg_myqq_toplist.fcg',
-    params: () => {
-      return {
-        format: 'jsonp',
-        g_tk: 5381,
-        uin: 0,
-        inCharset: 'utf-8',
-        outCharset: 'utf-8',
-        notice: 0,
-        platform: 'h5',
-        needNewCode: 1,
-        _: new Date().getTime()
-      }
-    },
-    jsonp: 'jsonpCallback'
-  },
   album: {
     url: 'https://c.y.qq.com/v8/fcg-bin/fcg_v8_album_info_cp.fcg',
     params: (id) => {
@@ -68,6 +71,28 @@ export default {
         notice: 0,
         platform: 'yqq',
         needNewCode: 0
+      }
+    },
+    jsonp: 'jsonpCallback'
+  },
+  singer_list: {
+    url: 'https://c.y.qq.com/v8/fcg-bin/v8.fcg',
+    params: (pagenum = 0, channel = 'singer', key = 'all_all_all') => {
+      return {
+        channel: 'singer',
+        page: 'list',
+        key: 'all_all_all',
+        pagesize: 100,
+        pagenum: pagenum,
+        g_tk: 5381,
+        loginUin: 0,
+        hostUin: 0,
+        format: 'jsonp',
+        inCharset: 'utf8',
+        outCharset: 'utf-8',
+        notice: 0,
+        platform: 'yqq',
+        needNewCode: 0,
       }
     },
     jsonp: 'jsonpCallback'
@@ -166,24 +191,4 @@ export default {
     },
     jsonp: 'jsonpCallback'
   },
-  first_page_data:{
-    url:"https://c.y.qq.com/v8/fcg-bin/fcg_first_yqq.fcg",
-    params(){
-      return{
-        format:'jsonp',
-        tpl:'v12',
-        page:'other',
-        rnd:0,
-        g_tk:new Date().getTime(),
-        loginUin:0,
-        hostUin:0,
-        inCharset:'utf8',
-        outCharset:'GB2312',
-        notice:0,
-        platform:'yqq',
-        needNewCode:0
-      }
-    },
-    jsonp: 'jsonpCallback'
-  }
 }

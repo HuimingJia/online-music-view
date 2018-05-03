@@ -4,7 +4,7 @@
     <div class="container-fluid hotlist">
       <divider color="#555555" title="Hot PlayList"></divider>
       <div class="row">
-        <div class="col-12 col-sm-6 col-lg-2" v-for="playlist in playlists">
+        <div class="col-12 col-sm-6 col-md-4 col-xl-2" v-for="playlist in playlists">
           <playlist-cover
           :img="playlist.imgurl"
           :desc="playlist.dissname"
@@ -21,7 +21,7 @@
         :desc="mv.mvdesc"
         :date="mv.pub_date"
         :singer="mv.singer_name"
-        :view="mv.listennum">
+        :views="mv.listennum">
       </mv-cover>
     </div>
   </div>
@@ -68,14 +68,14 @@ export default {
     }
   },
   created: function () {
-    this.$store.dispatch('getRecommands').then((response) => {
+    this.$store.dispatch('getFirstPage').then((response) => {
       this.loading = false
       console.log(response.data)
       this.slider = response.data.data.focus
       this.playlists = response.data.data.hotdiss.list.slice(0,6);
       this.mvList = response.data.data.shoubomv.all.slice(0,6);
-    }, (responce) => {
-      // this.loadingState = 'loading failed'
+    }, (response) => {
+      this.loadingState = 'loading failed'
     })
   },
 }

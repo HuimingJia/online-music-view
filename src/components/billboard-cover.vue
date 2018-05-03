@@ -1,15 +1,15 @@
 <template lang="html">
-  <div class="billboard-cover">
+  <div class="billboard-cover" @click="goTo(id)">
     <div class="billboard-cover-left">
-      <img class="billboard-cover-img" height="100%" :src="img" :alt="alt">
+      <img class="billboard-cover-img" height="100%" v-lazy="img" :alt="alt">
       <div class="billboard-cover-btn"></div>
     </div>
     <div class="billboard-cover-right my-auto">
-      <h4>{{title}}</h4>
+      <h5 class="billboard-cover-title">{{title}}</h5>
       <div class="billboard-cover-song-list">
-        <p v-for="song in song_list">
-          {{song.name}} - {{song.singer}}
-        </p>
+        <div class="billboard-cover-song-info" v-for="song in song_list">
+          {{song.songname}} - {{song.singername}}
+        </div>
       </div>
     </div>
   </div>
@@ -33,6 +33,16 @@ export default {
     alt: {
       type: String,
       default: 'not defined'
+    },
+    id: {
+      type: Number,
+      default: null,
+    }
+  },
+  methods: {
+    goTo: function(id) {
+      alert("Goto Page " + id)
+      this.$router.push({name: 'billboard', params: {id: id}})
     }
   }
 }
@@ -41,15 +51,22 @@ export default {
 <style lang="css" scoped>
 .billboard-cover {
   width: 100%;
-  height: 200px;
+  height: 150px;
   display: flex;
   flex-direction: row;
   overflow: hidden;
   background-color: rgb(255, 255, 255, 0.5);
+  margin-bottom: 15px;
+  transition: all 1s;
+}
+
+.billboard-cover:hover {
+  background-color: rgb(0, 0, 0, 0.5);
+  color: white;
 }
 
 .billboard-cover-left {
-  width: 200px;
+  width: 150px;
   height: 100%;
   overflow: hidden;
 }
@@ -63,9 +80,25 @@ export default {
   display: flex;
   flex-direction: column;
   margin-left: 15px;
+  margin-right: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  overflow: hidden;
 }
 
 .billboard-cover-song-list {
   margin-left: 5px;
+}
+
+.billboard-cover-song-info {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.billboard-cover-title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 </style>
