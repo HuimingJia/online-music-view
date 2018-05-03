@@ -22,6 +22,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.divider {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
 .divider-decorator {
   height: 5px;
   width: 100px;

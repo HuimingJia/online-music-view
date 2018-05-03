@@ -1,0 +1,84 @@
+<template lang="html">
+  <div class="playlist-cover">
+    <div class="playlist-cover-above">
+      <img class="playlist-cover-img" width="100%" v-lazy="img" :alt="alt">
+    </div>
+
+    <div class="playlist-cover-down text-center">
+      <div class="playlist-cover-desc my-auto">{{desc}}</div>
+      <div class="playlist-cover-auth my-auto">{{auth}}</div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    img: {
+      type: String,
+      default: require("@/assets/imgs/album-cover.jpg"),
+    },
+    title: {
+      type: String,
+      default: null,
+    },
+    alt: {
+      type: String,
+      default: 'not defined',
+    },
+    desc: {
+      type: String,
+      default: null,
+    },
+    auth: {
+      type: String,
+      default: null
+    }
+  }
+}
+</script>
+
+<style lang="css" scoped>
+.playlist-cover {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: rgb(255, 255, 255, 0.5);
+  margin-bottom: 15px;
+}
+
+.playlist-cover-above {
+  width: 100%;
+  overflow: hidden;
+}
+
+.playlist-cover-mask {
+  background-color: rgb(0, 0, 0, 1);
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+}
+
+.playlist-cover-down {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  font-size: 18px;
+  height: 50px;
+}
+
+.playlist-cover-des {
+  font-size: 14px;
+  height: 20px;
+  overflow: hidden;
+}
+
+.playlist-cover-auth {
+  font-size: 15px;
+  height: 20px;
+  overflow: hidden;
+  color: grey
+}
+</style>

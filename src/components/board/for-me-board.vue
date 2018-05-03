@@ -1,10 +1,32 @@
 <template lang="html">
-<div id="for-me-board">
-  <divider color="#555555" title="For-Me"></divider>
-  <billboard-cover title="Billboard" :song_list="song_list"></billboard-cover>
-  <singer-bar name="jay chou" alt="jay chou"></singer-bar>
-  <song-bar name="Qi Li Xiang" singer="jay chou"></song-bar>
-  <!-- <album-cover title="Album"></album-cover> -->
+  <div id="for-me-board">
+    <slide-show :data="slider"></slide-show>
+    <div class="container-fluid hotlist">
+      <divider color="#555555" title="Hot PlayList"></divider>
+      <div class="row">
+        <div class="col-12 col-sm-6 col-lg-2" v-for="playlist in playlists">
+          <playlist-cover
+          :img="playlist.imgurl"
+          :desc="playlist.dissname"
+          :auth="playlist.author">
+        </playlist-cover>
+      </div>
+    </div>
+    <divider color="#555555" title="Hot Music Video"></divider>
+    <div class="row">
+      <div class="col-12 col-sm-6 col-xl-4" v-for="mv in mvList">
+        <mv-cover
+        :img="mv.picurl"
+        :title="mv.mvtitle"
+        :desc="mv.mvdesc"
+        :date="mv.pub_date"
+        :singer="mv.singer_name"
+        :view="mv.listennum">
+      </mv-cover>
+    </div>
+  </div>
+</div>
+
 </div>
 </template>
 
@@ -14,23 +36,48 @@ import BillboardCover from '@/components/billboard-cover'
 import AlbumCover from '@/components/album-cover'
 import SingerBar from '@/components/singer-bar'
 import SongBar from '@/components/song-bar'
+import SlideShow from '@/components/slide-show'
+import PlaylistCover from '@/components/playlist-cover'
+import MvCover from '@/components/mv-cover'
 
 export default {
   components: {
+    SlideShow,
     divider,
     BillboardCover,
     AlbumCover,
     SingerBar,
     SongBar,
+    PlaylistCover,
+    MvCover
   },
   data() {
     return {
       song_list: [
         {name: "fantastic baby", singer: "Big bang"},
         {name: "fantastic baby", singer: "Big bang"},
-        {name: "fantastic baby", singer: "Big bang"},]
+        {name: "fantastic baby", singer: "Big bang"},
+      ],
+      slider: {
+        type: Array,
+        default: [],
+      },
+      radioList: [],
+      playlists: [],
+      mvList: [],
     }
-  }
+  },
+  created: function () {
+    this.$store.dispatch('getRecommands').then((response) => {
+      this.loading = false
+      console.log(response.data)
+      this.slider = response.data.data.focus
+      this.playlists = response.data.data.hotdiss.list.slice(0,6);
+      this.mvList = response.data.data.shoubomv.all.slice(0,6);
+    }, (responce) => {
+      // this.loadingState = 'loading failed'
+    })
+  },
 }
 </script>
 
