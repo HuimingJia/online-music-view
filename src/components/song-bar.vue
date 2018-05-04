@@ -1,11 +1,10 @@
 <template lang="html">
-  <div class="song-bar">
-    <img class="song-bar-img my-auto" height="35px" :src="img" :alt="alt">
+  <div class="song-bar" @click="goTo(id)">
     <div class="song-bar-name my-auto">
-      {{name}} - {{singer}}
+      {{name}} - {{singernames}} - {{album}}
     </div>
     <div class="song-bar-btn-group my-auto">
-      <v-icon name="play"></v-icon>
+      <v-icon name="play" @click="play(id)"></v-icon>
       <v-icon name="heart"></v-icon>
       <v-icon name="paperclip"></v-icon>
     </div>
@@ -15,10 +14,6 @@
 <script>
 export default {
   props: {
-    img: {
-      type: String,
-      default: require('@/assets/imgs/album-cover.jpg')
-    },
     alt: {
       type: String,
       default: 'not defined',
@@ -27,9 +22,44 @@ export default {
       type: String,
       default: null,
     },
-    singer: {
+    singers: {
+      type: Array,
+      default: null,
+    },
+    album: {
       type: String,
       default: null,
+    },
+    index: {
+      type: Number,
+      default: null,
+    }
+  },
+  computed: {
+    singernames: function(){
+      return this.singers.map((singer) => {return singer.name}).join("/")
+    }
+  },
+  methods: {
+    goTo: function(id) {
+      this.$router.push({name: 'song-list', params: {id: id}})
+    },
+    play: function(id) {
+      let list = []
+      this.topListData.songlist.forEach(item => {
+        list.push({
+          id: item.data.songid,
+          mid: item.data.songmid,
+          name: item.data.songorig,
+          singer: item.data.singer,
+          albummid: item.data.albummid
+        })
+      })
+      this.$store.commit('setPlayList', {
+        index: index,
+        list: list
+      })
+      this.$store.commit('play')
     }
   }
 }
@@ -41,6 +71,10 @@ export default {
   height: 50px;
   background-color: rgb(0, 0, 0, 0.5);
   transition: all 0.5s;
+  margin-bottom: 2px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 5px;
 }
 
 .icon {
@@ -64,17 +98,6 @@ export default {
   width: 100%;
   height: 50px;
   background-color: rgb(0, 0, 0, 0.5);
-}
-
-.song-bar-img {
-  border-radius: 25px;
-  margin-left: 15px;
-  margin-right: 15px;
-  transition: all 1s;
-}
-
-.song-bar-img:hover {
-  animation: blinker 1s linear infinite;
 }
 
 .song-bar-name {

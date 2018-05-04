@@ -35,9 +35,9 @@ export default new Router({
       name: 'search-res',
       component: SearchResBoard
     },{
-      path: 'song-list',
+      path: 'song-list/:id',
       name: 'song-list',
-      component: SongListBoard
+      component: SongListBoard,
     }
   ]
 })

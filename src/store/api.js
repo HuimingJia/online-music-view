@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-import API from '../config/api'
+import API from '@/global/api'
 
 function apiFactory(api) {
   return (id = null) => Vue.http.jsonp(

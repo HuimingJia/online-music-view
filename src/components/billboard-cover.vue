@@ -41,8 +41,7 @@ export default {
   },
   methods: {
     goTo: function(id) {
-      alert("Goto Page " + id)
-      this.$router.push({name: 'billboard', params: {id: id}})
+      this.$router.push({name: 'song-list', params: {id: id}})
     }
   }
 }
