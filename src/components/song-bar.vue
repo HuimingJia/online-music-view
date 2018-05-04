@@ -1,10 +1,10 @@
 <template lang="html">
-  <div class="song-bar" @click="goTo(id)">
+  <div class="song-bar" @click="play()">
     <div class="song-bar-name my-auto">
-      {{name}} - {{singernames}} - {{album}}
+      {{index}}. {{songname}} - {{singernames}} - {{album}}
     </div>
     <div class="song-bar-btn-group my-auto">
-      <v-icon name="play" @click="play(id)"></v-icon>
+      <v-icon name="play"></v-icon>
       <v-icon name="heart"></v-icon>
       <v-icon name="paperclip"></v-icon>
     </div>
@@ -14,52 +14,58 @@
 <script>
 export default {
   props: {
-    alt: {
-      type: String,
-      default: 'not defined',
-    },
-    name: {
-      type: String,
+    index: {
+      type: Number,
       default: null,
     },
-    singers: {
-      type: Array,
+    songname: {
+      type: String,
       default: null,
     },
     album: {
       type: String,
       default: null,
     },
-    index: {
+    id: {
       type: Number,
+      default: null,
+    },
+    mid: {
+      type: String,
+      default: null,
+    },
+    name: {
+      type: String,
+      default: null,
+    },
+    singer: {
+      type: Array,
+      default: null,
+    },
+    albummid: {
+      type: String,
       default: null,
     }
   },
   computed: {
     singernames: function(){
-      return this.singers.map((singer) => {return singer.name}).join("/")
+      return this.singer.map((singer) => {return singer.name}).join("/")
     }
   },
   methods: {
     goTo: function(id) {
       this.$router.push({name: 'song-list', params: {id: id}})
     },
-    play: function(id) {
-      let list = []
-      this.topListData.songlist.forEach(item => {
-        list.push({
-          id: item.data.songid,
-          mid: item.data.songmid,
-          name: item.data.songorig,
-          singer: item.data.singer,
-          albummid: item.data.albummid
-        })
-      })
-      this.$store.commit('setPlayList', {
-        index: index,
-        list: list
-      })
-      this.$store.commit('play')
+    play: function() {
+      var song = {
+        id: this.id,
+        mid: this.mid,
+        name: this.name,
+        singer: this.singer,
+        albummid: this.albummid
+      }
+      this.$store.commit('insertToPlayList', song)
+      this.$store.commit('playSong')
     }
   }
 }

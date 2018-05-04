@@ -21,7 +21,7 @@ export default {
   bottom: 100px;
   float: left;
   position: absolute;
-  z-index: 10;
+  z-index: 2;
   display: flex;
   flex-direction: row;
   background-color: rgb(255, 255, 255, 0.8);

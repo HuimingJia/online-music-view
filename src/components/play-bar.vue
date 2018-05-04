@@ -1,40 +1,43 @@
 <template lang="html">
   <div id="play-bar">
     <div id="volume-bar">
-      volume-bar
+      <div class="my-auto">
+        volume-bar
+      </div>
     </div>
 
     <div id="play-progress-bar">
-        <div class="progress" :style="{width: progress+'%'}"></div>
-        <v-icon name="disc" :style="{left: progress+'%'}"></v-icon>
+      <div class="progress my-auto" :style="{width: progress +'%'}">
+        <!-- <v-icon name="disc"></v-icon> -->
+      </div>
     </div>
 
-    <div class="time-indicater">
+    <div class="time-indicater my-auto">
       <span>{{currentTime}}</span>
       <span>{{duration}}</span>
     </div>
 
-    <div id="play-control-button-group">
-      <audio id="music"
-       :src="dataUrl"
-       @timeupdate="updateTime"
-       @ended="playContinue"
-       autoplay></audio>
+  <div id="play-control-button-group my-auto">
+    <audio id="music"
+    :src="dataUrl"
+    @timeupdate="updateTime"
+    @ended="playContinue"
+    autoplay></audio>
 
-      <div class="music-info">
-        <p class="music-name">{{song.name}}</p>
-        <p class="music-author">{{song.singer | singernames}}</p>
-      </div>
-      <div class="music-ctrl">
-        <ul>
-          <li><img :src="playing?$parent.iconPause:$parent.iconPlay"
-            @click="$parent.tapButton"
-            @touchend="$parent.tapButton"></li>
+    <!-- <div class="music-info">
+      <p class="music-name">{{song.name}}</p>
+      <p class="music-author">{{song.singer | singernames}}</p>
+    </div> -->
+    <!-- <div class="music-ctrl">
+      <ul>
+        <li><img :src="playing?$parent.iconPause:$parent.iconPlay"
+          @click="$parent.tapButton"
+          @touchend="$parent.tapButton"></li>
         </ul>
-      </div>
+      </div> -->
     </div>
-  <div id="play-list-btn">btn</div>
-</div>
+    <div id="play-list-btn">btn</div>
+  </div>
 </template>
 
 <script>
@@ -62,7 +65,7 @@ export default {
       this.$store.commit('showPlayingList')
     },
     ...mapMutations([
-      'play', 'pause', 'playFront', 'playNext', 'playContinue'
+      'play', 'pause', 'playLast', 'playNext', 'playContinue'
     ])
   },
   computed: {
@@ -70,7 +73,10 @@ export default {
       'currentTime', 'duration','coverImgUrl'
     ]),
     ...mapState({
-      dataUrl: state => 'https://dl.stream.qqmusic.qq.com/C100' + state.Play.song.mid + '.m4a?fromtag=46',
+      dataUrl: state => {
+        console.log(state.Play.song.mid)
+        return 'https://dl.stream.qqmusic.qq.com/C100' + state.Play.song.mid + '.m4a?fromtag=46'
+      },
       progress: state => state.Play.currentTime / state.Play.duration * 100,
       isPlaying: state => state.Play.playing,
       song: state => state.Play.song
@@ -98,8 +104,9 @@ export default {
   height: 75px;
   width: 100%;
   display: flex;
-  background-color: rgb(255, 255, 255, 1);
   flex-direction: row;
+  background-color: rgb(255, 255, 255, 1);
+
 }
 
 #volume-bar {
@@ -114,8 +121,12 @@ export default {
 }
 
 .progress {
-  background-color: rgb(0, 0, 0, 1);
+  background-color: rgb(0, 0, 0, 0.5);
+  border-radius: 5px;
+  height: 10px;
+  color: black;
 }
+
 .icon {
   height: 20px;
 }

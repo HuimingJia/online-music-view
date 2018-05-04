@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <divider color="#555555" title="Billboards"></divider>
       <div class="row">
-        <div class="col-12 col-lg-6 col-xl-4" v-for="billboard in topList">
+        <div class="col-12 col-lg-6 col-xl-4" v-for="billboard in topList"  v-if="billboard !== null">
           <billboard-cover
           :img="billboard.picUrl"
           :title="billboard.topTitle"
@@ -32,7 +32,7 @@ export default {
       }
     }
   },
-  created: function () {
+  activated: function () {
     this.$store.dispatch('getRankList').then((response) => {
       console.log(response.data.data.topList)
       this.topList = response.data.data.topList

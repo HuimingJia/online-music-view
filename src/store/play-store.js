@@ -1,26 +1,30 @@
-import * as def from '@/global/variable'
+import * as vars from '@/global/vars'
 
 export default {
   state: {
     playing: false,
     currentTime: 0,
     duration: 0,
-    playMode: def.SEQUENTIAL,
+    playMode: vars.SEQUENTIAL,
     index: 0,
-    song: {
-      name: def.DEFAULT_SONG_NAME
-    },
+    song: { name: vars.DEFAULT_SONG_NAME },
     playList: []
   },
   mutations: {
+    playSong (state) {
+      state.playing = true
+      state.index = 0
+      state.song = state.playList[state.index]
+    },
+    changePlayMode (state) {
+      state.playMode = (state.playMode + 1) % 3
+    },
     playIndex (state, index) {
       state.index = index
       state.song = state.playList[index]
     },
-    setPlayList (state, playList) {
-      state.playList = playList.list
-      state.index = playList.index
-      state.song = state.playList[state.index]
+    insertToPlayList(state, song) {
+      state.playList.unshift(song)
     },
     addToPlayList (state, item) {
       state.playList.push(item)
@@ -32,10 +36,10 @@ export default {
       if (index === state.index) {
         if (state.index === 0 && state.playList.length === 1) {
           state.song = {
-            name: def.DEFAULT_SONG_NAME,
+            name: vars.DEFAULT_SONG_NAME,
             singer: ''
           }
-          state.coverImgUrl = def.DEFAULT_IMG
+          state.coverImgUrl = vars.DEFAULT_IMG
         } else {
           state.song = state.playList[state.index + 1]
         }
@@ -43,10 +47,9 @@ export default {
         state.index--
       }
       state.playList.splice(index, 1)
-
     },
-    addToPlayListAsNextPlay (state, item) {
-      state.playList.splice(state.index + 1, 0, item)
+    clearPlayingList (state) {
+      state.playList = [];
     },
     updateCurrentTime (state, time) {
       state.currentTime = time
@@ -60,33 +63,13 @@ export default {
     pause (state) {
       state.playing = false
     },
-    playFront (state) {
+    playLast (state) {
       state.index = (state.index - 1 + state.playList.length) % state.playList.length
       state.song = state.playList[state.index]
     },
     playNext (state) {
       state.index = (state.index + 1) % state.playList.length
       state.song = state.playList[state.index]
-    },
-    playContinue (state) {
-      switch (state.playMode) {
-        case def.SINGLE:
-          break
-        case def.SEQUENTIAL:
-          state.index = (state.index + 1) % state.playList.length
-          state.song = state.playList[state.index]
-          break
-        case def.RANDOM:
-          state.index = Math.floor(Math.random() * state.playList.length)
-          state.song = state.playList[state.index]
-          break
-      }
-    },
-    changePlayMode (state) {
-      state.playMode = (state.playMode + 1) % 3
-    },
-    setAlbummid(state,albummid){
-      state.song = {...state.song,albummid}
     }
   },
   getters: {
@@ -94,7 +77,7 @@ export default {
     duration: state => parseInt(state.duration / 60) + ':' + (Array(2).join(0) + (state.duration % 60)).slice(-2),
     coverImgUrl:state => {
       if(typeof state.song.albummid === 'undefined')
-        return def.DEFAULT_IMG
+        return vars.DEFAULT_IMG
       else
         return "https://y.gtimg.cn/music/photo_new/T002R500x500M000"+state.song.albummid+".jpg"
     }

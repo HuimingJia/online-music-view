@@ -67,7 +67,7 @@ export default {
       mvList: [],
     }
   },
-  created: function () {
+  activated: function () {
     this.$store.dispatch('getFirstPage').then((response) => {
       this.loading = false
       console.log(response.data)

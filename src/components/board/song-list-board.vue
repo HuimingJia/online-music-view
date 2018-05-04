@@ -14,10 +14,15 @@
     <div class="song-list-board-song-list">
       <divider color="#555555" title="HitS"></divider>
       <song-bar v-for="(song, index) in song_list"
-      :index="index"
-      :name="song.data.songname"
-      :singers="song.data.singer"
-      :album="song.data.albumname"></song-bar>
+        :index="index"
+        :songname="song.data.songname"
+        :album="song.data.albumname"
+        :id="song.data.songid"
+        :mid="song.data.songmid"
+        :name="song.data.songorig"
+        :singer="song.data.singer"
+        :albummid="song.data.albummid"
+      ></song-bar>
     </div>
   </div>
 </template>

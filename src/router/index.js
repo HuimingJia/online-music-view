@@ -19,7 +19,7 @@ export default new Router({
       name: 'home',
       component: ForMeBoard
     },{
-      path: 'billboard',
+      path: '/billboard',
       name: 'billboard',
       component: BillboardBoard
     },{
@@ -35,7 +35,7 @@ export default new Router({
       name: 'search-res',
       component: SearchResBoard
     },{
-      path: 'song-list/:id',
+      path: '/song-list/:id',
       name: 'song-list',
       component: SongListBoard,
     }

@@ -10,6 +10,7 @@
       </transition>
     </div>
     <play-bar></play-bar>
+    <playing-list></playing-list>
     <Footer></Footer>
   </div>
 </template>
@@ -19,6 +20,7 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import SideBar from "@/components/side-bar"
 import PlayBar from "@/components/play-bar"
+import PlayingList from '@/components/playing-list'
 
 import PlayCardLg from "@/components/play-card-lg"
 export default {
@@ -28,6 +30,7 @@ export default {
     Footer,
     SideBar,
     PlayBar,
+    PlayingList
   },
   data() {
     return {
