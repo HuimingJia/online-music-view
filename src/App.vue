@@ -10,7 +10,7 @@
       </transition>
     </div>
     <play-bar></play-bar>
-    <transition name="scale">
+    <transition name="scale-in">
       <playing-list v-if="isShowPlayingList"></playing-list>
     </transition>
     <Footer></Footer>
@@ -63,6 +63,11 @@ export default {
   background-size: cover;
 }
 
+#app::-webkit-scrollbar {
+  display: none;
+}
+
+
 #cotent {
   display: flex;
   flex-direction: row;
@@ -93,21 +98,21 @@ export default {
   opacity: 0;
 }
 
-.scale-enter-active {
+.scale-in-enter-active {
   animation: scale-in .5s;
 
 }
-.scale-leave-active {
+.scale-in-leave-active {
   animation: scale-in .5s reverse;
 
 }
 
 @keyframes scale-in {
   0% {
-    transform: translateX('1000px') scale(0);
+    transform: scale(0) translateX(200px);
   }
   100% {
-    transform: translateX('1000px') scale(1);
+    transform: scale(1) translateX(0px);
   }
 }
 </style>

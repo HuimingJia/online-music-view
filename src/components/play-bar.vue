@@ -13,7 +13,7 @@
     </div>
 
     <div class="play-progress-clock my-auto">
-        <span>{{currentTime}}</span>
+        <span>{{currentTime}} /</span>
         <span>{{duration}}</span>
     </div>
     <audio id="music"
@@ -29,10 +29,9 @@
       <div v-else class="play-list-btn play-status play-status-pause my-auto" @click="playMusic()">
           <v-icon name="pause-circle"></v-icon>
       </div>
-
       <div class="play-list-btn play-next my-auto" @click="playNextSong()"><v-icon name="arrow-right"></v-icon></div>
-      <div class="play-list-btn toggle-playing-list my-auto"@click="togglePlayingList()"><v-icon name="menu" ></v-icon></div>
     </div>
+    <div class="toggle-playing-list" @click="togglePlayingList()"><v-icon name="menu" class="my-auto"></v-icon></div>
   </div>
 </template>
 
@@ -160,7 +159,7 @@ export default {
 
 .icon {
   height: 100%;
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .play-last {
@@ -203,6 +202,13 @@ export default {
 }
 
 .toggle-playing-list {
+  margin-left: 15px;
+  width: 30px;
   color: black;
+  height: 100%;
+}
+
+.toggle-playing-list .icon{
+  width: 30px;
 }
 </style>

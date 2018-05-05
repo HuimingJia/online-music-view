@@ -1,11 +1,10 @@
 <template lang="html">
-<div class="play-card-sm">
-  <!-- <img class="play-card-img-sm" :src="img" :alt="song_name"> -->
-  <img class="play-card-img-sm">
-  <div class="play-card-des-sm">
-    <h5>{{songname}}</h5>
-    <p>{{albumname}}</p>
-    <p>{{singernames}}</p>
+<div class="play-card-sm" @click="showPlayCard()">
+  <img class="play-card-img-sm" height="75px" width="75px" :src="coverImgUrl" :alt="song_name">
+  <div class="play-card-sm-right my-auto">
+    <div class="play-card-sm-name">{{songname}}</div>
+    <div class="play-card-sm-album">{{albumname}}</div>
+    <div class="play-card-sm-singernames">{{singernames}}</div>
   </div>
 </div>
 </template>
@@ -15,7 +14,7 @@ import {mapMutations, mapState, mapGetters} from 'vuex'
 export default {
   computed: {
     ...mapGetters([
-      'albumname', 'songname','singernames'
+      'albumname', 'songname','singernames', 'coverImgUrl'
     ]),
     ...mapState({
       dataUrl: state => {
@@ -23,6 +22,11 @@ export default {
         return 'https://dl.stream.qqmusic.qq.com/C100' + state.PlayStore.song.mid + '.m4a?fromtag=46'
       }
     })
+  },
+  methods: {
+    showPlayCard: function() {
+      this.$store.commit('showPlayCard')
+    }
   }
 }
 </script>
@@ -38,17 +42,29 @@ export default {
   display: flex;
   flex-direction: row;
   background-color: rgb(255, 255, 255, 0.8);
+  overflow: hidden;
+  transition: all 0.25s;
+}
+
+.play-card-sm:hover {
+  transform: scale(1.1) translateX(10px)  translateY(-5px);
 }
 
 .play-card-img-sm {
   background-color: black;
-  width: 75px;
   margin: 15px;
 }
 
-.play-card-des-sm {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+.play-card-sm-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.play-card-sm-album {
+  font-size: 14px;
+}
+
+.play-card-sm-singernames {
+  font-size: 14px;
 }
 </style>

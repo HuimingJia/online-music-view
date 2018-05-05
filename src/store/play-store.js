@@ -101,7 +101,7 @@ export default {
     duration: state => parseInt(state.duration / 60) + ':' + (Array(2).join(0) + (state.duration % 60)).slice(-2),
     albumname: state => state.playList[state.index].albumname,
     singernames: state => state.playList[state.index].singer.map((singer) => {return singer.name}).join("/"),
-    songmae: state => state.song.name,
+    songname: state => state.song.name,
     coverImgUrl:state => {
       if(typeof state.song.albummid === 'undefined')
         return vars.DEFAULT_IMG
