@@ -4,7 +4,7 @@
     <div class="playing-list-control-btn" >
       <div @click="changePlayMode()"><v-icon :name="playModeIcon" ></v-icon></div>
       <div @click="clear()"><v-icon name="trash-2"></v-icon></div>
-      <div @click="hide()"><v-icon name="trash-2"></v-icon></div>
+      <div @click="hide()"><v-icon name="minimize-2"></v-icon></div>
     </div>
   </div>
 
@@ -55,9 +55,9 @@ export default {
       return vars.PLAY_MODE_NAME[this.playMode]
     },
     ...mapState({
-      playList: state => state.Play.playList,
-      playMode: state => state.Play.playMode,
-      curIndex: state => state.Play.index
+      playList: state => state.PlayStore.playList,
+      playMode: state => state.PlayStore.playMode,
+      curIndex: state => state.PlayStore.index
     })
   },
   filters: {
@@ -82,13 +82,16 @@ export default {
   padding: 15px;
   float: right;
   position: absolute;
-  background-color: rgb(255, 255, 255, 1);
-  height: 500px;
+  background: rgb(35,37,38,0.9);  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, rgb(65,67,69,0.9), rgb(35,37,38,0.9));  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, rgb(65,67,69,0.9), rgb(35,37,38,0.9)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height: 400px;
   width: 250px;
   bottom: 115px;
   right: 15px;
   z-index: 3;
   overflow: scroll;
+  color: white;
 }
 
 .playing-list::-webkit-scrollbar {

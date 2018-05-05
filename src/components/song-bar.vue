@@ -62,7 +62,8 @@ export default {
         mid: this.mid,
         name: this.name,
         singer: this.singer,
-        albummid: this.albummid
+        albummid: this.albummid,
+        albumname: this.album,
       }
       this.$store.commit('insertToPlayList', song)
       this.$store.commit('playSong')

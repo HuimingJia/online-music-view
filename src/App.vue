@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" :style="{ backgroundImage: 'url(' + require('@/assets/imgs/app-bg.jpg') + ')'}">
     <Header></Header>
-    <div id="cotent" :style="{ backgroundImage: 'url(' + require('@/assets/imgs/app-bg.jpg') + ')'}">
+    <div id="cotent">
       <side-bar></side-bar>
       <transition name="fade">
         <keep-alive>
@@ -10,7 +10,9 @@
       </transition>
     </div>
     <play-bar></play-bar>
-    <playing-list></playing-list>
+    <transition name="scale">
+      <playing-list v-if="isShowPlayingList"></playing-list>
+    </transition>
     <Footer></Footer>
   </div>
 </template>
@@ -21,8 +23,9 @@ import Footer from "@/components/footer"
 import SideBar from "@/components/side-bar"
 import PlayBar from "@/components/play-bar"
 import PlayingList from '@/components/playing-list'
+import PlayCardLg from '@/components/play-card-lg'
 
-import PlayCardLg from "@/components/play-card-lg"
+import {mapState} from 'vuex'
 export default {
   name: 'App',
   components: {
@@ -36,6 +39,11 @@ export default {
     return {
       playcardsize: true
     }
+  },
+  computed: {
+    ...mapState({
+      isShowPlayingList: state => state.PlayStore.isShowPlayingList
+    })
   }
 }
 </script>
@@ -52,6 +60,7 @@ export default {
   min-width: 780px;
   min-height: 600px;
   flex-direction: column;
+  background-size: cover;
 }
 
 #cotent {
@@ -59,7 +68,6 @@ export default {
   flex-direction: row;
   flex: 1;
   width: 100%;
-  background-size: cover;
 }
 
 .board {
@@ -83,5 +91,23 @@ export default {
 
 .fade-enter, .fade-leave-to {
   opacity: 0;
+}
+
+.scale-enter-active {
+  animation: scale-in .5s;
+
+}
+.scale-leave-active {
+  animation: scale-in .5s reverse;
+
+}
+
+@keyframes scale-in {
+  0% {
+    transform: translateX('1000px') scale(0);
+  }
+  100% {
+    transform: translateX('1000px') scale(1);
+  }
 }
 </style>

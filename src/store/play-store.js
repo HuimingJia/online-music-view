@@ -8,7 +8,8 @@ export default {
     playMode: vars.SEQUENTIAL,
     index: 0,
     song: { name: vars.DEFAULT_SONG_NAME },
-    playList: []
+    playList: [],
+    isShowPlayingList: true,
   },
   mutations: {
     playSong (state) {
@@ -51,6 +52,15 @@ export default {
     clearPlayingList (state) {
       state.playList = [];
     },
+    hidePlayingList (state) {
+      state.isShowPlayingList = false;
+    },
+    togglePlayingList (state) {
+      state.isShowPlayingList = !state.isShowPlayingList;
+    },
+    showPlayingList (state) {
+      state.isShowPlayingList = true;
+    },
     updateCurrentTime (state, time) {
       state.currentTime = time
     },
@@ -70,11 +80,28 @@ export default {
     playNext (state) {
       state.index = (state.index + 1) % state.playList.length
       state.song = state.playList[state.index]
-    }
+    },
+    playContinue (state) {
+      switch (state.playMode) {
+        case vars.SINGLE:
+          break
+        case vars.SEQUENTIAL:
+          state.index = (state.index + 1) % state.playList.length
+          state.song = state.playList[state.index]
+          break
+        case vars.RANDOM:
+          state.index = Math.floor(Math.random() * state.playList.length)
+          state.song = state.playList[state.index]
+          break
+      }
+    },
   },
   getters: {
     currentTime: state => parseInt(state.currentTime / 60) + ':' + (Array(2).join(0) + (state.currentTime % 60)).slice(-2),
     duration: state => parseInt(state.duration / 60) + ':' + (Array(2).join(0) + (state.duration % 60)).slice(-2),
+    albumname: state => state.playList[state.index].albumname,
+    singernames: state => state.playList[state.index].singer.map((singer) => {return singer.name}).join("/"),
+    songmae: state => state.song.name,
     coverImgUrl:state => {
       if(typeof state.song.albummid === 'undefined')
         return vars.DEFAULT_IMG

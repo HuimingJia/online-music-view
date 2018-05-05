@@ -3,14 +3,27 @@
   <!-- <img class="play-card-img-sm" :src="img" :alt="song_name"> -->
   <img class="play-card-img-sm">
   <div class="play-card-des-sm">
-    <h5>Song Name</h5>
-    <p>Signer Name</p>
+    <h5>{{songname}}</h5>
+    <p>{{albumname}}</p>
+    <p>{{singernames}}</p>
   </div>
 </div>
 </template>
 
 <script>
+import {mapMutations, mapState, mapGetters} from 'vuex'
 export default {
+  computed: {
+    ...mapGetters([
+      'albumname', 'songname','singernames'
+    ]),
+    ...mapState({
+      dataUrl: state => {
+        console.log(state.PlayStore.song.mid)
+        return 'https://dl.stream.qqmusic.qq.com/C100' + state.PlayStore.song.mid + '.m4a?fromtag=46'
+      }
+    })
+  }
 }
 </script>
 

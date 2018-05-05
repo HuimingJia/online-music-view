@@ -12,31 +12,27 @@
       </div>
     </div>
 
-    <div class="time-indicater my-auto">
-      <span>{{currentTime}}</span>
-      <span>{{duration}}</span>
+    <div class="play-progress-clock my-auto">
+        <span>{{currentTime}}</span>
+        <span>{{duration}}</span>
     </div>
-
-  <div id="play-control-button-group my-auto">
     <audio id="music"
     :src="dataUrl"
     @timeupdate="updateTime"
     @ended="playContinue"
     autoplay></audio>
+    <div class="play-control-button-group">
+      <div class="play-list-btn play-last my-auto" @click="playLastSong()"><v-icon name="arrow-left"></v-icon></div>
+      <div v-if="isPlaying" class="play-list-btn play-status play-status-play my-auto" @click="pauseMusic()">
+          <v-icon name="play-circle"></v-icon>
+      </div>
+      <div v-else class="play-list-btn play-status play-status-pause my-auto" @click="playMusic()">
+          <v-icon name="pause-circle"></v-icon>
+      </div>
 
-    <!-- <div class="music-info">
-      <p class="music-name">{{song.name}}</p>
-      <p class="music-author">{{song.singer | singernames}}</p>
-    </div> -->
-    <!-- <div class="music-ctrl">
-      <ul>
-        <li><img :src="playing?$parent.iconPause:$parent.iconPlay"
-          @click="$parent.tapButton"
-          @touchend="$parent.tapButton"></li>
-        </ul>
-      </div> -->
+      <div class="play-list-btn play-next my-auto" @click="playNextSong()"><v-icon name="arrow-right"></v-icon></div>
+      <div class="play-list-btn toggle-playing-list my-auto"@click="togglePlayingList()"><v-icon name="menu" ></v-icon></div>
     </div>
-    <div id="play-list-btn">btn</div>
   </div>
 </template>
 
@@ -49,6 +45,17 @@ export default {
     }
   },
   methods: {
+    playMusic() {
+      document.getElementById('music').play()
+      this.play()
+    },
+    pauseMusic() {
+      document.getElementById('music').pause()
+      this.pause()
+    },
+    togglePlayingList() {
+      this.$store.commit('togglePlayingList')
+    },
     updateTime() {
       this.$store.commit('updateCurrentTime', parseInt(document.getElementById('music').currentTime))
       this.$store.commit('updateDuration', parseInt(document.getElementById('music').duration))
@@ -74,12 +81,12 @@ export default {
     ]),
     ...mapState({
       dataUrl: state => {
-        console.log(state.Play.song.mid)
-        return 'https://dl.stream.qqmusic.qq.com/C100' + state.Play.song.mid + '.m4a?fromtag=46'
+        console.log(state.PlayStore.song.mid)
+        return 'https://dl.stream.qqmusic.qq.com/C100' + state.PlayStore.song.mid + '.m4a?fromtag=46'
       },
-      progress: state => state.Play.currentTime / state.Play.duration * 100,
-      isPlaying: state => state.Play.playing,
-      song: state => state.Play.song
+      progress: state => state.PlayStore.currentTime / state.PlayStore.duration * 100,
+      isPlaying: state => state.PlayStore.playing,
+      song: state => state.PlayStore.song
     })
   },
   filters: {
@@ -105,19 +112,32 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: row;
-  background-color: rgb(255, 255, 255, 1);
-
+  background-color: rgb(219,219,219);
+  border-color: grey;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+  border-style: solid;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 #volume-bar {
   width: 200px;
-  background-color: rgb(255, 255, 255, 1);
+  /* background-color: rgb(255, 255, 255, 0.5); */
 }
 
 #play-progress-bar {
   display: flex;
   flex-direction: row;
   flex: 1;
+
+}
+
+.play-progress-clock {
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .progress {
@@ -127,17 +147,62 @@ export default {
   color: black;
 }
 
+.play-control-button-group{
+  display: flex;
+  flex-direction: row;
+  height: 70px;
+}
+
+.play-list-btn {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 .icon {
-  height: 20px;
+  height: 100%;
+  font-size: 20px;
 }
 
-#play-control-button-group{
-  width: 200px;
-  background-color: rgb(255, 255, 255, 1);
+.play-last {
+  height: 60%;
+  background-color: rgb(0, 0, 0, 1);
+  padding: 5px;
+  color: white;
+  border-radius: 50%;
 }
 
-#play-list-btn {
-  width: 24px;
-  background-color: red;
+.play-status {
+  height: 80%;
+  background-color: rgb(0, 0, 0, 1);
+  color: white;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.play-status-play {
+ /* animation: blinker 2s linear infinite; */
+}
+
+.play-status-pause {
+
+}
+/*
+@keyframes blinker {
+  50% {
+    background-color: rgb(0, 0, 0, 0.5);
+    color: grey;
+  }
+} */
+
+.play-next {
+  height: 60%;
+  background-color: rgb(0, 0, 0, 1);
+  color: white;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.toggle-playing-list {
+  color: black;
 }
 </style>
