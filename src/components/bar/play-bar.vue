@@ -1,24 +1,22 @@
 <template lang="html">
   <div id="play-bar">
     <div id="volume-bar">
-      <div class="my-auto">
-        volume-bar
-      </div>
+        <input class="my-auto"v-model="volume">
     </div>
 
     <div id="play-progress-bar">
       <div class="progress my-auto" :style="{width: progress +'%'}">
-        <!-- <v-icon name="disc"></v-icon> -->
+        <v-icon name="disc"></v-icon>
       </div>
     </div>
 
     <div class="play-progress-clock my-auto">
-        <span>{{currentTime}} /</span>
+        <span>{{progress}} /</span>
         <span>{{duration}}</span>
     </div>
-    <audio id="music"
-    :src="dataUrl"
-    @timeupdate="updateTime"
+    <audio id="audio"
+    :src="musicSrc"
+    @timeupdate="updateTime()"
     @ended="playContinue"
     autoplay></audio>
     <div class="play-control-button-group">
@@ -38,69 +36,53 @@
 <script>
 import {mapMutations, mapState, mapGetters} from 'vuex'
 export default {
-  data () {
+  data() {
     return {
-      clientY: 0,
+      volume: 0.5
     }
+  },
+  computed: {
+    ...mapGetters([
+      'progress', 'duration','curcAlbumImg'
+    ]),
+    ...mapState({
+      musicSrc: state => 'https://dl.stream.qqmusic.qq.com/C100' + state.PlayStore.curSong.mid + '.m4a?fromtag=46',
+      progress: state => state.PlayStore.progress / state.PlayStore.duration * 100,
+      isPlaying: state => state.PlayStore.playing,
+      song: state => state.PlayStore.curSong
+    })
   },
   methods: {
     playMusic() {
-      document.getElementById('music').play()
+      document.getElementById('audio').play()
       this.play()
     },
     pauseMusic() {
-      document.getElementById('music').pause()
+      document.getElementById('audio').pause()
       this.pause()
+    },
+    updateTime() {
+      console.log("update")
+      this.$store.commit('updateTime', parseInt(document.getElementById('audio').progress), parseInt(document.getElementById('audio').duration))
     },
     togglePlayingList() {
       this.$store.commit('togglePlayingList')
-    },
-    updateTime() {
-      this.$store.commit('updateCurrentTime', parseInt(document.getElementById('music').currentTime))
-      this.$store.commit('updateDuration', parseInt(document.getElementById('music').duration))
-    },
-    movestart: function (event) {
-      console.log('start' + event.touches[0].clientY)
-    },
-    moveend: function (event) {
-      if (event.changedTouches[0].clientY - this.clientY > 0) {
-        this.hidePlayPage()
-      }
     },
     showPlayList: function () {
       this.$store.commit('showPlayingList')
     },
     ...mapMutations([
       'play', 'pause', 'playLast', 'playNext', 'playContinue'
-    ])
-  },
-  computed: {
-    ...mapGetters([
-      'currentTime', 'duration','coverImgUrl'
     ]),
-    ...mapState({
-      dataUrl: state => {
-        console.log(state.PlayStore.song.mid)
-        return 'https://dl.stream.qqmusic.qq.com/C100' + state.PlayStore.song.mid + '.m4a?fromtag=46'
-      },
-      progress: state => state.PlayStore.currentTime / state.PlayStore.duration * 100,
-      isPlaying: state => state.PlayStore.playing,
-      song: state => state.PlayStore.song
-    })
-  },
-  filters: {
-    singernames: val => {
-      if (typeof val === 'string') {
-        return val
-      }
-      else if (val instanceof Array) {
-        let singer = ''
-        val.forEach(item => {
-          singer = singer + item.name + ' '
-        })
-        return singer
-      }
+    setVolume: function(volume) {
+      alert(volume)
+      document.getElementById('audio').volume = volume
     }
+  },
+  watch: {
+      volume: function(val){
+        document.getElementById('audio').volume = val
+      }
   }
 }
 </script>

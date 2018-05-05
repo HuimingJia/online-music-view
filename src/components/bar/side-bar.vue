@@ -5,14 +5,14 @@
     </div>
 
     <sidebar-button text="For Me" icon="target" link="home"></sidebar-button>
-    <sidebar-button text="Billboard" icon="award" link="billboard"></sidebar-button>
+    <sidebar-button text="Trending" icon="award" link="toplists"></sidebar-button>
     <sidebar-button text="Singers" icon="users" link="singers"></sidebar-button>
     <transition name="scale">
       <play-card-sm></play-card-sm>
     </transition>
     <!-- <ul>
     <li>For-Me</li>
-    <li>Billboard</li>
+    <li>toplist</li>
     <li>Singers</li>
   </ul> -->
 </div>

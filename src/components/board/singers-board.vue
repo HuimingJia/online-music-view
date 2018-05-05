@@ -1,12 +1,12 @@
 <template lang="html">
 <div id="singers-board">
-  <!-- <div class="col-12 col-lg-6 col-xl-4" v-for="billboard in topList">
-    <billboard-cover
-    :img="billboard.picUrl"
-    :title="billboard.topTitle"
-    :song_list="billboard.songList"
-    :id = "billboard.id">
-    </billboard-cover>
+  <!-- <div class="col-12 col-lg-6 col-xl-4" v-for="toplist in topList">
+    <toplist-cover
+    :img="toplist.picUrl"
+    :title="toplist.topTitle"
+    :song_list="toplist.songList"
+    :id = "toplist.id">
+    </toplist-cover>
   </div> -->
 </div>
 </template>

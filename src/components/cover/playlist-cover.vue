@@ -33,12 +33,15 @@ export default {
     auth: {
       type: String,
       default: null
+    },
+    id: {
+      type: Number,
+      default: null,
     }
   },
   methods: {
     goTo: function(id) {
-      alert("Goto Page " + id)
-      this.$router.push({name: 'billboard', params: {id: id}})
+      this.$router.push({name: 'playlist', params: {id: id}})
     }
   }
 }

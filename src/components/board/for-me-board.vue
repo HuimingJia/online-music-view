@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="for-me-board">
-    <slide-show :data="slider"></slide-show>
+    <slide-show :cases="slideShow"></slide-show>
     <div class="container-fluid hotlist">
       <divider color="#555555" title="Hot PlayList"></divider>
       <div class="row">
@@ -32,19 +32,17 @@
 
 <script>
 import divider from '@/components/divider'
-import BillboardCover from '@/components/billboard-cover'
-import AlbumCover from '@/components/album-cover'
-import SingerBar from '@/components/singer-bar'
-import SongBar from '@/components/song-bar'
-import SlideShow from '@/components/slide-show'
-import PlaylistCover from '@/components/playlist-cover'
-import MvCover from '@/components/mv-cover'
+import AlbumCover from '@/components/cover/album-cover'
+import SingerBar from '@/components/bar/singer-bar'
+import SongBar from '@/components/bar/song-bar'
+import SlideShow from '@/components/list/slide-show'
+import PlaylistCover from '@/components/cover/playlist-cover'
+import MvCover from '@/components/cover/mv-cover'
 
 export default {
   components: {
     SlideShow,
     divider,
-    BillboardCover,
     AlbumCover,
     SingerBar,
     SongBar,
@@ -58,10 +56,7 @@ export default {
         {name: "fantastic baby", singer: "Big bang"},
         {name: "fantastic baby", singer: "Big bang"},
       ],
-      slider: {
-        type: Array,
-        default: [],
-      },
+      slideShow: null,
       radioList: [],
       playlists: [],
       mvList: [],
@@ -71,7 +66,7 @@ export default {
     this.$store.dispatch('getFirstPage').then((response) => {
       this.loading = false
       console.log(response.data)
-      this.slider = response.data.data.focus
+      this.slideShow = response.data.data.focus
       this.playlists = response.data.data.hotdiss.list.slice(0,6);
       this.mvList = response.data.data.shoubomv.all.slice(0,6);
     }, (response) => {

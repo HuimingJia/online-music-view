@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="album-cover">
     <div class="album-cover-above">
-      <img class="album-cover-img" width="100%" :src="img" :alt="alt">
+      <img class="album-cover-img" width="100%" v-lazy="img" :alt="alt">
       <div class="album-cover-mask">{{des}}</div>
     </div>
 

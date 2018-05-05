@@ -20,9 +20,9 @@
 <script>
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import SideBar from "@/components/side-bar"
-import PlayBar from "@/components/play-bar"
-import PlayingList from '@/components/playing-list'
+import SideBar from "@/components/bar/side-bar"
+import PlayBar from "@/components/bar/play-bar"
+import PlayingList from '@/components/list/playing-list'
 import PlayCardLg from '@/components/play-card-lg'
 
 import {mapState} from 'vuex'
@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     ...mapState({
-      isShowPlayingList: state => state.PlayStore.isShowPlayingList
+      isShowPlayingList: state => state.ComponentStore.isShowPlayingList
     })
   }
 }

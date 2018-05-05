@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="song-bar" @click="play()">
     <div class="song-bar-name my-auto">
-      {{index}}. {{songname}} - {{singernames}} - {{album}}
+      {{index + 1}}. {{songname}} - {{singernames}} - {{albumname}}
     </div>
     <div class="song-bar-btn-group my-auto">
       <v-icon name="play"></v-icon>
@@ -20,11 +20,11 @@ export default {
     },
     songname: {
       type: String,
-      default: null,
+      default: 'M-Music',
     },
-    album: {
+    albumname: {
       type: String,
-      default: null,
+      default: 'M-Album',
     },
     id: {
       type: Number,
@@ -36,11 +36,11 @@ export default {
     },
     name: {
       type: String,
-      default: null,
+      default: 'M-Orig',
     },
     singer: {
       type: Array,
-      default: null,
+      default: [],
     },
     albummid: {
       type: String,
@@ -63,7 +63,7 @@ export default {
         name: this.name,
         singer: this.singer,
         albummid: this.albummid,
-        albumname: this.album,
+        albumname: this.albumname,
       }
       this.$store.commit('insertToPlayList', song)
       this.$store.commit('playSong')

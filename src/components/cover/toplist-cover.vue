@@ -1,13 +1,13 @@
 <template lang="html">
-  <div class="billboard-cover" @click="goTo(id)">
-    <div class="billboard-cover-left">
-      <img class="billboard-cover-img" height="100%" v-lazy="img" :alt="alt">
-      <div class="billboard-cover-btn"></div>
+  <div class="toplist-cover" @click="goTo(id)">
+    <div class="toplist-cover-left">
+      <img class="toplist-cover-img" height="100%" v-lazy="img" :alt="alt">
+      <div class="toplist-cover-btn"></div>
     </div>
-    <div class="billboard-cover-right my-auto">
-      <h5 class="billboard-cover-title">{{title}}</h5>
-      <div class="billboard-cover-song-list">
-        <div class="billboard-cover-song-info" v-for="song in song_list">
+    <div class="toplist-cover-right my-auto">
+      <h5 class="toplist-cover-title">{{title}}</h5>
+      <div class="toplist-cover-song-list">
+        <div class="toplist-cover-song-info" v-for="song in song_list">
           {{song.songname}} - {{song.singername}}
         </div>
       </div>
@@ -20,7 +20,7 @@ export default {
   props: {
     img: {
       type: String,
-      default: require("@/assets/imgs/billboard-cover.jpg"),
+      default: require("@/assets/imgs/toplist-cover.jpg"),
     },
     song_list: {
       type: Array,
@@ -41,14 +41,14 @@ export default {
   },
   methods: {
     goTo: function(id) {
-      this.$router.push({name: 'song-list', params: {id: id}})
+      this.$router.push({name: 'toplist', params: {id: id}})
     }
   }
 }
 </script>
 
 <style lang="css" scoped>
-.billboard-cover {
+.toplist-cover {
   width: 100%;
   height: 150px;
   display: flex;
@@ -59,22 +59,22 @@ export default {
   transition: all 1s;
 }
 
-.billboard-cover:hover {
+.toplist-cover:hover {
   background-color: rgb(0, 0, 0, 0.5);
   color: white;
 }
 
-.billboard-cover-left {
+.toplist-cover-left {
   width: 150px;
   height: 100%;
   overflow: hidden;
 }
 
-.billboard-cover-btn {
+.toplist-cover-btn {
   float: right;
 }
 
-.billboard-cover-right {
+.toplist-cover-right {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -85,17 +85,17 @@ export default {
   overflow: hidden;
 }
 
-.billboard-cover-song-list {
+.toplist-cover-song-list {
   margin-left: 5px;
 }
 
-.billboard-cover-song-info {
+.toplist-cover-song-info {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
-.billboard-cover-title {
+.toplist-cover-title {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;

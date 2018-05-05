@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="singer-bar">
-    <img class="singer-bar-img my-auto" height="35px" :src="img" :alt="alt">
+    <img class="singer-bar-img my-auto" height="35px" v-lazy="img" :alt="alt">
     <div class="singer-bar-name my-auto">
       {{name}}
     </div>

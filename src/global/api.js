@@ -19,7 +19,7 @@ export default {
     },
     jsonp: 'jsonpCallback'
   },
-  rank_list: {
+  top_lists: {
     url: 'https://c.y.qq.com/v8/fcg-bin/fcg_myqq_toplist.fcg',
     params: () => {
       return {
@@ -36,7 +36,7 @@ export default {
     },
     jsonp: 'jsonpCallback'
   },
-  rank_songs: {
+  top_list: {
     url: 'https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg',
     params: (id) => {
       return {
@@ -71,6 +71,31 @@ export default {
         notice: 0,
         platform: 'yqq',
         needNewCode: 0
+      }
+    },
+    jsonp: 'jsonpCallback'
+  },
+  play_list:{
+    url:'https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg',
+    params:(id)=>{
+      return {
+        g_tk:5381,
+        uin:0,
+        format:'jsonp',
+        inCharset:'utf-8',
+        outCharset:'utf-8',
+        notice:0,
+        platform:'h5',
+        needNewCode:1,
+        new_format:1,
+        pic:500,
+        disstid:id,
+        type:1,
+        json:1,
+        utf8:1,
+        onlysong:0,
+        nosign:1,
+        _:new Date().getTime()
       }
     },
     jsonp: 'jsonpCallback'
@@ -165,30 +190,5 @@ export default {
       }
     },
     jsonp:'callback'
-  },
-  cd:{
-    url:'https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg',
-    params:(id)=>{
-      return {
-        g_tk:5381,
-        uin:0,
-        format:'jsonp',
-        inCharset:'utf-8',
-        outCharset:'utf-8',
-        notice:0,
-        platform:'h5',
-        needNewCode:1,
-        new_format:1,
-        pic:500,
-        disstid:id,
-        type:1,
-        json:1,
-        utf8:1,
-        onlysong:0,
-        nosign:1,
-        _:new Date().getTime()
-      }
-    },
-    jsonp: 'jsonpCallback'
-  },
+  }
 }

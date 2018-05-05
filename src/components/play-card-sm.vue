@@ -1,10 +1,10 @@
 <template lang="html">
 <div class="play-card-sm" @click="showPlayCard()">
-  <img class="play-card-img-sm" height="75px" width="75px" :src="coverImgUrl" :alt="song_name">
+  <img class="play-card-img-sm" height="75px" width="75px" v-lazy="curcAlbumImg" :alt="curSongname">
   <div class="play-card-sm-right my-auto">
-    <div class="play-card-sm-name">{{songname}}</div>
-    <div class="play-card-sm-album">{{albumname}}</div>
-    <div class="play-card-sm-singernames">{{singernames}}</div>
+    <div class="play-card-sm-name">{{curSongname}}</div>
+    <div class="play-card-sm-album">{{curAlbumname}}</div>
+    <div class="play-card-sm-singernames">{{curSingernames}}</div>
   </div>
 </div>
 </template>
@@ -14,14 +14,8 @@ import {mapMutations, mapState, mapGetters} from 'vuex'
 export default {
   computed: {
     ...mapGetters([
-      'albumname', 'songname','singernames', 'coverImgUrl'
-    ]),
-    ...mapState({
-      dataUrl: state => {
-        console.log(state.PlayStore.song.mid)
-        return 'https://dl.stream.qqmusic.qq.com/C100' + state.PlayStore.song.mid + '.m4a?fromtag=46'
-      }
-    })
+      'curSongname', 'curAlbumname', 'curSingernames', 'curcAlbumImg'
+    ])
   },
   methods: {
     showPlayCard: function() {

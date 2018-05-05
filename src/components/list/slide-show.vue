@@ -1,13 +1,13 @@
 <template lang="html">
 <div class="slide-show">
-    <img class="slide-show-img" width="20%" v-for="s in data" v-lazy="s.pic"></img>
+    <img class="slide-show-img" width="20%" v-for="s in cases" v-lazy="s.pic"></img>
 </div>
 </template>
 
 <script>
 export default {
   props: {
-    data: {
+    cases: {
       type: Array,
       default: null
     }

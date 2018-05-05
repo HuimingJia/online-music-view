@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import {mapState, mapMutations} from 'vuex'
+import {mapState, mapMutations, mapGetters} from 'vuex'
 import * as vars from '@/global/vars'
 export default {
   data () {
@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     clear() {
-      document.getElementById('music').pause()
+      document.getElementById('audio').pause()
       this.pause()
       this.$store.commit('clearPlayingList')
     },
@@ -59,7 +59,10 @@ export default {
       playList: state => state.PlayStore.playList,
       playMode: state => state.PlayStore.playMode,
       curIndex: state => state.PlayStore.index
-    })
+    }),
+    ...mapGetters([
+      'progress', 'duration','curcAlbumImg'
+    ]),
   },
   filters: {
     singer: val => {

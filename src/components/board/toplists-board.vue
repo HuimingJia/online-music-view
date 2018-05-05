@@ -1,15 +1,15 @@
 <template lang="html">
   <div id="for-me-board">
     <div class="container-fluid">
-      <divider color="#555555" title="Billboards"></divider>
+      <divider color="#555555" title="Top Charts"></divider>
       <div class="row">
-        <div class="col-12 col-lg-6 col-xl-4" v-for="billboard in topList"  v-if="billboard !== null">
-          <billboard-cover
-          :img="billboard.picUrl"
-          :title="billboard.topTitle"
-          :song_list="billboard.songList"
-          :id = "billboard.id">
-          </billboard-cover>
+        <div class="col-12 col-lg-6 col-xl-4" v-for="toplist in topList"  v-if="toplist !== null">
+          <toplist-cover
+          :img="toplist.picUrl"
+          :title="toplist.topTitle"
+          :song_list="toplist.songList"
+          :id = "toplist.id">
+          </toplist-cover>
         </div>
       </div>
     </div>
@@ -18,10 +18,10 @@
 
 <script>
 import divider from '@/components/divider'
-import BillboardCover from '@/components/billboard-cover'
+import toplistCover from '@/components/cover/toplist-cover'
 export default {
   components: {
-    BillboardCover,
+    toplistCover,
     divider
   },
   data() {
@@ -33,7 +33,7 @@ export default {
     }
   },
   activated: function () {
-    this.$store.dispatch('getRankList').then((response) => {
+    this.$store.dispatch('getTopLists').then((response) => {
       console.log(response.data.data.topList)
       this.topList = response.data.data.topList
     }, (response) => {

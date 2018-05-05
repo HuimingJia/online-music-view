@@ -2,6 +2,7 @@
 
 export default {
   state: {
+    isShowPlayingList: true,
     actionSheet: {
       show: false,
       menus: {},
@@ -26,6 +27,15 @@ export default {
     }
   },
   mutations: {
+    hidePlayingList (state) {
+      state.isShowPlayingList = false;
+    },
+    togglePlayingList (state) {
+      state.isShowPlayingList = !state.isShowPlayingList;
+    },
+    showPlayingList (state) {
+      state.isShowPlayingList = true;
+    },
     showActionSheet(state, menus){
       state.actionSheet.menus = menus
       state.actionSheet.show = true

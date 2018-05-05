@@ -17,12 +17,16 @@ export default {
     getFirstPage({}){
       return apiFactory(API.first_page_data)()
     },
-    getRankList({}){
-      return apiFactory(API.rank_list)()
+    getTopLists({}){
+      return apiFactory(API.top_lists)()
     },
-    getRankSongs({}, id){
-      return apiFactory(API.rank_songs)(id)
+    getTopList({}, id){
+      return apiFactory(API.top_list)(id)
     },
+    getPlayList({},id){
+      return apiFactory(API.play_list)(id)
+    },
+
     getSingerList({}, pagenum){
       return apiFactory(API.singer_list)(pagenum)
     },
@@ -37,9 +41,6 @@ export default {
     },
     getHotKey({}){
       return apiFactory(API.hotkey)()
-    },
-    getCdList({},id){
-      return apiFactory(API.cd)(id)
     },
     getLyric({},id){
       return Vue.http.jsonp('https://api.darlin.me/music/lyric/'+id+'/',{

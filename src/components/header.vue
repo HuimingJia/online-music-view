@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="header">
     <router-link class="header-brand my-auto" :to="{ name: 'home', params: {} }">
-      <img class="header-brand-img" :src="require('@/assets/imgs/album-cover.jpg')" height="38px" alt="music-player"/>
+      <img class="header-brand-img" v-lazy="require('@/assets/imgs/album-cover.jpg')" height="38px" alt="music-player"/>
     </router-link>
 
     <!-- <div class="search-bar"> -->

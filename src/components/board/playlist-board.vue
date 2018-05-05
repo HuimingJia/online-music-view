@@ -1,35 +1,36 @@
 <template lang="html">
-  <div id="song-list-board">
-    <div class="song-list-board-info">
-      <img class="song-list-board-img" height="200px" width="200px" :src="img">
-      <div class="song-list-board-info-right">
-        <h3 class="song-list-board-name">{{name}}</h3>
-        <div class="song-list-board-info" v-html="info"></div>
-        <div class="song-list-board-views">{{views}}</div>
-        <div class="song-list-board-date">{{date}}</div>
-        <div class="song-list-board-comments">{{comments}}</div>
-        <div class="song-list-board-size">{{size}}</div>
+  <div id="playlist-board">
+    play-list: {{this.$route.params.id}}
+    <!-- <div class="playlist-board-info">
+      <img class="playlist-board-img" height="200px" width="200px" v-lazy="img">
+      <div class="playlist-board-info-right">
+        <h3 class="playlist-board-name">{{name}}</h3>
+        <div class="playlist-board-info" v-html="info"></div>
+        <div class="playlist-board-views">{{views}}</div>
+        <div class="playlist-board-date">{{date}}</div>
+        <div class="playlist-board-comments">{{comments}}</div>
+        <div class="playlist-board-size">{{size}}</div>
       </div>
-    </div>
-    <div class="song-list-board-song-list">
+    </div> -->
+    <!-- <div class="playlist-board-top">
       <divider color="#555555" title="HitS"></divider>
       <song-bar v-for="(song, index) in song_list"
         :index="index"
         :songname="song.data.songname"
-        :album="song.data.albumname"
+        :albumname="song.data.albumname"
         :id="song.data.songid"
         :mid="song.data.songmid"
         :name="song.data.songorig"
         :singer="song.data.singer"
         :albummid="song.data.albummid"
       ></song-bar>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
 import divider from '@/components/divider'
-import SongBar from '@/components/song-bar'
+import SongBar from '@/components/bar/song-bar'
 export default {
   components: {
     divider,
@@ -72,7 +73,7 @@ export default {
     }
   },
   activated: function() {
-    this.$store.dispatch('getRankSongs', this.$route.params.id).then((response) => {
+    this.$store.dispatch('getPlayList', this.$route.params.id).then((response) => {
       console.log(response.data);
       this.img = response.data.topinfo.MacDetailPicUrl;
       this.name = response.data.topinfo.ListName;
@@ -90,7 +91,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
-#song-list-board{
+#playlist-board{
   margin-top: 50px;
   margin-bottom: 15px;
   margin-left: 50px;
@@ -99,34 +100,34 @@ export default {
   flex: 1;
 }
 
-.song-list-board-info {
+.playlist-board-info {
   display: flex;
   flex-direction: row;
   margin-bottom: 15px;
 }
 
-.song-list-board-info-right {
+.playlist-board-info-right {
   margin-left: 15px;
   flex: 1;
 }
 
-.song-list-board-info {
+.playlist-board-info {
   font-size: 10px;
 }
 
-.song-list-board-info {
+.playlist-board-info {
   font-size: 14px;
 }
 
-.song-list-board-info {
+.playlist-board-info {
   font-size: 14px;
 }
 
-.song-list-board-info {
+.playlist-board-info {
   font-size: 14px;
 }
 
-.song-list-board-info {
+.playlist-board-info {
   font-size: 14px;
 }
 
