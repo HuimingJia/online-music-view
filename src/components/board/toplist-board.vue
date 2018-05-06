@@ -13,7 +13,7 @@
     </div>
     <div class="toplist-board-top">
       <divider color="#555555" title="HitS"></divider>
-      <song-bar v-for="(song, index) in song_list"
+      <song-bar v-for="(song, index) in songList"
         :index="index"
         :songname="song.data.songname"
         :albumname="song.data.albumname"
@@ -37,7 +37,7 @@ export default {
   },
   data() {
     return {
-      song_list: {
+      songList: {
         type: Array,
         default: null,
       },
@@ -81,7 +81,7 @@ export default {
       this.date = response.data.date,
       this.comments = response.data.comment_num,
       this.size = response.data.cur_song_num,
-      this.song_list = response.data.songlist;
+      this.songList = response.data.songlist;
     }, (response) => {
       console.log(response)
     })

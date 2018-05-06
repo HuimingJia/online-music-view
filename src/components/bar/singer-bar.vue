@@ -1,6 +1,6 @@
 <template lang="html">
-  <div class="singer-bar">
-    <img class="singer-bar-img my-auto" height="35px" v-lazy="img" :alt="alt">
+  <div class="singer-bar"  @click="goTo(mid)">
+    <img class="singer-bar-img my-auto" height="35px" v-lazy="img" :alt="name">
     <div class="singer-bar-name my-auto">
       {{name}}
     </div>
@@ -12,17 +12,47 @@
 <script>
 export default {
   props: {
-    img: {
+    id: {
       type: String,
-      default: require('@/assets/imgs/singer-cover.png')
+      default: null,
     },
-    alt: {
+    mid: {
       type: String,
-      default: 'not defined',
+      default: null,
     },
     name: {
       type: String,
       default: null,
+    },
+    other_name: {
+      type: String,
+      default: null,
+    },
+    genre: {
+      type: String,
+      default: null,
+    },
+    area: {
+      type: String,
+      default: null,
+    },
+    sort: {
+      type: String,
+      default: null,
+    },
+    index: {
+      type: String,
+      default: null,
+    }
+  },
+  computed: {
+    img: function(){
+      return this.mid !== null ? 'https://y.gtimg.cn/music/photo_new/T001R150x150M000' + this.mid + '.jpg?max_age=2592000' : require('@/assets/imgs/singer-cover.png')
+    },
+  },
+  methods: {
+    goTo: function(id) {
+      this.$router.push({name: 'singer', params: {id: id}})
     }
   }
 
@@ -37,6 +67,7 @@ export default {
   height: 50px;
   background-color: rgb(0, 0, 0, 0.5);
   transition: all 0.5s;
+  margin-bottom: 0px;
 }
 
 .singer-bar:hover {

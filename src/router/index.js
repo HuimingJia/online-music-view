@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import ForMeBoard from '@/components/board/for-me-board'
 
 import SingersBoard from '@/components/board/singers-board'
+import SingerBoard from '@/components/board/singer-board'
+
 import AlbumBoard from '@/components/board/album-board'
 import SearchResBoard from '@/components/board/search-res-board'
 
@@ -10,6 +12,8 @@ import ToplistsBoard from '@/components/board/toplists-board'
 import ToplistBoard from '@/components/board/toplist-board'
 
 import PlaylistBoard from '@/components/board/playlist-board'
+
+
 import home from '@/components/home'
 Vue.use(Router)
 
@@ -41,7 +45,13 @@ export default new Router({
       path: '/singers',
       name: 'singers',
       component: SingersBoard
-    },{
+    },
+    {
+      path: '/singer/:id',
+      name: 'singer',
+      component: SingerBoard
+    },
+    {
       path: '/album',
       name: 'album',
       component: AlbumBoard

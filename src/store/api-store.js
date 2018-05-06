@@ -26,15 +26,14 @@ export default {
     getPlayList({},id){
       return apiFactory(API.play_list)(id)
     },
-
     getSingerList({}, pagenum){
       return apiFactory(API.singer_list)(pagenum)
     },
+    getSinger({}, id){
+      return apiFactory(API.singer_info)(id)
+    },
     getAlbum({}, id){
       return apiFactory(API.album)(id)
-    },
-    getSingerInfo({}, id){
-      return apiFactory(API.singer_info)(id)
     },
     search({}, key){
       return apiFactory(API.search)(key)

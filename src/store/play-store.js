@@ -31,6 +31,10 @@ export default {
     play (state) {
       state.playing = true
     },
+    play (state, index) {
+      state.index = index
+      state.curSong = state.playList[index]
+    },
     pause (state) {
       state.playing = false
     },
@@ -56,10 +60,6 @@ export default {
     },
     changePlayMode (state) {
       state.playMode = (state.playMode + 1) % 3
-    },
-    playIndex (state, index) {
-      state.index = index
-      state.curSong = state.playList[index]
     },
     insertToPlayList(state, song) {
       for (var key in state.playList) {

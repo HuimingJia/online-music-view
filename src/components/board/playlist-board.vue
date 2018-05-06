@@ -38,7 +38,7 @@ export default {
   },
   data() {
     return {
-      song_list: {
+      songList: {
         type: Array,
         default: null,
       },
@@ -75,14 +75,14 @@ export default {
   activated: function() {
     this.$store.dispatch('getPlayList', this.$route.params.id).then((response) => {
       console.log(response.data);
-      this.img = response.data.topinfo.MacDetailPicUrl;
-      this.name = response.data.topinfo.ListName;
-      this.info = response.data.topinfo.info;
-      this.views =  response.data.topinfo.listennum;
-      this.date = response.data.date,
-      this.comments = response.data.comment_num,
-      this.size = response.data.cur_song_num,
-      this.song_list = response.data.songlist;
+      // this.img = response.data.topinfo.MacDetailPicUrl;
+      // this.name = response.data.topinfo.ListName;
+      // this.info = response.data.topinfo.info;
+      // this.views =  response.data.topinfo.listennum;
+      // this.date = response.data.date,
+      // this.comments = response.data.comment_num,
+      // this.size = response.data.cur_song_num,
+      // this.song_list = response.data.songlist;
     }, (response) => {
       console.log(response)
     })

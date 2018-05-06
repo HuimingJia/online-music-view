@@ -35,14 +35,14 @@ export default {
       default: null
     },
     id: {
-      type: Number,
+      type: String,
       default: null,
     }
   },
   methods: {
     goTo: function(id) {
       this.$router.push({name: 'playlist', params: {id: id}})
-    }
+    },
   }
 }
 </script>

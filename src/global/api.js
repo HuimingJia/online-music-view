@@ -80,22 +80,24 @@ export default {
     params:(id)=>{
       return {
         g_tk:5381,
-        uin:0,
-        format:'jsonp',
-        inCharset:'utf-8',
+        loginUin: 0,
+        hostUin: 0,
+        format:'json',
+        inCharset:'utf8',
         outCharset:'utf-8',
         notice:0,
-        platform:'h5',
+        platform:'yqq',
         needNewCode:1,
         new_format:1,
         pic:500,
-        disstid:id,
         type:1,
         json:1,
         utf8:1,
+        disstid:id,
         onlysong:0,
         nosign:1,
-        _:new Date().getTime()
+
+        // _:new Date().getTime()
       }
     },
     jsonp: 'jsonpCallback'

@@ -8,7 +8,8 @@
           <playlist-cover
           :img="playlist.imgurl"
           :desc="playlist.dissname"
-          :auth="playlist.author">
+          :auth="playlist.author"
+          :id="playlist.dissid">
         </playlist-cover>
       </div>
     </div>
@@ -26,7 +27,6 @@
     </div>
   </div>
 </div>
-
 </div>
 </template>
 

@@ -1,30 +1,47 @@
 <template lang="html">
 <div id="singers-board">
-  <!-- <div class="col-12 col-lg-6 col-xl-4" v-for="toplist in topList">
-    <toplist-cover
-    :img="toplist.picUrl"
-    :title="toplist.topTitle"
-    :song_list="toplist.songList"
-    :id = "toplist.id">
-    </toplist-cover>
-  </div> -->
+  <div class="container-fluid">
+    <divider color="#555555" title="Singer List"></divider>
+    <div class="row">
+      <div class="col-12 col-lg-6 col-xl-4" v-for="singer in singerList"  v-if="singer !== null">
+        <singer-bar
+        :id = "singer.Fsinger_id"
+        :mid = "singer.Fsinger_mid"
+        :name="singer.Fsinger_name"
+        :other_name="singer.Fother_name"
+        :genre="singer.Fgenre"
+        :area="singer.Farea"
+        :sort="singer.Fsort"
+        :index="singer.Findex">
+        </singer-bar>
+      </div>
+    </div>
+  </div>
 </div>
 </template>
 
 <script>
+import divider from '@/components/divider'
+import SingerBar from '@/components/bar/singer-bar'
 export default {
+  components: {
+    SingerBar,
+    divider
+  },
   data() {
     return {
-      singer_list: {
+      singerList: {
         type: Array,
         default: null,
       }
     }
   },
   created: function() {
-    this.$store.dispatch('getSingerList', 2).then((response) => {
+    this.$store.dispatch('getSingerList', 1).then((response) => {
       console.log("data")
-      console.log(response.data.list)
+      console.log(response.data)
+      // console.log(response.data.data.list)
+      this.singerList = response.data.data.list
     }, (response) => {
       console.log("error")
       console.log(response)

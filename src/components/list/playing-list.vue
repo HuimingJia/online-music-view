@@ -10,8 +10,8 @@
 
   <transition-group name="list" tag="div" class="playing-list-song-list">
     <div class="playing-list-song" v-for="(song, index) in playList" v-bind:key="song">
-      {{index + 1}}. {{song.name}} - {{song.singer | singer}}
-      <v-icon class="facebook" v-if="index == curIndex"></v-icon>
+      <div class="playing-list-song-info"  @click="play(index)">{{index + 1}}. {{song.name}} - {{song.singer | singer}}</div>
+      <playing-icon v-if="index == curIndex"></playing-icon>
     </div>
   </transition-group>
 </div>
@@ -20,11 +20,15 @@
 <script>
 import {mapState, mapMutations, mapGetters} from 'vuex'
 import * as vars from '@/global/vars'
+import PlayingIcon from '@/components/utils/playing-icon'
 export default {
   data () {
     return {
       menuedIndex: 0,
     }
+  },
+  components: {
+    PlayingIcon
   },
   methods: {
     clear() {
@@ -45,6 +49,9 @@ export default {
         })
         return singer
       }
+    },
+    play: function(index) {
+       this.$store.commit('play', index)
     },
     ...mapMutations(['changePlayMode', 'pause'])
   },
@@ -124,19 +131,26 @@ export default {
 }
 
 .playing-list-song {
+  display: flex;
+  flex-direction: row;
   color: black;
   transition: all 0.25s;
   color: white;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   border-bottom: 1px solid white;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+
 }
 
 .playing-list-song:hover {
   transform: translateX(10px);
+}
+.playing-list-song-info{
+  flex: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-right: 15px;
 }
 
 .list-enter-active, .list-leave-active {
