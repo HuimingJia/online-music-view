@@ -2,15 +2,13 @@
 
 export default {
   state: {
-    isShowPlayingList: true,
+    isShowPlayingList: false,
+    isShowPlayCardLg: false,
     actionSheet: {
       show: false,
       menus: {},
       subject: null
     },
-    playingList:{
-      show:false
-    }
   },
   actions: {
     notifyActionSheet({commit, state}, options){
@@ -36,6 +34,17 @@ export default {
     showPlayingList (state) {
       state.isShowPlayingList = true;
     },
+
+    hidePlayCardLg (state) {
+      state.isShowPlayCardLg = false;
+    },
+    togglePlayCardLg (state) {
+      state.isShowPlayCardLg = !state.isShowPlayCardLg;
+    },
+    showPlayCardLg (state) {
+      state.isShowPlayCardLg = true;
+    },
+
     showActionSheet(state, menus){
       state.actionSheet.menus = menus
       state.actionSheet.show = true

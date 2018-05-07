@@ -3,12 +3,19 @@
     <Header></Header>
     <div id="cotent">
       <side-bar></side-bar>
+      <transition name="scale-in">
+        <keep-alive>
+          <play-card-lg v-if="isShowPlayCardLg"></play-card-lg>
+        </keep-alive>
+      </transition>
+
       <transition name="fade">
         <keep-alive>
           <router-view class="board"></router-view>
         </keep-alive>
       </transition>
     </div>
+
     <play-bar></play-bar>
     <transition name="scale-in">
       <playing-list v-if="isShowPlayingList"></playing-list>
@@ -33,7 +40,8 @@ export default {
     Footer,
     SideBar,
     PlayBar,
-    PlayingList
+    PlayingList,
+    PlayCardLg
   },
   data() {
     return {
@@ -42,7 +50,8 @@ export default {
   },
   computed: {
     ...mapState({
-      isShowPlayingList: state => state.ComponentStore.isShowPlayingList
+      isShowPlayingList: state => state.ComponentStore.isShowPlayingList,
+      isShowPlayCardLg: state => state.ComponentStore.isShowPlayCardLg
     })
   }
 }
@@ -69,6 +78,7 @@ export default {
 
 
 #cotent {
+  position: relative;
   display: flex;
   flex-direction: row;
   flex: 1;
@@ -99,11 +109,11 @@ export default {
 }
 
 .scale-in-enter-active {
-  animation: scale-in .5s;
+  animation: scale-in .1s;
 
 }
 .scale-in-leave-active {
-  animation: scale-in .5s reverse;
+  animation: scale-in .1s reverse;
 
 }
 

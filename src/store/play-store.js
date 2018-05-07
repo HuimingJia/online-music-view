@@ -31,7 +31,7 @@ export default {
     play (state) {
       state.playing = true
     },
-    play (state, index) {
+    playAt (state, index) {
       state.index = index
       state.curSong = state.playList[index]
     },

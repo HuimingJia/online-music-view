@@ -8,7 +8,7 @@
       <div class="mv-cover-title">{{title}}</div>
       <div class="mv-cover-right-items my-auto">
         <div class="mv-cover-singer">Singer: {{singer}}</div>
-        <div class="mv-cover-desc">About: {{desc}}</div>
+        <div class="mv-cover-desc" v-if="desc !== null">About: {{desc}}</div>
         <div class="mv-cover-date">Release: {{date}}</div>
         <div class="mv-cover-views">Views: {{views}}</div>
       </div>
@@ -72,9 +72,12 @@ export default {
   display: flex;
   flex-direction: row;
   overflow: hidden;
-  background-color: rgb(255, 255, 255, 0.5);
+  background-color: rgb(255, 255, 255, 0.8);
   margin-bottom: 15px;
   transition: all 1s;
+  box-shadow:
+  0 15px 30px 0 rgba(0,0,0,0.11),
+  0 5px 15px 0 rgba(0,0,0,0.08);
 }
 
 .mv-cover:hover {
@@ -97,6 +100,10 @@ export default {
   flex: 1;
   display: flex;
   flex-direction: column;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-right: 15px;
   margin-left: 15px;
   margin-right: 15px;
   height: 100%;

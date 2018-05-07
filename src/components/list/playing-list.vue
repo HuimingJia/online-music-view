@@ -1,9 +1,10 @@
 <template lang="html">
-<div class="playing-list">
+<div id="playing-list">
   <div class="tittle border-1px border-1px-after ">
     <div class="playing-list-control-btn" >
-      <div @click="changePlayMode()" class="playing-list-mode-btn my-auto"><v-icon :name="playModeIcon"></v-icon>{{playModeName}}</div>
-      <div @click="clear()" class="playing-list-clear-btn my-auto"><v-icon name="trash-2"></v-icon></div>
+      <div @click="changePlayMode()" class="playing-list-mode-btn my-auto"><v-icon :name="playModeIcon"></v-icon></div>
+      <div class="playing-list-mode-text">{{playModeName}}</div>
+      <div @click="clear()" class="playing-list-clear-btn"><v-icon class="my-auto" name="trash-2"></v-icon></div>
       <div @click="hide()" class="playing-list-close-btn my-auto"><v-icon name="minimize-2"></v-icon></div>
     </div>
   </div>
@@ -51,7 +52,7 @@ export default {
       }
     },
     play: function(index) {
-       this.$store.commit('play', index)
+       this.$store.commit('playAt', index)
     },
     ...mapMutations(['changePlayMode', 'pause'])
   },
@@ -88,7 +89,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.playing-list {
+#playing-list {
   border-radius: 15px;
   padding: 20px;
   float: right;
@@ -103,9 +104,12 @@ export default {
   z-index: 3;
   overflow: scroll;
   color: white;
+  box-shadow:
+  0 15px 30px 0 rgba(0,0,0,0.11),
+  0 5px 15px 0 rgba(0,0,0,0.08);
 }
 
-.playing-list::-webkit-scrollbar {
+#playing-list::-webkit-scrollbar {
   display: none;
 }
 
@@ -115,7 +119,11 @@ export default {
 }
 
 .playing-list-mode-btn {
+}
+
+.playing-list-mode-text {
   flex: 1;
+  margin-left: 15px;
 }
 
 .playing-list-clear-btn {

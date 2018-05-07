@@ -111,86 +111,12 @@ export default {
 }
 
 .toplist-board-info {
-  font-size: 10px;
-}
-
-.toplist-board-info {
   font-size: 14px;
 }
 
-.toplist-board-info {
-  font-size: 14px;
-}
-
-.toplist-board-info {
-  font-size: 14px;
-}
-
-.toplist-board-info {
-  font-size: 14px;
-}
-
-.song-bar {
-  width: 100%;
-  height: 50px;
-  background-color: rgb(0, 0, 0, 0.5);
-  transition: all 0.5s;
-}
-
-.icon {
-  height: 20px;
-  margin-left: 5px;
-  margin-right: 5px;
-  transition: all 0.5s;
-}
-
-.song-bar:hover {
-  background-color: rgb(0, 0, 0, 0.8);
-}
-
-.icon:hover{
-  animation: blinker 1s linear infinite;
-}
-
-.song-bar {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 50px;
-  background-color: rgb(0, 0, 0, 0.5);
-}
-
-.song-bar-img {
-  border-radius: 25px;
-  margin-left: 15px;
-  margin-right: 15px;
-  transition: all 1s;
-}
-
-.song-bar-img:hover {
-  animation: blinker 1s linear infinite;
-}
-
-.song-bar-name {
-  font-size: 14px;
-  color: white;
-  flex: 1;
-  transition: all 1s;
-}
-
-.song-bar-name:hover {
-  animation: blinker 1s linear infinite;
-}
-
-.song-bar-btn-group{
-  display: flex;
-  flex-direction: row;
-  color: white;
-}
-
-@keyframes blinker {
-  50% {
-    opacity: 0.5;
-  }
+.toplist-board-img {
+  box-shadow:
+  0 15px 30px 0 rgba(0,0,0,0.11),
+  0 5px 15px 0 rgba(0,0,0,0.08);
 }
 </style>

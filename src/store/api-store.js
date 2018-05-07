@@ -32,6 +32,11 @@ export default {
     getSinger({}, id){
       return apiFactory(API.singer_info)(id)
     },
+    getLyric({}, id){
+      return Vue.http.jsonp('https://api.darlin.me/music/lyric/' + id +'/',{
+        jsonp:'callback'
+      })
+    },
     getAlbum({}, id){
       return apiFactory(API.album)(id)
     },
@@ -40,11 +45,6 @@ export default {
     },
     getHotKey({}){
       return apiFactory(API.hotkey)()
-    },
-    getLyric({},id){
-      return Vue.http.jsonp('https://api.darlin.me/music/lyric/'+id+'/',{
-        jsonp:'callback'
-      })
     }
   }
 }

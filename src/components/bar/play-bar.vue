@@ -54,15 +54,15 @@ export default {
   },
   methods: {
     playMusic() {
-      document.getElementById('audio').play()
       this.play()
+      document.getElementById('audio').play()
     },
     pauseMusic() {
-      document.getElementById('audio').pause()
       this.pause()
+      document.getElementById('audio').pause()
     },
     updateTime() {
-      console.log("update")
+      // console.log("update")
       this.$store.commit('updateTime', parseInt(document.getElementById('audio').progress), parseInt(document.getElementById('audio').duration))
     },
     togglePlayingList() {
@@ -102,6 +102,10 @@ export default {
   border-style: solid;
   padding-right: 15px;
   padding-left: 15px;
+  z-index: 4;
+  box-shadow:
+  30px 0 0 0 rgba(0,0,0,0.11),
+  15px 0 0 0 rgba(0,0,0,0.08);
 }
 
 #volume-bar {

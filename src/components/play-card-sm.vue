@@ -1,5 +1,5 @@
 <template lang="html">
-<div class="play-card-sm" @click="showPlayCard()">
+<div id="play-card-sm" @click="togglePlayCard()">
   <img class="play-card-img-sm" height="75px" width="75px" v-lazy="curcAlbumImg" :alt="curSongname">
   <div class="play-card-sm-right my-auto">
     <div class="play-card-sm-name">{{curSongname}}</div>
@@ -18,18 +18,18 @@ export default {
     ])
   },
   methods: {
-    showPlayCard: function() {
-      this.$store.commit('showPlayCard')
+    togglePlayCard: function() {
+      this.$store.commit('togglePlayCardLg')
     }
   }
 }
 </script>
 
 <style lang="css" scoped>
-.play-card-sm {
+#play-card-sm {
   width: 250px;
   height: 100px;
-  bottom: 100px;
+  bottom: 0px;
   float: left;
   position: absolute;
   z-index: 2;
@@ -38,9 +38,12 @@ export default {
   background-color: rgb(255, 255, 255, 0.8);
   overflow: hidden;
   transition: all 0.25s;
+  -moz-box-shadow: 4px 0px 8px 0 rgba(0,0,0,0.12), 2px 0px 4px 0 rgba(0,0,0,0.08);
+  -webkit-box-shadow: 4px 0px 8px 0 rgba(0,0,0,0.12), 2px 0px 4px 0 rgba(0,0,0,0.08);
+  box-shadow: 4px 0px 8px 0 rgba(0,0,0,0.12), 2px 0px 4px 0 rgba(0,0,0,0.08);
 }
 
-.play-card-sm:hover {
+#play-card-sm:hover {
   transform: scale(1.1) translateX(10px)  translateY(-5px);
 }
 
