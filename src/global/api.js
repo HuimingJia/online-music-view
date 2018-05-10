@@ -183,14 +183,24 @@ export default {
     jsonp: 'jsonpCallback'
   },
   lyric: {
-    url: 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric.fcg',
+    url: 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg',
     params: (id) => {
       return {
-        nobase64:1,
-        musicid:id,
-        songtype:0
+        callback: 'MusicJsonCallback_lrc',
+        pcachetime: 1494070301711,
+        songmid: id,
+        g_tk: 5381,
+        jsonpCallback: 'MusicJsonCallback_lrc',
+        loginUin: 0,
+        hostUin: 0,
+        format: 'jsonp',
+        inCharset: 'utf8',
+        outCharset: 'utf-8',
+        ice: 0,
+        platform: 'yqq',
+        needNewCode: 0
       }
     },
-    jsonp:'callback'
+    jsonp:'jsonpCallback'
   }
 }

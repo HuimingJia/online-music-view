@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import divider from '@/components/divider'
+import divider from '@/components/utils/divider'
 import AlbumCover from '@/components/cover/album-cover'
 import MvCover from '@/components/cover/mv-cover'
 import SongBar from '@/components/bar/song-bar'

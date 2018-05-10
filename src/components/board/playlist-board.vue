@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import divider from '@/components/divider'
+import divider from '@/components/utils/divider'
 import SongBar from '@/components/bar/song-bar'
 export default {
   components: {

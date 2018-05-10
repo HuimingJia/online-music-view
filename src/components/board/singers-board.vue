@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import divider from '@/components/divider'
+import divider from '@/components/utils/divider'
 import SingerBar from '@/components/bar/singer-bar'
 export default {
   components: {

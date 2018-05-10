@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import divider from '@/components/divider'
+import divider from '@/components/utils/divider'
 import toplistCover from '@/components/cover/toplist-cover'
 export default {
   components: {

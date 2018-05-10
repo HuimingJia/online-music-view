@@ -3,7 +3,7 @@
 export default {
   state: {
     isShowPlayingList: false,
-    isShowPlayCardLg: false,
+    isShowPlayCardLg: true,
     actionSheet: {
       show: false,
       menus: {},

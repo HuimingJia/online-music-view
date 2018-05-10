@@ -114,7 +114,6 @@ export default {
 }
 .scale-in-leave-active {
   animation: scale-in .1s reverse;
-
 }
 
 @keyframes scale-in {

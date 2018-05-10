@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="sidebar">
-    <div class="sidebar-title">Explore
+    <div class="sidebar-title">EX-PLORE
       <hr></hr>
     </div>
 
@@ -25,6 +25,11 @@ export default {
 </script>
 
 <style lang="css" scoped>
+@font-face {
+  font-family: 'Monoton';
+  src: url('~@/assets/fonts/Monoton-Regular.ttf') format('truetype');
+}
+
 #sidebar {
   width: 250px;
   background-color: rgb(255,255,255,0.6);
@@ -37,6 +42,7 @@ export default {
   margin-left: 25px;
   margin-right: 25px;
   margin-top: 15px;
+  /* font-family: Monoton; */
   font-size: 30px;
 }
 </style>
