@@ -6,6 +6,7 @@ export default {
     playing: false,
     progress: 0,
     duration: 0,
+    currentTime: 0,
     playMode: vars.SEQUENTIAL,
     curSong: {
       id: null,
@@ -18,7 +19,7 @@ export default {
     playList: [],
   },
   getters: {
-    progress: state => parseInt(state.progress / 60) + ':' + (Array(2).join(0) + (state.progress % 60)).slice(-2),
+    curTime: state => parseInt(state.currentTime / 60) + ':' + (Array(2).join(0) + (state.currentTime % 60)).slice(-2),
     duration: state => parseInt(state.duration / 60) + ':' + (Array(2).join(0) + (state.duration % 60)).slice(-2),
 
     curSongname: state => state.curSong.name,
@@ -54,9 +55,9 @@ export default {
     clearPlayingList (state) {
       state.playList = [];
     },
-    updateTime (state, progress, duration) {
-      state.progress = progress
-      state.duration = duration
+    updateTime (state, updateInfo = {currentTime:0, duration: 0}) {
+      state.currentTime = updateInfo.currentTime
+      state.duration = updateInfo.duration
     },
     changePlayMode (state) {
       state.playMode = (state.playMode + 1) % 3

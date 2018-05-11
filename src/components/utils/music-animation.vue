@@ -16,9 +16,9 @@ export default {
     }
   },
   activated: function()  {
-    var html = document.getElementById('audio')
-    var context = new AudioContext();
-    var src = context.createMediaElementSource(audio);
+    // var html = document.getElementById('audio')
+    // var context = new AudioContext();
+    // var src = context.createMediaElementSource(audio);
   }
 }
 </script>
