@@ -48,7 +48,7 @@ export default {
   transform: translateZ(0);
   position: relative;
   bottom: -200px;
-  height: 400px;
+  height: 250px;
 
   .bar {
     background-color: $accent;

@@ -2,45 +2,47 @@
   <div id="play-bar">
     <!-- <div class="jp-volume-controls flex-item">
       <button class="jp-mute" role="button" tabindex="0"><v-icon class="mic-off"></v-icon></button>
+    </div> -->
+
+
+    <div id="volume-bar">
+      <!-- <input class="my-auto"v-model="volume"> -->
+      <div class="volume-bar-mute"><v-icon :name="{isMute: 'mic-off'}"></v-icon></div>
       <div class="jp-volume-bar">
         <div class="jp-volume-bar-value">
-          <div class="bullet">
-          </div>
+          <div class="bullet"></div>
         </div>
       </div>
-    </div> -->
-    <!-- <div id="volume-bar">
-    <input class="my-auto"v-model="volume">
-  </div> -->
+    </div>
 
-  <div id="play-progress-bar">
-    <div class="duration  my-auto">
-      <div class="progress" :style="{width: progress +'%'}"></div>
-      <img class="bullet" height="18px" width="18px" :src="require('@/assets/imgs/disc-icon.png')"></img>
+    <div id="play-progress-bar">
+      <div class="duration  my-auto">
+        <div class="progress" :style="{width: progress +'%'}"></div>
+        <div class="bullet"></div>
+      </div>
     </div>
-  </div>
 
-  <div class="play-progress-clock my-auto">
-    <span>{{curTime}} /</span>
-    <span>{{duration}}</span>
-  </div>
-  <audio id="audio"
-  :src="musicSrc"
-  @timeupdate="updateTime()"
-  @ended="playContinue"
-  autoplay></audio>
-  <div class="play-control-button-group">
-    <div class="play-list-btn play-last my-auto" @click="playLastSong()"><v-icon name="arrow-left"></v-icon></div>
-    <div v-if="isPlaying" class="play-list-btn play-status play-status-play my-auto" @click="pauseMusic()">
-      <v-icon name="play-circle"></v-icon>
+    <div class="play-progress-clock my-auto">
+      <span>{{curTime}} /</span>
+      <span>{{duration}}</span>
     </div>
-    <div v-else class="play-list-btn play-status play-status-pause my-auto" @click="playMusic()">
-      <v-icon name="pause-circle"></v-icon>
+    <audio id="audio"
+    :src="musicSrc"
+    @timeupdate="updateTime()"
+    @ended="playContinue"
+    autoplay></audio>
+    <div class="play-control-button-group">
+      <div class="play-list-btn play-last my-auto" @click="playLastSong()"><v-icon name="arrow-left"></v-icon></div>
+      <div v-if="isPlaying" class="play-list-btn play-status play-status-play my-auto" @click="pauseMusic()">
+        <v-icon name="pause-circle"></v-icon>
+      </div>
+      <div v-else class="play-list-btn play-status play-status-pause my-auto" @click="playMusic()">
+        <v-icon name="play-circle"></v-icon>
+      </div>
+      <div class="play-list-btn play-next my-auto" @click="playNextSong()"><v-icon name="arrow-right"></v-icon></div>
     </div>
-    <div class="play-list-btn play-next my-auto" @click="playNextSong()"><v-icon name="arrow-right"></v-icon></div>
+    <div class="toggle-playing-list" @click="togglePlayingList()"><v-icon name="menu" class="my-auto"></v-icon></div>
   </div>
-  <div class="toggle-playing-list" @click="togglePlayingList()"><v-icon name="menu" class="my-auto"></v-icon></div>
-</div>
 </template>
 
 <script>
@@ -49,7 +51,8 @@ export default {
   data() {
     return {
       volume: 0.5,
-      musicSrc: require('@/assets/audio/brave-heart.mp3')
+      isMute: false,
+      // musicSrc: require('@/assets/audio/brave-heart.mp3')
     }
   },
   computed: {
@@ -134,9 +137,15 @@ export default {
 }
 
 .bullet {
+  width: 14px;
+  height: 14px;
   margin-left: -10px;
-  margin-top: -5px;
+  margin-top: -2px;
+  background-color: white;
+  border: 2px solid;
+  border-radius: 7px;
 }
+
 .play-progress-clock {
   margin-left: 15px;
   margin-right: 15px;
@@ -161,11 +170,6 @@ export default {
   box-shadow:
   0 4px 8px 0 rgba(0,0,0,0.12),
   0 2px 4px 0 rgba(0,0,0,0.08);
-}
-
-.disc{
-  height: 24px;
-  margin-left: -15px;
 }
 
 .play-control-button-group{
@@ -227,26 +231,8 @@ export default {
   color: rgb(0,0,0,0.2)
 }
 
-.jp-volume-controls button {
-  float: left;
+.volume-bar-mute .icon{
+  height: 24px;
+  color: black;
 }
-
-.jp-volume-controls .jp-volume-bar {
-  margin-left: 40px;
-  margin-top: 8px;
-}
-
-.jp-state-muted .jp-mute i:before {
-  content: "\f026" !important;
-}
-
-.jp-volume-bar,
-.jp-volume-bar-value {
-  border-radius: 5px;
-}
-
-.jp-state-no-volume .jp-volume-controls {
-  display: none;
-}
-
 </style>

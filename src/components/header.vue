@@ -4,22 +4,29 @@
       <img class="header-brand-img" v-lazy="require('@/assets/imgs/album-cover.jpg')" height="38px" alt="music-player"/>
     </router-link>
 
-    <div class="search-bar text-right">
-      <form id="search-form" class="form-inline my-auto">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1"><v-icon name="search"></v-icon></span>
-          </div>
-          <input type="text" class="form-control" placeholder="Launch">
+    <div id="search-bar" class="my-auto">
+      <div class="search-bar-control">
+        <input class="input-group-search" @focus="focus()" @blur="blur()" type="text" placeholder="Launch">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><v-icon name="search"></v-icon></span>
         </div>
-      </form>
+      </div>
     </div>
+
 
   </div>
 </template>
 
 <script>
 export default {
+  methods: {
+    focus() {
+      $('.input-group-search').addClass("search-bar-lg");
+    },
+    blur() {
+      $('.input-group-search').removeClass("search-bar-lg");
+    }
+  }
 }
 </script>
 
@@ -40,28 +47,57 @@ export default {
 }
 
 .header-brand-img {
-    border-radius: 25px;
+  border-radius: 25px;
 }
+
 .icon {
   height: 24px;
 }
 
-.form-control{
+#search-bar {
+  flex: 1;
+  display: flex;
+  flex-direction: row-reverse;
+  margin-left: 15px;
+  margin-right: 15px;
+  height: 38px;
+  border-top-left-radius: 19px;
+  border-bottom-left-radius: 19px;
+  transition: all 0.5px;
+}
+
+.search-bar-control {
+  max-width: 500px;
+  flex: 1;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.input-group-prepend {
   border: 0px;
-  border-radius: 19px;
-  width: 250px;
 }
 
 .input-group-text {
   border: 0px;
-  border-radius: 19px;
+  border-radius: 0px;
+  border-top-left-radius: 19px;
+  border-bottom-left-radius: 19px;
 }
 
-.search-bar {
+.input-group-search {
+  border: 0px;
+  border-radius: 0px;
+  border-top-right-radius: 19px;
+  border-bottom-right-radius: 19px;
+  padding-left: 15px;
+  transition: all 0.5s;
+}
+
+.input-group-search:focus {
+  outline-width: 0px;
+}
+
+.search-bar-lg {
   flex: 1;
-  display: flex;
-  flex-direction: row-reverse;
-  padding-right: 15px;
-  height: 100%;
 }
 </style>

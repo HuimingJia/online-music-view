@@ -121,6 +121,10 @@ export default {
   margin-bottom: 15px;
 }
 
+.play-card-lg::-webkit-scrollbar {
+  display: none;
+}
+
 .play-card-lg-close-btn {
   /* padding: 15px; */
   margin: 15px;
