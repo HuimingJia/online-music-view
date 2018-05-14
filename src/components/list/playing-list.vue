@@ -96,7 +96,7 @@ export default {
   background: linear-gradient(to bottom, rgb(65,67,69,0.9), rgb(35,37,38,0.9));  */
   height: 450px;
   width: 250px;
-  bottom: 115px;
+  bottom: 15px;
   right: 15px;
   z-index: 3;
   overflow: scroll;

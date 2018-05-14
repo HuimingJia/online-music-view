@@ -26,7 +26,7 @@
 
     <divider color="#555555" title="Hot Music Video"></divider>
     <div class="row">
-      <div class="col-12 col-sm-6 col-xl-4" v-for="mv in mvList"  v-if="mv !== null">
+      <div class="col-12 col-sm-6" v-for="mv in mvList"  v-if="mv !== null">
         <mv-cover
         :img="mvimg(mv.vid)"
         :title="mv.title"

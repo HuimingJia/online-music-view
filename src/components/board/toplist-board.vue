@@ -73,7 +73,6 @@ export default {
   },
   activated: function() {
     this.$store.dispatch('getTopList', this.$route.params.id).then((response) => {
-      console.log(response.data);
       this.img = response.data.topinfo.MacDetailPicUrl;
       this.name = response.data.topinfo.ListName;
       this.info = response.data.topinfo.info;

@@ -14,15 +14,17 @@
           <router-view class="board"></router-view>
         </keep-alive>
       </transition>
+
+      <transition name="scale-in">
+        <playing-list v-if="isShowPlayingList"></playing-list>
+      </transition>
+      <transition name="scale-in">
+        <search-list v-if="isShowSearchList"></search-list>
+      </transition>
     </div>
 
     <play-bar></play-bar>
-    <transition name="scale-in">
-      <playing-list v-if="isShowPlayingList"></playing-list>
-    </transition>
-    <transition name="scale-in">
-      <search-list v-if="isShowSearchList"></search-list>
-    </transition>
+
     <Footer></Footer>
   </div>
 </template>
@@ -36,7 +38,7 @@ import PlayingList from '@/components/list/playing-list'
 import SearchList from '@/components/list/search-list'
 import PlayCardLg from '@/components/play-card-lg'
 
-import {mapState} from 'vuex'
+import {mapState, mapGetters,mapMutations} from 'vuex'
 export default {
   name: 'App',
   components: {
@@ -57,8 +59,25 @@ export default {
     ...mapState({
       isShowPlayingList: state => state.ComponentStore.isShowPlayingList,
       isShowPlayCardLg: state => state.ComponentStore.isShowPlayCardLg,
-      isShowSearchList: state => state.ComponentStore.isShowSearchList
-    })
+    }),
+    ...mapGetters([
+      'isShowSearchList'
+    ])
+  },
+  mounted() {
+    var vm = this
+    $('#app').click(function(){
+        vm.unfocusSearchList();
+    });
+
+    $('#search-list').click(function(e){
+        vm.focusSearchList();
+    });
+  },
+  methods: {
+    ...mapMutations([
+      'focusSearchList', 'unfocusSearchList'
+    ]),
   }
 }
 </script>

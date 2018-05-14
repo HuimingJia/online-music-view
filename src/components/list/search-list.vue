@@ -1,20 +1,22 @@
 <template lang="html">
-  <div id="search-list">
+  <div id="search-list" @click="focusSearchList()">
     <div class="wrapper">
       <div class="history-list">
-        <div class="hotkey-list">
-          <div v-for="key in history" class="hotkey" @click="setKey(key)">
-            {{key}} - {{key}}
+        <div class="historys">
+          <div v-for="key in history" class="history" @click="search(key)">
+            {{key}}
           </div>
         </div>
+        <span class="my-auto" @click="clear()"><v-icon name="trash"></v-icon></span>
       </div>
+
       <hr>
+      <div class="special">Special - <a class="special-link" :href="specialUrl">{{specialKey}}</a></div>
       <div class="hotkey-list">
-        <div v-for="key in hotKey" class="hotkey" @click="setKey(key.k)">
-          {{key.k}} - {{key.n}}
+        <div v-for="(key, index) in hotKey" class="hotkey" @click="search(key.k)">
+          {{index + 1}}. {{key.k}}  <span class="badge badge-dark text-right">{{convert(key.n)}}</span>
         </div>
       </div>
-      {{specialKey}} - {{specialUrl}}
     </div>
   </div>
 </template>
@@ -22,6 +24,25 @@
 <script>
 import {mapState, mapMutations, mapGetters} from 'vuex'
 import * as vars from '@/global/vars'
+//
+// Vue.directive('click-outside', {
+//   priority: 700,
+//   bind () {
+//     let self  = this
+//     this.event = function (event) {
+//     	self.vm.$emit(self.expression,event)
+//  	  }
+//     this.el.addEventListener('click', this.stopProp)
+//     document.body.addEventListener('click',this.event)
+//   },
+//
+//   unbind() {
+//     this.el.removeEventListener('click', this.stopProp)
+//     document.body.removeEventListener('click',this.event)
+//   },
+//   stopProp(event) {event.stopPropagation() }
+// })
+
 export default {
   data () {
     return {
@@ -35,9 +56,7 @@ export default {
   },
   methods: {
     clear() {
-      document.getElementById('audio').pause()
-      this.pause()
-      this.clearsearchList()
+      this.clearHistory()
     },
     hide() {
       this.hidesearchList()
@@ -52,15 +71,16 @@ export default {
         console.log(response)
       })
     },
-    setKey(key) {
+    search(key) {
       this.setKey(key)
       this.addHistory(key)
-      alert("123")
-
       this.$router.push({name: 'search', params: {key: key}})
     },
+    convert(number) {
+      return String((number / 1000.0).toFixed(1)) + 'k';
+    },
     ...mapMutations([
-      'setKey', 'clearsearchList','hidesearchList','addHistory'
+      'setKey', 'clearHistory','hidesearchList','addHistory', 'focusSearchList', 'unfocusSearchList'
     ]),
   },
   computed: {
@@ -75,14 +95,18 @@ export default {
 </script>
 
 <style lang="css" scoped>
+@font-face {
+  font-family: 'Monoton';
+  src: url('~@/assets/fonts/Monoton-Regular.ttf') format('truetype');
+}
+
 #search-list {
   border-radius: 15px;
-  padding: 25px;
+  padding: 15px;
   position: absolute;
-  background: rgb(35,37,38,1);
-  height: 450px;
+  background: rgb(255,255,255,1);
   width: 450px;
-  top: 65px;
+  top: 15px;
   right: 15px;
   z-index: 3;
   color: white;
@@ -94,20 +118,75 @@ export default {
 #search-list::-webkit-scrollbar {
   display: none;
 }
+
+.special {
+  font-family: Monoton;
+  font-size: 24px;
+}
+
+.special-link {
+  color: black;
+}
+
+.special:visited {
+  color: black;
+}
+
 .wrapper {
-  height: 400px;
+  color: black;
+  /* height: 400px; */
   overflow: scroll;
+}
+
+.icon {
+  height: 24px;
+  margin-left: 15px;
+  color: black;
+  transition: all 0.5s;
+}
+
+.icon:hover {
+  color: rgb(0,0,0,0.2)
 }
 
 .wrapper::-webkit-scrollbar {
   display: none;
 }
 
+.history-list {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.historys {
+  flex:1;
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
+}
+
+.historys::-webkit-scrollbar {
+  display: none;
+}
+
+.history {
+  border: solid 1px black;
+  color: black;
+  padding: 5px;
+  border-radius: 10px;
+  margin: 5px;
+  transition: all 0.5s;
+  white-space: nowrap;
+}
+
 .hotkey-list {
   margin-top: 20px;
 }
+
 .hotkey {
-  border: solid 1px white;
+  border: solid 1px black;
+  color: black;
   padding: 5px;
   border-radius: 10px;
   margin: 5px;
@@ -115,8 +194,8 @@ export default {
 }
 
 .hotkey:hover {
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: white;
 }
 
 .list-enter-active, .list-leave-active {

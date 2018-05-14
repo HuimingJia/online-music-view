@@ -4,26 +4,17 @@ export default {
   state: {
     isShowPlayingList: false,
     isShowPlayCardLg: false,
-    isShowSearchList: false,
+    // isShowSearchList: false,
+    isFocusSearchInput: false,
+    isFocusSearchList: false,
     actionSheet: {
       show: false,
       menus: {},
       subject: null
     },
   },
-  actions: {
-    notifyActionSheet({commit, state}, options){
-      // state.actionSheet.subject = new Rx.AsyncSubject()
-      // state.actionSheet.subject.subscribe({
-      //   next: (v) => options.handler[v](),
-      //   complete: () => commit('closeActionSheet')
-      // })
-      // commit('showActionSheet', options.menus)
-    },
-    responceFromActionSheet({state}, menu){
-      state.actionSheet.subject.next(menu)
-      state.actionSheet.subject.complete()
-    }
+  getters: {
+    isShowSearchList: state => state.isFocusSearchInput || state.isFocusSearchList
   },
   mutations: {
     hidePlayingList (state) {
@@ -46,6 +37,19 @@ export default {
       state.isShowPlayCardLg = true;
     },
 
+    focusSearchInput(state) {
+      state.isFocusSearchInput = true;
+    },
+    unfocusSearchInput(state) {
+      // state.isFocusSearchInput = false;
+    },
+    focusSearchList(state) {
+      state.isFocusSearchList = true;
+    },
+    unfocusSearchList(state) {
+      // state.isFocusSearchList = false;
+    },
+
     hideSearchList (state) {
       state.isShowSearchList = false;
     },
@@ -55,19 +59,5 @@ export default {
     showSearchList (state) {
       state.isShowSearchList = true;
     },
-
-    showActionSheet(state, menus){
-      state.actionSheet.menus = menus
-      state.actionSheet.show = true
-    },
-    closeActionSheet(state){
-      state.actionSheet.show = false
-    },
-    showPlayingList(state){
-      state.playingList.show=true
-    },
-    closePlayingList(state){
-      state.playingList.show=false
-    }
   }
 }

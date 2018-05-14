@@ -6,8 +6,8 @@
 
     <div id="search-bar" class="my-auto">
       <div class="search-bar-control">
-        <form @submit.prevent="search(key)"
-          <input class="input-group-search" v-model="key" @focus="focus()" @blur="blur()" type="text" placeholder="Launch">
+        <form @submit.prevent="search(key)" class="input-group-search" :class="{'search-bar-lg':isShowSearchList}">
+          <input class="search-bar-input" v-model="key" @focus="focusSearchInput()" @blur="unfocusSearchInput()" type="text" placeholder="Launch">
         </form>
         <div class="input-group-prepend">
           <span class="input-group-text"><v-icon name="search"></v-icon></span>
@@ -26,29 +26,24 @@ export default {
       get () {
         return this.$store.state.SearchStore.key
       },
-      set (key) {
-        this.$store.commit('setKey', key)
+      set (k) {
+        this.setKey(k)
       }
-    }
+    },
+    ...mapGetters([
+      'isShowSearchList'
+    ])
   },
   methods: {
-    focus() {
-      $('.input-group-search').addClass("search-bar-lg");
-      this.showSearchList()
-    },
-    blur() {
-      $('.input-group-search').removeClass("search-bar-lg");
-      this.hideSearchList()
+    search(key) {
+      this.addHistory(key)
+      this.$router.push({name: 'search', params: {key: key}})
     },
     ...mapMutations([
-      'play', 'pause', 'playLast', 'playNext', 'playContinue', 'setKey', 'hideSearchList', 'showSearchList'
+      'play', 'pause', 'playLast', 'playNext', 'playContinue', 'setKey', 'hideSearchList', 'showSearchList', 'addHistory',
+      'focusSearchInput', 'unfocusSearchInput'
     ]),
-    search: function (key) {
-      console.log(">>")
-      this.$router.push({name: 'search', params: {key: key}})
-      this.$store.commit('addHistory', key)
-      alert(key)
-    },
+
   }
 }
 </script>
@@ -107,16 +102,17 @@ export default {
   border-bottom-left-radius: 19px;
 }
 
-.input-group-search {
+.search-bar-input {
+  height: 100%;
+  width: 100%;
   border: 0px;
   border-radius: 0px;
   border-top-right-radius: 19px;
   border-bottom-right-radius: 19px;
   padding-left: 15px;
-  transition: all 0.5s;
 }
 
-.input-group-search:focus {
+.search-bar-input:focus {
   outline-width: 0px;
 }
 

@@ -50,7 +50,12 @@ export default {
   },
   computed: {
     singernames: function(){
-      return this.singer.map((singer) => {return singer.name}).join("/")
+      if (this.singer instanceof Array) {
+        return this.singer.map((singer) => {return singer.name}).join("/")
+      } else {
+        return String(this.singer)
+      }
+
     }
   },
   methods: {

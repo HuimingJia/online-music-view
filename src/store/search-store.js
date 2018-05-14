@@ -9,13 +9,11 @@ export default {
       // alert("setkey")
     },
     clearHistory() {
-      state.history = key
+      state.history = []
     },
     addHistory(state, key) {
-      alert("addHistory")
-            state.history.push(key)
-      // if (state.history.indexOf(key) == -1)
-      //   state.history.push(key)
+      if (state.history.indexOf(key) == -1)
+        state.history.push(key)
     }
   }
 }
