@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="play-card-lg" @keyup.space="hide()">
+  <div class="play-card-lg" @keyup.space="hidePlayCardLg()">
     <div class="play-card-lg-board">
       <music-animation></music-animation>
       <div class="play-card-lg-content">
@@ -18,7 +18,7 @@
         </div>
       </div>
     </div>
-    <div class="play-card-lg-close-btn text-right" @click="hide()"><v-icon name="minimize-2"></v-icon></div>
+    <div class="play-card-lg-close-btn text-right" @click="hidePlayCardLg()"><v-icon name="minimize-2"></v-icon></div>
   </div>
 </template>
 
@@ -32,9 +32,9 @@ export default {
     MusicAnimation
   },
   methods: {
-    hide() {
-      this.$store.commit('hidePlayCardLg')
-    },
+    ...mapMutations([
+      'hidePlayCardLg'
+    ])
   },
   activated: function() {
     this.$store.dispatch('getLyric', this.mid).then((response) => {

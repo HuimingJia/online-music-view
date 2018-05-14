@@ -1,6 +1,7 @@
 <template lang="html">
-  <div class="search-res-board">
+  <div class="search-board">
     search-res-board
+    {{this.$route.params.key}}
   </div>
 </template>
 
@@ -9,8 +10,8 @@ export default {
 }
 </script>
 
-<style lang="css">
-#search-res-board{
+<style lang="css" scoped>
+#search-board{
   background-color: rgb(255, 255, 255, 0);
   flex: 1;
 }

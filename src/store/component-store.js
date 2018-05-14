@@ -3,7 +3,8 @@
 export default {
   state: {
     isShowPlayingList: false,
-    isShowPlayCardLg: true,
+    isShowPlayCardLg: false,
+    isShowSearchList: false,
     actionSheet: {
       show: false,
       menus: {},
@@ -43,6 +44,16 @@ export default {
     },
     showPlayCardLg (state) {
       state.isShowPlayCardLg = true;
+    },
+
+    hideSearchList (state) {
+      state.isShowSearchList = false;
+    },
+    toggleSearchList (state) {
+      state.isShowSearchList = !state.isShowSearchList;
+    },
+    showSearchList (state) {
+      state.isShowSearchList = true;
     },
 
     showActionSheet(state, menus){

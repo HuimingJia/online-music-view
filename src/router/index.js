@@ -6,12 +6,12 @@ import SingersBoard from '@/components/board/singers-board'
 import SingerBoard from '@/components/board/singer-board'
 
 import AlbumBoard from '@/components/board/album-board'
-import SearchResBoard from '@/components/board/search-res-board'
-
+import SearchBoard from '@/components/board/search-board'
 import ToplistsBoard from '@/components/board/toplists-board'
 import ToplistBoard from '@/components/board/toplist-board'
 
 import PlaylistBoard from '@/components/board/playlist-board'
+
 
 
 import home from '@/components/home'
@@ -56,9 +56,9 @@ export default new Router({
       name: 'album',
       component: AlbumBoard
     },{
-      path: '/search-res',
-      name: 'search-res',
-      component: SearchResBoard
+      path: '/search/:key',
+      name: 'search',
+      component: SearchBoard
     }
   ]
 })

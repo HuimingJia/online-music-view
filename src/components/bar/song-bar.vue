@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import {mapState, mapGetters, mapMutations} from 'vuex'
 export default {
   props: {
     index: {
@@ -65,9 +66,13 @@ export default {
         albummid: this.albummid,
         albumname: this.albumname,
       }
-      this.$store.commit('insertToPlayList', song)
-      this.$store.commit('playSong')
-    }
+      this.insertToPlayList(song)
+      this.playSong()
+      this.playSong()
+    },
+    ...mapMutations([
+      'insertToPlayList', 'playSong'
+    ])
   }
 }
 </script>

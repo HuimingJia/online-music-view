@@ -28,7 +28,7 @@
     </div>
     <audio id="audio"
     :src="musicSrc"
-    @timeupdate="updateTime()"
+    @timeupdate="update()"
     @ended="playContinue"
     autoplay></audio>
     <div class="play-control-button-group">
@@ -60,7 +60,7 @@ export default {
       'curTime', 'duration','curcAlbumImg'
     ]),
     ...mapState({
-      // musicSrc: state => 'https://dl.stream.qqmusic.qq.com/C100' + state.PlayStore.curSong.mid + '.m4a?fromtag=46',
+      musicSrc: state => 'https://dl.stream.qqmusic.qq.com/C100' + state.PlayStore.curSong.mid + '.m4a?fromtag=46',
       progress: state => state.PlayStore.currentTime / state.PlayStore.duration * 100,
       isPlaying: state => state.PlayStore.playing,
       song: state => state.PlayStore.curSong
@@ -75,24 +75,15 @@ export default {
       this.pause()
       document.getElementById('audio').pause()
     },
-    updateTime() {
-      // console.log("update")
-      // console.log(parseInt(document.getElementById('audio').currentTime))
-      // console.log(parseInt(document.getElementById('audio').duration))
+    update() {
       var updateInfo = {
         currentTime: parseInt(document.getElementById('audio').currentTime),
         duration: parseInt(document.getElementById('audio').duration),
       }
-      this.$store.commit('updateTime', updateInfo)
-    },
-    togglePlayingList() {
-      this.$store.commit('togglePlayingList')
-    },
-    showPlayList: function () {
-      this.$store.commit('showPlayingList')
+      this.updateTime(updateInfo)
     },
     ...mapMutations([
-      'play', 'pause', 'playLast', 'playNext', 'playContinue'
+      'play', 'pause', 'playLast', 'playNext', 'playContinue', 'updateTime', 'togglePlayingList', 'showPlayingList'
     ]),
     setVolume: function(volume) {
       alert(volume)

@@ -1,5 +1,5 @@
 <template lang="html">
-<div id="play-card-sm" @click="togglePlayCard()">
+<div id="play-card-sm" @click="togglePlayCardLg()">
   <img class="play-card-img-sm" height="75px" width="75px" v-lazy="curcAlbumImg" :alt="curSongname">
   <div class="play-card-sm-right my-auto">
     <div class="play-card-sm-name">{{curSongname}}</div>
@@ -18,9 +18,9 @@ export default {
     ])
   },
   methods: {
-    togglePlayCard: function() {
-      this.$store.commit('togglePlayCardLg')
-    }
+    ...mapMutations([
+      'togglePlayCardLg'
+    ])
   }
 }
 </script>

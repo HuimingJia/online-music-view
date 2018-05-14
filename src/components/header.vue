@@ -6,7 +6,9 @@
 
     <div id="search-bar" class="my-auto">
       <div class="search-bar-control">
-        <input class="input-group-search" @focus="focus()" @blur="blur()" type="text" placeholder="Launch">
+        <form @submit.prevent="search(key)"
+          <input class="input-group-search" v-model="key" @focus="focus()" @blur="blur()" type="text" placeholder="Launch">
+        </form>
         <div class="input-group-prepend">
           <span class="input-group-text"><v-icon name="search"></v-icon></span>
         </div>
@@ -16,14 +18,37 @@
 </template>
 
 <script>
+import {mapState, mapMutations, mapGetters} from 'vuex'
+import * as vars from '@/global/vars'
 export default {
+  computed: {
+    key: {
+      get () {
+        return this.$store.state.SearchStore.key
+      },
+      set (key) {
+        this.$store.commit('setKey', key)
+      }
+    }
+  },
   methods: {
     focus() {
       $('.input-group-search').addClass("search-bar-lg");
+      this.showSearchList()
     },
     blur() {
       $('.input-group-search').removeClass("search-bar-lg");
-    }
+      this.hideSearchList()
+    },
+    ...mapMutations([
+      'play', 'pause', 'playLast', 'playNext', 'playContinue', 'setKey', 'hideSearchList', 'showSearchList'
+    ]),
+    search: function (key) {
+      console.log(">>")
+      this.$router.push({name: 'search', params: {key: key}})
+      this.$store.commit('addHistory', key)
+      alert(key)
+    },
   }
 }
 </script>

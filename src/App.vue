@@ -20,6 +20,9 @@
     <transition name="scale-in">
       <playing-list v-if="isShowPlayingList"></playing-list>
     </transition>
+    <transition name="scale-in">
+      <search-list v-if="isShowSearchList"></search-list>
+    </transition>
     <Footer></Footer>
   </div>
 </template>
@@ -30,6 +33,7 @@ import Footer from "@/components/footer"
 import SideBar from "@/components/bar/side-bar"
 import PlayBar from "@/components/bar/play-bar"
 import PlayingList from '@/components/list/playing-list'
+import SearchList from '@/components/list/search-list'
 import PlayCardLg from '@/components/play-card-lg'
 
 import {mapState} from 'vuex'
@@ -41,7 +45,8 @@ export default {
     SideBar,
     PlayBar,
     PlayingList,
-    PlayCardLg
+    PlayCardLg,
+    SearchList
   },
   data() {
     return {
@@ -51,7 +56,8 @@ export default {
   computed: {
     ...mapState({
       isShowPlayingList: state => state.ComponentStore.isShowPlayingList,
-      isShowPlayCardLg: state => state.ComponentStore.isShowPlayCardLg
+      isShowPlayCardLg: state => state.ComponentStore.isShowPlayCardLg,
+      isShowSearchList: state => state.ComponentStore.isShowSearchList
     })
   }
 }

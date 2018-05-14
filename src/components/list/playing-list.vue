@@ -11,7 +11,7 @@
 
   <transition-group name="list" tag="div" class="playing-list-song-list">
     <div class="playing-list-song" v-for="(song, index) in playList" v-bind:key="song">
-      <div class="playing-list-song-info"  @click="play(index)">{{index + 1}}. {{song.name}} - {{song.singer | singer}}</div>
+      <div class="playing-list-song-info"  @click="playAt(index)">{{index + 1}}. {{song.name}} - {{song.singer | singer}}</div>
       <playing-icon v-if="index == curIndex"></playing-icon>
     </div>
   </transition-group>
@@ -35,10 +35,10 @@ export default {
     clear() {
       document.getElementById('audio').pause()
       this.pause()
-      this.$store.commit('clearPlayingList')
+      this.clearPlayingList()
     },
     hide() {
-      this.$store.commit('hidePlayingList')
+      this.hidePlayingList()
     },
     getSingerStr(val) {
       if (typeof val === 'string') {
@@ -51,10 +51,7 @@ export default {
         return singer
       }
     },
-    play: function(index) {
-       this.$store.commit('playAt', index)
-    },
-    ...mapMutations(['changePlayMode', 'pause'])
+    ...mapMutations(['changePlayMode', 'pause', 'hidePlayingList', 'clearPlayingList', 'playAt'])
   },
   computed: {
     playModeIcon: function () {
