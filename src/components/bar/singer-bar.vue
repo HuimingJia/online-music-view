@@ -65,13 +65,13 @@ export default {
   flex-direction: row;
   width: 100%;
   height: 50px;
-  background-color: rgb(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
   transition: all 0.5s;
   margin-bottom: 0px;
 }
 
 .singer-bar:hover {
-  background-color: rgb(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .singer-bar-img {
@@ -90,6 +90,6 @@ export default {
   min-width: 100px;
   display: flex;
   flex-direction: column;
-  background-color: red;
+  background: red;
 }
 </style>

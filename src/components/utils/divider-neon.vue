@@ -36,14 +36,14 @@ export default {
 @keyframes flick {
 0%, 100% {
 background-image: radial-gradient(
-  rgba(255,190,0,0.4) 0%,
-  rgba(70,140,255,0.2) 52%,
+  rgbaa(255,190,0,0.4) 0%,
+  rgbaa(70,140,255,0.2) 52%,
   transparent 70%);
 }
 40% {
   background-image: radial-gradient(
-    rgba(255,190,0,0.4) 0%,
-    rgba(70,140,255,0.2) 50%,
+    rgbaa(255,190,0,0.4) 0%,
+    rgbaa(70,140,255,0.2) 50%,
     transparent 68%);
   }
 }
@@ -67,28 +67,28 @@ background-image: radial-gradient(
   border-color: white;
   animation: flick 0.1s ease-in-out infinite;
   box-shadow:
-  0 0 1px 1px rgba(200,230,255,0.5),
-  0 0 1px 1px rgba(200,230,255,0.5) inset,
-  0 0 2px 4px rgba(100,150,255,0.9),
-  0 0 2px 4px rgba(100,150,255,1) inset,
-  0 0 2px 3px rgba(0,50,255,0.9),
-  0 0 2px 3px rgba(0,50,255,0.7) inset,
-  0 2px 5px 3px rgba(0,0,0,0.8),
-  0 2px 4px 2px rgba(0,0,0,0.7) inset;
+  0 0 1px 1px rgbaa(200,230,255,0.5),
+  0 0 1px 1px rgbaa(200,230,255,0.5) inset,
+  0 0 2px 4px rgbaa(100,150,255,0.9),
+  0 0 2px 4px rgbaa(100,150,255,1) inset,
+  0 0 2px 3px rgbaa(0,50,255,0.9),
+  0 0 2px 3px rgbaa(0,50,255,0.7) inset,
+  0 2px 5px 3px rgbaa(0,0,0,0.8),
+  0 2px 4px 2px rgbaa(0,0,0,0.7) inset;
 }
 
 .divider-title{
   font-size: 30px;
   font-family: BPneon;
-  color: rgba(255, 232, 50, 0.9);
+  color: rgbaa(255, 232, 50, 0.9);
   text-shadow:
-  0 0 5px rgba(255,245,0,1),
-  0 0 28px rgba(255,44,0,0.9),
+  0 0 5px rgbaa(255,245,0,1),
+  0 0 28px rgbaa(255,44,0,0.9),
   0 4px 20px black,
   0 4px 5px black,
   0 1px 6px black,
-  0 0 50px rgba(255,120,0,0.5),
-  0 0 24px rgba(255,255,255,0.8);
-  -webkit-text-stroke: 1px rgba(255, 160, 0, 0.45);
+  0 0 50px rgbaa(255,120,0,0.5),
+  0 0 24px rgbaa(255,255,255,0.8);
+  -webkit-text-stroke: 1px rgbaa(255, 160, 0, 0.45);
 }
 </style>

@@ -54,10 +54,10 @@ export default {
   flex-direction: row;
   height: 50px;
   overflow: hidden;
-  background-color: black;
+  background: black;
   box-shadow:
-  0 15px 30px 0 rgba(0,0,0,0.11),
-  0 5px 15px 0 rgba(0,0,0,0.08);
+  0 15px 30px 0 rgbaa(0,0,0,0.11),
+  0 5px 15px 0 rgbaa(0,0,0,0.08);
 }
 
 .header-brand {
@@ -103,7 +103,7 @@ export default {
 }
 
 .search-bar-input {
-  height: 100%;
+  height: 38px;
   width: 100%;
   border: 0px;
   border-radius: 0px;

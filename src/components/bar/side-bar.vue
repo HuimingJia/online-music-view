@@ -32,10 +32,10 @@ export default {
 
 #sidebar {
   width: 250px;
-  background-color: rgb(255,255,255,0.6);
-  -moz-box-shadow: 0 0px 8px 0 rgba(0,0,0,0.12), 0 0px 4px 0 rgba(0,0,0,0.08);
-  -webkit-box-shadow: 0 0px 8px 0 rgba(0,0,0,0.12), 0 0px 4px 0 rgba(0,0,0,0.08);
-  box-shadow: 0 0px 8px 0 rgba(0,0,0,0.12), 0 0px 4px 0 rgba(0,0,0,0.08);
+  background: rgba(255,255,255,0.6);
+  -moz-box-shadow: 0 0px 8px 0 rgbaa(0,0,0,0.12), 0 0px 4px 0 rgbaa(0,0,0,0.08);
+  -webkit-box-shadow: 0 0px 8px 0 rgbaa(0,0,0,0.12), 0 0px 4px 0 rgbaa(0,0,0,0.08);
+  box-shadow: 0 0px 8px 0 rgbaa(0,0,0,0.12), 0 0px 4px 0 rgbaa(0,0,0,0.08);
 }
 
 .sidebar-title {

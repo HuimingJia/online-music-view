@@ -29,17 +29,17 @@ export default {
   display: flex;
   flex-direction: row;
   height: 50px;
-  background-color: rgb(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.8);
   transition: all 0.5s;
   margin-left: 25px;
   margin-right: 25px;
   margin-bottom: 15px;
   border-radius: 5px;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+  box-shadow: 0 2px 4px 0 rgbaa(0,0,0,0.10);
 }
 
 .side-bar-btn:hover {
-  background-color: rgb(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.8);
   color: white;
 }
 

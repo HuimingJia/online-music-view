@@ -1,6 +1,6 @@
 <template lang="html">
-  <div id="album-board">
-    album-board
+  <div class="loading">
+    Loading...
   </div>
 </template>
 
@@ -10,8 +10,8 @@ export default {
 </script>
 
 <style lang="css">
-#album-board{
-  background: rgba(255, 255, 255, 0);
-  flex: 1;
+.loading {
+  background: rgba(0,0,0,1);
+  color: white
 }
 </style>

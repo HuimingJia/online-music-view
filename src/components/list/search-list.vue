@@ -1,6 +1,7 @@
 <template lang="html">
   <div id="search-list" @click="focusSearchList()">
     <div class="wrapper">
+      <loading v-if="loading"></loading>
       <div class="history-list" v-if="history.length > 0">
         <div class="historys">
           <div v-for="key in history" class="history" @click="search(key)">
@@ -24,32 +25,19 @@
 
 <script>
 import {mapState, mapMutations, mapGetters} from 'vuex'
+import Loading from '@/components/utils/loading-animation'
 import * as vars from '@/global/vars'
-//
-// Vue.directive('click-outside', {
-//   priority: 700,
-//   bind () {
-//     let self  = this
-//     this.event = function (event) {
-//     	self.vm.$emit(self.expression,event)
-//  	  }
-//     this.el.addEventListener('click', this.stopProp)
-//     document.body.addEventListener('click',this.event)
-//   },
-//
-//   unbind() {
-//     this.el.removeEventListener('click', this.stopProp)
-//     document.body.removeEventListener('click',this.event)
-//   },
-//   stopProp(event) {event.stopPropagation() }
-// })
 
 export default {
+  components: {
+    Loading
+  },
   data () {
     return {
       hotKey: [],
       specialKey: null,
       specialUrl: null,
+      loading: true,
     }
   },
   created: function() {
@@ -68,6 +56,7 @@ export default {
         vm.hotKey = response.data.data.hotkey.slice(0, 10)
         vm.specialKey = response.data.data.special_key
         vm.specialUrl = response.data.data.special_url
+        vm.loading = false;
       }, (response) => {
         console.log(response)
       })
@@ -105,15 +94,15 @@ export default {
   border-radius: 15px;
   padding: 15px;
   position: absolute;
-  background: rgb(255,255,255,1);
+  background: rgba(255,255,255,1);
   width: 450px;
   top: 15px;
   right: 15px;
   z-index: 3;
   color: white;
   box-shadow:
-  0 15px 30px 0 rgba(0,0,0,0.44),
-  0 5px 15px 0 rgba(0,0,0,0.32);
+  0 15px 30px 0 rgbaa(0,0,0,0.44),
+  0 5px 15px 0 rgbaa(0,0,0,0.32);
 }
 
 #search-list::-webkit-scrollbar {
@@ -147,7 +136,7 @@ export default {
 }
 
 .icon:hover {
-  color: rgb(0,0,0,0.2)
+  color: rgba(0,0,0,0.2)
 }
 
 .wrapper::-webkit-scrollbar {
@@ -195,7 +184,7 @@ export default {
 }
 
 .hotkey:hover {
-  background-color: black;
+  background: black;
   color: white;
 }
 

@@ -27,7 +27,7 @@ export default {
 }
 
 .divider-title{
-  color: rgb(0, 0, 0, 0.7)!important;
+  color: rgba(0, 0, 0, 0.7)!important;
   font-family: Monoton;
   font-size: 40px;
 }
@@ -42,7 +42,7 @@ export default {
 }
 
 .divider-line {
-  background-color: rgb(0, 0, 0, 0.2)!important;
+  background: rgba(0, 0, 0, 0.2)!important;
   width: 100%;
   height: 1px;
 }

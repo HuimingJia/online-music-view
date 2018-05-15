@@ -88,12 +88,17 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   height: 100vh;
   width: 100vw;
   min-width: 780px;
   min-height: 600px;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   background-size: cover;
 }
 
@@ -104,15 +109,22 @@ export default {
 
 #cotent {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  flex: 1;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   width: 100%;
 }
 
 .board {
   overflow: scroll;
-  background-color: rgb(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .board::-webkit-scrollbar {
@@ -120,9 +132,13 @@ export default {
 }
 
 .fade-enter-active {
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
   transition: all 0.5s;
 }
 .fade-leave-active {
+  -webkit-transition: all 0s;
+  -o-transition: all 0s;
   transition: all 0s;
 }
 .fade-enter-to, .fade-leave {
@@ -134,19 +150,33 @@ export default {
 }
 
 .scale-in-enter-active {
-  animation: scale-in .1s;
+  -webkit-animation: scale-in .1s;
+          animation: scale-in .1s;
 
 }
 .scale-in-leave-active {
   animation: scale-in .1s reverse;
 }
 
-@keyframes scale-in {
+@-webkit-keyframes scale-in {
   0% {
-    transform: scale(0) translateX(200px);
+    -webkit-transform: scale(0) translateX(200px);
+            transform: scale(0) translateX(200px);
   }
   100% {
-    transform: scale(1) translateX(0px);
+    -webkit-transform: scale(1) translateX(0px);
+            transform: scale(1) translateX(0px);
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    -webkit-transform: scale(0) translateX(200px);
+            transform: scale(0) translateX(200px);
+  }
+  100% {
+    -webkit-transform: scale(1) translateX(0px);
+            transform: scale(1) translateX(0px);
   }
 }
 </style>

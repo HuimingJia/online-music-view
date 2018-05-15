@@ -146,7 +146,7 @@ export default {
   margin-bottom: 15px;
   margin-left: 50px;
   margin-right: 50px;
-  background-color: rgb(255, 255, 255, 0);
+  background: rgba(255, 255, 255, 0);
   flex: 1;
 }
 
@@ -159,8 +159,8 @@ export default {
 
 .singer-board-img {
   box-shadow:
-  0 15px 30px 0 rgba(0,0,0,0.11),
-  0 5px 15px 0 rgba(0,0,0,0.08);
+  0 15px 30px 0 rgbaa(0,0,0,0.11),
+  0 5px 15px 0 rgbaa(0,0,0,0.08);
 }
 
 .singer-board-right {

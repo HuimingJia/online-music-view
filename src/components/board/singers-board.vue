@@ -80,7 +80,7 @@ export default {
 
 <style lang="css" scoped>
 #singers-board{
-  background-color: rgb(255, 255, 255, 0);
+  background: rgba(255, 255, 255, 0);
   flex: 1;
 }
 </style>

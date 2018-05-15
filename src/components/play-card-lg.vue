@@ -115,7 +115,7 @@ export default {
   left: 250px;
   right: 0px;
   float: right;
-  /* background-color: rgb(255, 255, 255, 1); */
+  /* background: rgba(255, 255, 255, 1); */
   overflow-y: scroll;
   overflow-x: hidden;
   margin-bottom: 15px;
@@ -138,7 +138,7 @@ export default {
   margin-top: 15px;
   margin-left: 15px;
   width: 100%;
-  /* background: rgb(0, 0, 0, 0.5); */
+  /* background: rgba(0, 0, 0, 0.5); */
 }
 
 .play-card-lg-content {
@@ -158,23 +158,23 @@ export default {
   z-index: 6;
   border-radius: 10px;
   box-shadow:
-  0 15px 30px 0 rgba(0,0,0,0.44),
-  0 5px 15px 0 rgba(0,0,0,0.32);
+  0 15px 30px 0 rgbaa(0,0,0,0.44),
+  0 5px 15px 0 rgbaa(0,0,0,0.32);
 }
 
 .icon {
   border-radius: 5px;
   color: white;
-  background-color: rgb(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.75);
   height: 40px;
   box-shadow:
-  0 15px 30px 0 rgba(0,0,0,0.11),
-  0 5px 15px 0 rgba(0,0,0,0.08);
+  0 15px 30px 0 rgbaa(0,0,0,0.11),
+  0 5px 15px 0 rgbaa(0,0,0,0.08);
 }
 
 .lyric-board{
   flex: 1;
-  background-color: rgb(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.85);
   height: 250px;
   overflow: hidden;
   transition: all 0.5s;
@@ -184,8 +184,8 @@ export default {
   font-size: 18px;
   color: white;
   box-shadow:
-  0 15px 30px 0 rgba(0,0,0,0.44),
-  0 5px 15px 0 rgba(0,0,0,0.32);
+  0 15px 30px 0 rgbaa(0,0,0,0.44),
+  0 5px 15px 0 rgbaa(0,0,0,0.32);
 }
 
 .record-img {

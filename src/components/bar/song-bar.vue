@@ -86,7 +86,7 @@ export default {
 .song-bar {
   width: 100%;
   height: 50px;
-  background-color: rgb(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
   transition: all 0.5s;
   margin-bottom: 2px;
   padding-left: 15px;
@@ -102,7 +102,7 @@ export default {
 }
 
 .song-bar:hover {
-  background-color: rgb(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .icon:hover{
@@ -114,7 +114,7 @@ export default {
   flex-direction: row;
   width: 100%;
   height: 50px;
-  background-color: rgb(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .song-bar-name {

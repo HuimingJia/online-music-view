@@ -108,7 +108,7 @@ export default {
   margin-bottom: 15px;
   margin-left: 50px;
   margin-right: 50px;
-  background-color: rgb(255, 255, 255, 0);
+  background: rgba(255, 255, 255, 0);
   flex: 1;
 }
 </style>

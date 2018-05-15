@@ -69,19 +69,29 @@ export default {
 .mv-cover {
   width: 100%;
   height: 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   overflow: hidden;
-  background-color: rgb(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.8);
   margin-bottom: 15px;
+  -webkit-transition: all 1s;
+  -o-transition: all 1s;
   transition: all 1s;
-  box-shadow:
-  0 15px 30px 0 rgba(0,0,0,0.11),
-  0 5px 15px 0 rgba(0,0,0,0.08);
+  -webkit-box-shadow:
+  0 15px 30px 0 rgbaa(0,0,0,0.11),
+  0 5px 15px 0 rgbaa(0,0,0,0.08);
+          box-shadow:
+  0 15px 30px 0 rgbaa(0,0,0,0.11),
+  0 5px 15px 0 rgbaa(0,0,0,0.08);
 }
 
 .mv-cover:hover {
-  background-color: rgb(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
   color: white;
 }
 
@@ -97,10 +107,18 @@ export default {
 
 .mv-cover-right {
   padding-top: 15px;
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   margin-right: 15px;
@@ -110,21 +128,28 @@ export default {
 }
 
 .mv-cover-right-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .mv-cover-title{
   font-size: 20px;
   font-weight: bold;
-  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
 .mv-cover-singer {
   font-size: 14px;
-  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -135,14 +160,16 @@ export default {
 
 .mv-cover-date {
   font-size: 14px;
-  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
 .mv-cover-views {
   font-size: 14px;
-  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }

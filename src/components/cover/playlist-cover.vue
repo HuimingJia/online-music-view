@@ -52,12 +52,12 @@ export default {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background-color: rgb(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.8);
   margin-bottom: 15px;
   transition: all 1s;
   box-shadow:
-  0 15px 30px 0 rgba(0,0,0,0.11),
-  0 5px 15px 0 rgba(0,0,0,0.08);
+  0 15px 30px 0 rgbaa(0,0,0,0.11),
+  0 5px 15px 0 rgbaa(0,0,0,0.08);
 }
 
 .playlist-cover-auth {
@@ -69,7 +69,7 @@ export default {
 }
 
 .playlist-cover:hover {
-  background-color: rgb(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
   color: white;
 }
 
@@ -83,7 +83,7 @@ export default {
 }
 
 .playlist-cover-mask {
-  background-color: rgb(0, 0, 0, 1);
+  background: rgba(0, 0, 0, 1);
   position: relative;
   height: 100%;
   width: 100%;

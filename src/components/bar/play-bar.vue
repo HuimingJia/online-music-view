@@ -1,11 +1,7 @@
 <template lang="html">
   <div id="play-bar">
-    <!-- <div class="jp-volume-controls flex-item">
-      <button class="jp-mute" role="button" tabindex="0"><v-icon class="mic-off"></v-icon></button>
-    </div> -->
-
-    <div id="volume-bar">
-      <input class="volume-bar-range" type="range" @change="setVolume(value)"></input>
+    <div class="volume-bar">
+      <input id= "volume-bar-range" class="volume-bar-range" type="range" @change="setVolume()"></input>
       <div v-if="isMute" class="my-auto mx-2" @click="unmute()">
         <v-icon  name="mic-off" ></v-icon>
       </div>
@@ -14,17 +10,19 @@
       </div>
     </div>
 
-    <div id="play-progress-bar">
-      <div class="duration  my-auto">
-        <div class="progress" :style="{width: progress +'%'}"></div>
-        <div class="bullet"></div>
-      </div>
+    <div class="play-progress-clock my-auto">
+      <span>{{curTime}}/</span><span>{{duration}}</span>
     </div>
 
-    <div class="play-progress-clock my-auto">
-      <span>{{curTime}} /</span>
-      <span>{{duration}}</span>
+    <div class="play-progress-bar">
+          <input id="play-progress-bar" type="range" class="form-control-range" v-model="progress" @change="setProgress()">
+      <!-- <div class="duration  my-auto">
+        <div class="progress" :style="{width: progress +'%'}"></div>
+        <div class="bullet"></div>
+      </div> -->
     </div>
+
+
     <audio id="audio"
     :src="musicSrc"
     @timeupdate="update()"
@@ -51,7 +49,7 @@ export default {
     return {
       volume: 0.5,
       isMute: false,
-      // musicSrc: require('@/assets/audio/brave-heart.mp3')
+      musicSrc: require('@/assets/audio/brave-heart.mp3')
     }
   },
   computed: {
@@ -59,7 +57,7 @@ export default {
       'curTime', 'duration','curcAlbumImg'
     ]),
     ...mapState({
-      musicSrc: state => 'https://dl.stream.qqmusic.qq.com/C100' + state.PlayStore.curSong.mid + '.m4a?fromtag=46',
+      // musicSrc: state => 'https://dl.stream.qqmusic.qq.com/C100' + state.PlayStore.curSong.mid + '.m4a?fromtag=46',
       progress: state => state.PlayStore.currentTime / state.PlayStore.duration * 100,
       isPlaying: state => state.PlayStore.playing,
       song: state => state.PlayStore.curSong
@@ -81,8 +79,15 @@ export default {
       }
       this.updateTime(updateInfo)
     },
+    setProgress: function() {
+      var per = document.getElementById('play-progress-bar').value
+      var duration = parseInt(document.getElementById('audio').duration)
+      document.getElementById('audio').currentTime = per / 100 * duration
+
+      this.update();
+    },
     setVolume: function() {
-      document.getElementById('audio').volume = volume
+      document.getElementById('audio').volume = document.getElementById('volume-bar-range').value / 100
     },
     mute: function() {
       document.getElementById('audio').volume = 0
@@ -110,8 +115,9 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: row;
-  /* background-color: rgb(219,219,219, 0); */
-  background-color: rgb(255,255,255, 0.8);
+  /* background: rgb(219,219,219, 0); */
+  background: rgba(255,255,255, 0.8);
+
   padding-right: 15px;
   padding-left: 15px;
   z-index: 4;
@@ -119,7 +125,7 @@ export default {
   0 2px 4px 0 rgba(0,0,0,0.10);
 }
 
-#volume-bar {
+.volume-bar {
   margin-left: 15px;
   margin-right: 30px;
   width: 180px;
@@ -127,23 +133,24 @@ export default {
   display: flex;
   flex-direction: row;
   margin-right: 15px;
-  /* background-color: rgb(255, 255, 255, 0.5); */
+  /* background: rgb(255, 255, 255, 0.5); */
 }
 
-#volume-bar .icon{
+.volume-bar .icon{
   height: 20px;
   width: 20px;
-  /* background-color: rgb(255, 255, 255, 0.5); */
+  /* background: rgb(255, 255, 255, 0.5); */
 }
 
 .volume-bar-range {
   flex: 1;
 }
 
-#play-progress-bar {
+.play-progress-bar {
   display: flex;
   flex-direction: row;
   flex: 1;
+  margin-right: 15px;
 }
 
 .bullet {
@@ -151,25 +158,24 @@ export default {
   height: 14px;
   margin-left: -10px;
   margin-top: -2px;
-  background-color: white;
+  background: white;
   border: 2px solid;
   border-radius: 7px;
 }
 
 .play-progress-clock {
-  margin-left: 15px;
   margin-right: 15px;
 }
 
 .progress {
-  background-color: rgb(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   height: 100%;
   color: black;
 }
 
 .duration {
-  background-color: rgb(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.5);
   display: flex;
   flex-direction: row;
   border-radius: 5px;
@@ -203,7 +209,7 @@ export default {
 
 .play-last {
   height: 60%;
-  background-color: rgb(0, 0, 0, 1);
+  background: rgba(0, 0, 0, 1);
   padding: 5px;
   color: white;
   border-radius: 50%;
@@ -211,7 +217,7 @@ export default {
 
 .play-status {
   height: 80%;
-  background-color: rgb(0, 0, 0, 1);
+  background: rgba(0, 0, 0, 1);
   color: white;
   padding: 5px;
   border-radius: 50%;
@@ -219,7 +225,7 @@ export default {
 
 .play-next {
   height: 60%;
-  background-color: rgb(0, 0, 0, 1);
+  background: rgba(0, 0, 0, 1);
   color: white;
   padding: 5px;
   border-radius: 50%;
@@ -238,7 +244,7 @@ export default {
 }
 
 .toggle-playing-list .icon:hover {
-  color: rgb(0,0,0,0.2)
+  color: rgba(0,0,0,0.2)
 }
 
 .volume-bar-mute .icon{

@@ -13,7 +13,7 @@ export default {
 .footer {
   height: 25px;
   text-decoration: underline;
-  background-color: #F8F8F8;
+  background: #F8F8F8;
   font-size: 14px;
 }
 

@@ -35,12 +35,12 @@ export default {
   z-index: 2;
   display: flex;
   flex-direction: row;
-  background-color: rgb(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.8);
   overflow: hidden;
   transition: all 0.25s;
-  -moz-box-shadow: 4px 0px 8px 0 rgba(0,0,0,0.12), 2px 0px 4px 0 rgba(0,0,0,0.08);
-  -webkit-box-shadow: 4px 0px 8px 0 rgba(0,0,0,0.12), 2px 0px 4px 0 rgba(0,0,0,0.08);
-  box-shadow: 4px 0px 8px 0 rgba(0,0,0,0.12), 2px 0px 4px 0 rgba(0,0,0,0.08);
+  -moz-box-shadow: 4px 0px 8px 0 rgbaa(0,0,0,0.12), 2px 0px 4px 0 rgbaa(0,0,0,0.08);
+  -webkit-box-shadow: 4px 0px 8px 0 rgbaa(0,0,0,0.12), 2px 0px 4px 0 rgbaa(0,0,0,0.08);
+  box-shadow: 4px 0px 8px 0 rgbaa(0,0,0,0.12), 2px 0px 4px 0 rgbaa(0,0,0,0.08);
 }
 
 #play-card-sm:hover {
@@ -48,7 +48,7 @@ export default {
 }
 
 .play-card-img-sm {
-  background-color: black;
+  background: black;
   margin: 15px;
 }
 

@@ -39,10 +39,10 @@ export default {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background-color: rgb(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.8);
   box-shadow:
-  0 15px 30px 0 rgba(0,0,0,0.11),
-  0 5px 15px 0 rgba(0,0,0,0.08);
+  0 15px 30px 0 rgbaa(0,0,0,0.11),
+  0 5px 15px 0 rgbaa(0,0,0,0.08);
 }
 
 .album-cover-above {
@@ -51,7 +51,7 @@ export default {
 }
 
 .album-cover-mask {
-  background-color: rgb(0, 0, 0, 1);
+  background: rgba(0, 0, 0, 1);
   position: relative;
   height: 100%;
   width: 100%;

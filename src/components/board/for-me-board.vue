@@ -78,7 +78,7 @@ export default {
 
 <style lang="css" scoped>
 #for-me-board {
-  background-color: rgb(255, 255, 255, 0);
+  background: rgba(255, 255, 255, 0);
   flex: 1;
 }
 </style>

@@ -91,9 +91,9 @@ export default {
   padding: 20px;
   float: right;
   position: absolute;
-  background: rgb(35,37,38,1);  /* fallback for old browsers */
-  /* background: -webkit-linear-gradient(to bottom, rgb(65,67,69,0.9), rgb(35,37,38,0.9));
-  background: linear-gradient(to bottom, rgb(65,67,69,0.9), rgb(35,37,38,0.9));  */
+  background: rgba(35,37,38,1);  /* fallback for old browsers */
+  /* background: -webkit-linear-gradient(to bottom, rgba(65,67,69,0.9), rgba(35,37,38,0.9));
+  background: linear-gradient(to bottom, rgba(65,67,69,0.9), rgba(35,37,38,0.9));  */
   height: 450px;
   width: 250px;
   bottom: 15px;
@@ -102,8 +102,8 @@ export default {
   overflow: scroll;
   color: white;
   box-shadow:
-  0 15px 30px 0 rgba(0,0,0,0.44),
-  0 5px 15px 0 rgba(0,0,0,0.32);
+  0 15px 30px 0 rgbaa(0,0,0,0.44),
+  0 5px 15px 0 rgbaa(0,0,0,0.32);
 }
 
 #playing-list::-webkit-scrollbar {
