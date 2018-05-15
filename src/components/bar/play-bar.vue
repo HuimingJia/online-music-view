@@ -4,14 +4,13 @@
       <button class="jp-mute" role="button" tabindex="0"><v-icon class="mic-off"></v-icon></button>
     </div> -->
 
-
     <div id="volume-bar">
-      <!-- <input class="my-auto"v-model="volume"> -->
-      <div class="volume-bar-mute"><v-icon :name="{isMute: 'mic-off'}"></v-icon></div>
-      <div class="jp-volume-bar">
-        <div class="jp-volume-bar-value">
-          <div class="bullet"></div>
-        </div>
+      <input class="volume-bar-range" type="range" @change="setVolume(value)"></input>
+      <div v-if="isMute" class="my-auto mx-2" @click="unmute()">
+        <v-icon  name="mic-off" ></v-icon>
+      </div>
+      <div v-else class="my-auto mx-2" @click="mute()">
+        <v-icon  name="mic" ></v-icon>
       </div>
     </div>
 
@@ -82,16 +81,20 @@ export default {
       }
       this.updateTime(updateInfo)
     },
+    setVolume: function() {
+      document.getElementById('audio').volume = volume
+    },
+    mute: function() {
+      document.getElementById('audio').volume = 0
+      this.isMute = true;
+    },
+    unmute: function() {
+      document.getElementById('audio').volume = this.volume
+      this.isMute = false;
+    },
     ...mapMutations([
       'play', 'pause', 'playLast', 'playNext', 'playContinue', 'updateTime', 'togglePlayingList', 'showPlayingList'
     ]),
-    setVolume: function(volume) {
-      alert(volume)
-      document.getElementById('audio').volume = volume
-    },
-    updatebar: function(x) {
-
-    }
   },
   watch: {
     volume: function(val){
@@ -117,8 +120,24 @@ export default {
 }
 
 #volume-bar {
-  width: 200px;
+  margin-left: 15px;
+  margin-right: 30px;
+  width: 180px;
+  color: black;
+  display: flex;
+  flex-direction: row;
+  margin-right: 15px;
   /* background-color: rgb(255, 255, 255, 0.5); */
+}
+
+#volume-bar .icon{
+  height: 20px;
+  width: 20px;
+  /* background-color: rgb(255, 255, 255, 0.5); */
+}
+
+.volume-bar-range {
+  flex: 1;
 }
 
 #play-progress-bar {

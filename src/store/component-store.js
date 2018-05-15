@@ -41,13 +41,13 @@ export default {
       state.isFocusSearchInput = true;
     },
     unfocusSearchInput(state) {
-      // state.isFocusSearchInput = false;
+      state.isFocusSearchInput = false;
     },
     focusSearchList(state) {
       state.isFocusSearchList = true;
     },
     unfocusSearchList(state) {
-      // state.isFocusSearchList = false;
+      state.isFocusSearchList = false;
     },
 
     hideSearchList (state) {

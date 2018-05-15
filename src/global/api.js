@@ -108,7 +108,7 @@ export default {
       return {
         channel: 'singer',
         page: 'list',
-        key: 'all_all_all',
+        key: key,
         pagesize: 100,
         pagenum: pagenum,
         g_tk: 5381,

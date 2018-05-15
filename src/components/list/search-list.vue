@@ -1,17 +1,18 @@
 <template lang="html">
   <div id="search-list" @click="focusSearchList()">
     <div class="wrapper">
-      <div class="history-list">
+      <div class="history-list" v-if="history.length > 0">
         <div class="historys">
           <div v-for="key in history" class="history" @click="search(key)">
             {{key}}
           </div>
         </div>
         <span class="my-auto" @click="clear()"><v-icon name="trash"></v-icon></span>
+        <hr>
       </div>
 
-      <hr>
-      <div class="special">Special - <a class="special-link" :href="specialUrl">{{specialKey}}</a></div>
+
+      <div class="special text-justify" v-if="specialUrl"><span>Special</span>  <a class="special-link" :href="specialUrl">{{specialKey}}</a></div>
       <div class="hotkey-list">
         <div v-for="(key, index) in hotKey" class="hotkey" @click="search(key.k)">
           {{index + 1}}. {{key.k}}  <span class="badge badge-dark text-right">{{convert(key.n)}}</span>

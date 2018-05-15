@@ -26,8 +26,8 @@ export default {
     getPlayList({},id){
       return apiFactory(API.play_list)(id)
     },
-    getSingerList({}, pagenum){
-      return apiFactory(API.singer_list)(pagenum)
+    getSingerList({}, params){
+      return apiFactory(API.singer_list)(params.pagenum, params.channel, params.key)
     },
     getSinger({}, id){
       return apiFactory(API.singer_info)(id)

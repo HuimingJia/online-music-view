@@ -8,7 +8,7 @@ export default {
       state.key = key
       // alert("setkey")
     },
-    clearHistory() {
+    clearHistory(state) {
       state.history = []
     },
     addHistory(state, key) {
