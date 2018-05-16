@@ -1,8 +1,7 @@
 <template lang="html">
 <div id="singer-selector-bar">
-<div class="types input-group"><div class="tag">TYPE:</div><div class="type btn btn-outline-dark" v-for="(param, type) in types" @click="setType(type)">{{type}}</div></div>
-<div class="regions input-group"><div class="tag">REGION:</div><div class="region btn btn-dark" v-for="(param, region) in regions" @click="setRegion(region)">{{region}}</div></div>
-<div class="names input-group"><div class="tag">NAME:</div><div class="name btn" v-for="name in names" @click="setName(name)">{{name}}</div></div>
+<div class="types input-group"><div class="tag">TYPE:</div><div v-for="(value, key) in types" @click="setType(value)" :class="[type == value?'active': '','type', 'btn', 'btn-outline-dark']" >{{key}}</div></div>
+<div class="names input-group"><div class="tag">NAME:</div><div v-for="(value,inedx) in names" @click="setName(value)" :class="[name == value?'name-active': '','name', 'btn']">{{value}}</div></div>
 </div>
 </template>
 
@@ -12,34 +11,31 @@ export default {
   data() {
     return {
       types: vars.TYPES,
-      regions: vars.REGIONS,
       names: vars.NAMES,
-      type: "all",
-      region: "all",
+      type: "all_all",
       name: "all",
-
+    }
+  },
+  computed: {
+    params: function(){
+      var params = this.type + '_' + this.name
+      return params
     }
   },
   methods: {
-    setType(type) {
-      this.type = type == this.type? 'all' : type;
+    setType(value) {
+      this.type = value == this.type? 'all_all' : value;
     },
-    setRegion(region) {
-      this.region = region == this.region? 'all' : region;
-    },
-    setName(name) {
-      this.name = name == this.name? 'all' : name;
+    setName(value) {
+      this.name = value == this.name? 'all' : value;
     },
   },
   watch: {
     type: function(val){
-      this.$emit('updateKey', [this.type, this.region, this.name]);
-    },
-    region: function(val){
-      this.$emit('updateKey', [this.type, this.region, this.name]);
+      this.$emit('updateKey', this.params);
     },
     name: function(val){
-      this.$emit('updateKey', [this.type, this.region, this.name]);
+      this.$emit('updateKey', this.params);
     },
   }
 }
@@ -60,6 +56,7 @@ export default {
   padding: 15px;
   border-radius: 15px;
 }
+
 .types, .regions, .names {
   display: flex;
   flex-direction: row;
@@ -76,5 +73,11 @@ export default {
 .type, .region, .name {
   margin-right: 15px;
   margin-bottom: 15px;
+}
+
+
+.name-active {
+  background-color: #272C31;
+  color: white;
 }
 </style>

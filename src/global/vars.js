@@ -13,16 +13,22 @@ export const SINGLE = 0
 export const SEQUENTIAL = 1
 export const RANDOM = 2
 export const types = {ALBUM: 10002, CD: 10014, JUMP: 3002}
-export const REGIONS = {'China': 'cn',
-                        'Euro': 'eu',
-                        'Korea': 'k',
-                        'Japan': 'j',}
 
-export const TYPES = {'Male': 'man',
-                      'Female': 'women',
-                      'Team': 'team',
-                      'Orchestra': 'orchestra',
-                      'performer':'performer',
-                      'Cantor':'cantor',
-                      'Other':'other'}
-export const NAMES = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "G", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W","X" ,"Y", "Z"]
+export const TYPES = {
+                      'Chinese Male': 'cn_man',
+                      'Chinese Female': 'cn_woman',
+                      'Chinese Team': 'cn_team',
+                      'Korean Male': 'k_man',
+                      'Korean Female': 'k_woman',
+                      'Korean Team': 'k_team',
+                      'Japanese Male': 'j_man',
+                      'Japanese Female': 'j_woman',
+                      'Japanese Team': 'j_team',
+                      'NA&EU Male': 'eu_man',
+                      'NA&EU Female': 'eu_woman',
+                      'NA&EU Team': 'eu_team',
+                      'Orchestra': 'c_orchestra',
+                      'Performer':'c_performer',
+                      'Cantor':'c_cantor',
+                      'Other':'other_other'}
+export const NAMES = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W","X" ,"Y", "Z"]

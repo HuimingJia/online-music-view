@@ -3,11 +3,10 @@
   <div class="singer-board-info">
     <img class="singer-board-img" height="200px" width="200px" v-lazy="singerImg">
     <div class="singer-board-right">
-      <div class="singer-board-name">{{singernName}}
-        <div class="singer-board-album">{{albumTotal}}</div>
-        <div class="singer-board-songs">{{songTotal}}</div>
-        <div class="toplist-board-mvs">{{mvTotal}}</div>
-      </div>
+      <div class="singer-board-name">{{singernName}}</div>
+        <div class="singer-board-album"><v-icon name="disc"></v-icon><span>{{albumTotal}}</span></div>
+        <div class="singer-board-songs"><v-icon name="headphones"></v-icon><span>{{songTotal}}</span></div>
+        <div class="toplist-board-mvs"><v-icon name="video"></v-icon><span>{{mvTotal}}</span></div>
       <div class="singer-board-desc" v-html="singerDesc"></div>
     </div>
   </div>
@@ -18,7 +17,7 @@
         <div class="col-12 col-sm-6 col-md-4 col-xl-2" v-for="album in albumList" v-if="album !== null">
           <album-cover
           :img="album.pic"
-          :desc="album.name"
+          :title="album.name"
           :id="album.albummid">
         </album-cover>
       </div>
@@ -170,7 +169,8 @@ export default {
 
 
 .singer-board-name {
-
+  font-size: 28px;
+  font-weight: 900;
 }
 
 .singer-board-desc {
@@ -181,11 +181,23 @@ export default {
 
 }
 
+.singer-board-album .icon {
+  height: 24px;
+}
+
 .singer-board-songs {
 
 }
 
+.singer-board-songs .icon {
+  height: 24px;
+}
+
 .toplist-board-mvs {
 
+}
+
+.toplist-board-mvs .icon {
+  height: 24px;
 }
 </style>

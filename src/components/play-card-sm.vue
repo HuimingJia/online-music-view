@@ -33,6 +33,7 @@ export default {
   float: left;
   position: absolute;
   z-index: 2;
+  padding: 15px;
   display: flex;
   flex-direction: row;
   background: rgba(255, 255, 255, 0.8);
@@ -41,6 +42,7 @@ export default {
   -moz-box-shadow: 4px 0px 8px 0 rgba(0,0,0,0.12), 2px 0px 4px 0 rgba(0,0,0,0.08);
   -webkit-box-shadow: 4px 0px 8px 0 rgba(0,0,0,0.12), 2px 0px 4px 0 rgba(0,0,0,0.08);
   box-shadow: 4px 0px 8px 0 rgba(0,0,0,0.12), 2px 0px 4px 0 rgba(0,0,0,0.08);
+  overflow: hidden;
 }
 
 #play-card-sm:hover {
@@ -49,19 +51,35 @@ export default {
 
 .play-card-img-sm {
   background: black;
-  margin: 15px;
+}
+
+.play-card-sm-right {
+  margin-left: 15px;
+  overflow: hidden;
 }
 
 .play-card-sm-name {
   font-size: 18px;
   font-weight: bold;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .play-card-sm-album {
   font-size: 14px;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .play-card-sm-singernames {
   font-size: 14px;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 </style>

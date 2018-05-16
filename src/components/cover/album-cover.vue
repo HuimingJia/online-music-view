@@ -6,7 +6,7 @@
     </div>
 
     <div class="album-cover-down text-center">
-      <h2 class="my-auto">{{title}}</h2>
+      <div class="album-cover-title my-auto">{{title}}</div>
     </div>
   </div>
 </template>
@@ -26,10 +26,14 @@ export default {
       type: String,
       default: 'not defined',
     },
-    des: {
+    id: {
       type: String,
       default: null,
-    }
+    },
+    mid: {
+      type: String,
+      default: null,
+    },
   }
 }
 </script>
@@ -43,6 +47,12 @@ export default {
   box-shadow:
   0 15px 30px 0 rgba(0,0,0,0.11),
   0 5px 15px 0 rgba(0,0,0,0.08);
+  transition: all 1s;
+}
+
+.album-cover:hover {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
 }
 
 .album-cover-above {
@@ -66,4 +76,12 @@ export default {
   font-size: 18px;
   height: 50px;
 }
+
+.album-cover-title {
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 </style>

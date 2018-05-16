@@ -91,10 +91,10 @@ export default {
 }
 
 #search-list {
-  border-radius: 15px;
+  border-radius: 0px;
   padding: 15px;
   position: absolute;
-  background: rgba(255,255,255,1);
+  background: rgba(255,255,255,0.9);
   width: 450px;
   top: 15px;
   right: 15px;

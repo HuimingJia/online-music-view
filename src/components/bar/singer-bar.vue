@@ -2,7 +2,7 @@
   <div class="singer-bar"  @click="goTo(mid)">
     <img class="singer-bar-img my-auto" height="35px" v-lazy="img" :alt="name">
     <div class="singer-bar-name my-auto">
-      {{name}}
+      {{sort}}. {{name}}
     </div>
     <div class="singer-bar-btn-group my-auto">
     </div>
@@ -37,7 +37,7 @@ export default {
       default: null,
     },
     sort: {
-      type: String,
+      type: Number,
       default: null,
     },
     index: {

@@ -21,11 +21,11 @@ export default {
     },
     songname: {
       type: String,
-      default: 'M-Music',
+      default: 'Unknown',
     },
     albumname: {
       type: String,
-      default: 'M-Album',
+      default: 'Unknown',
     },
     id: {
       type: Number,
@@ -37,7 +37,7 @@ export default {
     },
     name: {
       type: String,
-      default: 'M-Orig',
+      default: 'Unknown',
     },
     singer: {
       type: Array,
@@ -50,12 +50,7 @@ export default {
   },
   computed: {
     singernames: function(){
-      if (this.singer instanceof Array) {
-        return this.singer.map((singer) => {return singer.name}).join("/")
-      } else {
-        return String(this.singer)
-      }
-
+      return this.singer.map((singer) => {return singer.name}).join("/")
     }
   },
   methods: {
@@ -122,6 +117,10 @@ export default {
   color: white;
   flex: 1;
   transition: all 1s;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
  }
 
  .song-bar-name:hover {

@@ -7,7 +7,9 @@
     <div id="search-bar" class="my-auto">
       <div class="search-bar-control">
         <form @submit.prevent="search(key)" class="input-group-search" :class="{'search-bar-lg':isShowSearchList}">
-          <input class="search-bar-input" v-model="key" @focus="focusSearchInput()" @blur="unfocusSearchInput()" type="text" placeholder="Launch">
+          <input class="search-bar-input" v-model="key" @focus="focusSearchInput()"
+            @blur="unfocusSearchInput()"
+           type="text" placeholder="Launch">
         </form>
         <div class="input-group-prepend">
           <span class="input-group-text"><v-icon name="search"></v-icon></span>
@@ -49,6 +51,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
 .header {
   display: flex;
   flex-direction: row;

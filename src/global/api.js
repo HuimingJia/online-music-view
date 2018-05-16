@@ -1,7 +1,7 @@
 export default {
   first_page_data:{
     url:"https://c.y.qq.com/v8/fcg-bin/fcg_first_yqq.fcg",
-    params(){
+    params(params){
       return{
         format:'jsonp',
         tpl:'v12',
@@ -21,7 +21,7 @@ export default {
   },
   top_lists: {
     url: 'https://c.y.qq.com/v8/fcg-bin/fcg_myqq_toplist.fcg',
-    params: () => {
+    params: (params) => {
       return {
         format: 'jsonp',
         g_tk: 5381,
@@ -38,7 +38,7 @@ export default {
   },
   top_list: {
     url: 'https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg',
-    params: (id) => {
+    params: (params) => {
       return {
         g_tk: 5381,
         uin: 0,
@@ -51,7 +51,7 @@ export default {
         tpl: 3,
         page: 'detail',
         type: 'top',
-        topid: id,
+        topid: params.id,
         _: new Date().getTime()
       }
     },
@@ -59,9 +59,9 @@ export default {
   },
   album: {
     url: 'https://c.y.qq.com/v8/fcg-bin/fcg_v8_album_info_cp.fcg',
-    params: (id) => {
+    params: (params) => {
       return {
-        albummid: id,
+        albummid: params.id,
         g_tk: 5381,
         loginUin: 0,
         hostUin: 0,
@@ -77,7 +77,7 @@ export default {
   },
   play_list:{
     url:'https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg',
-    params:(id)=>{
+    params:(params)=>{
       return {
         g_tk:5381,
         loginUin: 0,
@@ -93,7 +93,7 @@ export default {
         type:1,
         json:1,
         utf8:1,
-        disstid:id,
+        disstid:params.id,
         onlysong:0,
         nosign:1,
 
@@ -104,13 +104,13 @@ export default {
   },
   singer_list: {
     url: 'https://c.y.qq.com/v8/fcg-bin/v8.fcg',
-    params: (pagenum = 0, channel = 'singer', key = 'all_all_all') => {
+    params: (params) => {
       return {
-        channel: 'singer',
+        channel: params.channel,
         page: 'list',
-        key: key,
+        key: params.key,
         pagesize: 100,
-        pagenum: pagenum,
+        pagenum: params.pagenum,
         g_tk: 5381,
         loginUin: 0,
         hostUin: 0,
@@ -126,12 +126,12 @@ export default {
   },
   singer_info: {
     url: 'https://c.y.qq.com/v8/fcg-bin/fcg_v8_singer_track_cp.fcg',
-    params: (id) => {
+    params: (params) => {
       return {
         order: 'listen',
         begin: 0,
         num: 8,
-        singermid: id,
+        singermid: params.id,
         g_tk: 5381,
         uin: 0,
         format: 'jsonp',
@@ -148,11 +148,11 @@ export default {
   },
   search: {
     url: 'https://c.y.qq.com/splcloud/fcgi-bin/smartbox_new.fcg',
-    params: (key) => {
+    params: (params) => {
       return {
         is_xml: 0,
         format: 'jsonp',
-        key: key,
+        key: params.key,
         g_tk: 5381,
         loginUin: 0,
         hostUin: 0,
@@ -167,7 +167,7 @@ export default {
   },
   hotkey: {
     url: 'https://c.y.qq.com/splcloud/fcgi-bin/gethotkey.fcg',
-    params: () => {
+    params: (params) => {
       return {
         g_tk: 5381,
         loginUin: 0,
@@ -184,11 +184,11 @@ export default {
   },
   lyric: {
     url: 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg',
-    params: (id) => {
+    params: (params) => {
       return {
         callback: 'MusicJsonCallback_lrc',
         pcachetime: 1494070301711,
-        songmid: id,
+        songmid: params.id,
         g_tk: 5381,
         jsonpCallback: 'MusicJsonCallback_lrc',
         loginUin: 0,

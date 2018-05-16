@@ -6,30 +6,32 @@
       <song-bar v-for="(song, index) in songList" v-if="song"
         :index="index"
         :songname="song.name"
-        :id="song.id"
+        :id="Number(song.id)"
         :mid="song.mid"
         :name="song.name"
-        :singer="song.singer"
+        :singer="getSinger(song.singer)"
         :albummid="song.albummid"
       ></song-bar>
 
       <divider color="#555555" title="Singers" v-if="singerList.length > 0"></divider>
-      <div class="col-12" v-for="singer in singerList"  v-if="singer !== null">
+      <div class="col-12" v-for="(singer, index) in singerList"  v-if="singer !== null">
         <singer-bar
         :id = "singer.id"
         :mid = "singer.mid"
-        :name="singer.name">
+        :name="singer.name"
+        :sort="index + 1">
         </singer-bar>
       </div>
 
       <divider color="#555555" title="Albums" v-if="albumList.length > 0"></divider>
       <div class="row">
-        <div class="col-12 col-sm-1" v-for="album in albumList" v-if="albumList">
-          <album-cover
+        <div class="col-12" v-for="album in albumList" v-if="albumList">
+          <album-bar
           :img="album.pic"
-          :desc="album.name"
-          :id="album.mid">
-        </album-cover>
+          :title="album.name"
+          :id="album.mid"
+          :singer="album.singer">
+        </album-bar>
       </div>
     </div>
 
@@ -50,16 +52,17 @@
 <script>
 import divider from '@/components/utils/divider'
 import AlbumCover from '@/components/cover/album-cover'
+import AlbumBar from '@/components/bar/album-bar'
 import MvCover from '@/components/cover/mv-cover'
 import SongBar from '@/components/bar/song-bar'
 import SingerBar from '@/components/bar/singer-bar'
 
 export default {
   components: {
-    AlbumCover,
     MvCover,
     SongBar,
     SingerBar,
+    AlbumBar,
     divider
   },
   data() {
@@ -79,12 +82,16 @@ export default {
     this.getRes()
   },
   methods: {
+    getSinger(singer) {
+      return [{name:singer}]
+    },
     mvimg(mvid) {
       return mvid !== null ? 'https://y.gtimg.cn/music/photo_new/T015R640x360M10100' + mvid + '.jpg' : require('@/assets/imgs/album-cover.jpg')
     },
     getRes() {
       var vm = this
       this.$store.dispatch('search', this.$route.params.key).then((response) => {
+        console.log(response.data)
         vm.albumList = []
         vm.mvList = []
         vm.singerList = []

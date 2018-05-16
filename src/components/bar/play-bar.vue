@@ -44,7 +44,7 @@ export default {
     return {
       volume: 0.5,
       isMute: false,
-      musicSrc: require('@/assets/audio/brave-heart.mp3')
+      // musicSrc: require('@/assets/audio/brave-heart.mp3')
     }
   },
   computed: {
@@ -52,7 +52,7 @@ export default {
       'curTime', 'duration','curcAlbumImg'
     ]),
     ...mapState({
-      // musicSrc: state => 'https://dl.stream.qqmusic.qq.com/C100' + state.PlayStore.curSong.mid + '.m4a?fromtag=46',
+      musicSrc: state => 'https://dl.stream.qqmusic.qq.com/C100' + state.PlayStore.curSong.mid + '.m4a?fromtag=46',
       progress: state => state.PlayStore.currentTime / state.PlayStore.duration * 100,
       isPlaying: state => state.PlayStore.playing,
       song: state => state.PlayStore.curSong
