@@ -101,8 +101,8 @@ export default {
   z-index: 3;
   color: white;
   box-shadow:
-  0 15px 30px 0 rgbaa(0,0,0,0.44),
-  0 5px 15px 0 rgbaa(0,0,0,0.32);
+  0 15px 30px 0 rgba(0,0,0,0.44),
+  0 5px 15px 0 rgba(0,0,0,0.32);
 }
 
 #search-list::-webkit-scrollbar {

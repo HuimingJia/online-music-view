@@ -16,12 +16,7 @@
 
     <div class="play-progress-bar">
           <input id="play-progress-bar" type="range" class="form-control-range" v-model="progress" @change="setProgress()">
-      <!-- <div class="duration  my-auto">
-        <div class="progress" :style="{width: progress +'%'}"></div>
-        <div class="bullet"></div>
-      </div> -->
     </div>
-
 
     <audio id="audio"
     :src="musicSrc"
@@ -153,39 +148,8 @@ export default {
   margin-right: 15px;
 }
 
-.bullet {
-  width: 14px;
-  height: 14px;
-  margin-left: -10px;
-  margin-top: -2px;
-  background: white;
-  border: 2px solid;
-  border-radius: 7px;
-}
-
 .play-progress-clock {
   margin-right: 15px;
-}
-
-.progress {
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 5px;
-  height: 100%;
-  color: black;
-}
-
-.duration {
-  background: rgba(255, 255, 255, 0.5);
-  display: flex;
-  flex-direction: row;
-  border-radius: 5px;
-  /* border: 1px solid; */
-  height: 10px;
-  width: 100%;
-  color: black;
-  box-shadow:
-  0 4px 8px 0 rgba(0,0,0,0.12),
-  0 2px 4px 0 rgba(0,0,0,0.08);
 }
 
 .play-control-button-group{

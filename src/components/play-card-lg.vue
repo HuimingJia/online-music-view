@@ -158,8 +158,8 @@ export default {
   z-index: 6;
   border-radius: 10px;
   box-shadow:
-  0 15px 30px 0 rgbaa(0,0,0,0.44),
-  0 5px 15px 0 rgbaa(0,0,0,0.32);
+  0 15px 30px 0 rgba(0,0,0,0.44),
+  0 5px 15px 0 rgba(0,0,0,0.32);
 }
 
 .icon {
@@ -168,8 +168,8 @@ export default {
   background: rgba(0, 0, 0, 0.75);
   height: 40px;
   box-shadow:
-  0 15px 30px 0 rgbaa(0,0,0,0.11),
-  0 5px 15px 0 rgbaa(0,0,0,0.08);
+  0 15px 30px 0 rgba(0,0,0,0.11),
+  0 5px 15px 0 rgba(0,0,0,0.08);
 }
 
 .lyric-board{
@@ -184,8 +184,8 @@ export default {
   font-size: 18px;
   color: white;
   box-shadow:
-  0 15px 30px 0 rgbaa(0,0,0,0.44),
-  0 5px 15px 0 rgbaa(0,0,0,0.32);
+  0 15px 30px 0 rgba(0,0,0,0.44),
+  0 5px 15px 0 rgba(0,0,0,0.32);
 }
 
 .record-img {
