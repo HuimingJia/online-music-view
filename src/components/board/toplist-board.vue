@@ -5,10 +5,18 @@
       <div class="toplist-board-info-right">
         <h3 class="toplist-board-name">{{name}}</h3>
         <div class="toplist-board-statistic">
-          <div class="toplist-board-views align-bottom"><v-icon name="eye"></v-icon><div class="py-auto">{{getViews(views)}}</div></div>
-          <div class="toplist-board-date align-bottom"><v-icon name="calendar"></v-icon>{{getDate(date)}}</div>
-          <div class="toplist-board-comments align-bottom"><v-icon name="list"></v-icon>{{comments}}</div>
-          <div class="toplist-board-size align-bottom"><v-icon name="music"></v-icon>{{size}}</div>
+          <div class="toplist-board-views align-bottom"><v-icon name="eye"></v-icon>
+            <div class="my-auto">{{getViews(views)}}</div>
+          </div>
+          <div class="toplist-board-date align-bottom"><v-icon name="calendar"></v-icon>
+            <div class="my-auto">{{getDate(date)}}</div>
+          </div>
+          <div class="toplist-board-comments align-bottom"><v-icon name="list"></v-icon>
+            <div class="my-auto">{{comments}}</div>
+          </div>
+          <div class="toplist-board-size align-bottom"><v-icon name="music"></v-icon>
+            <div class="my-auto">{{size}}</div>
+          </div>
         </div>
         <div class="toplist-board-info" v-html="info"></div>
       </div>
@@ -147,13 +155,14 @@ export default {
 .toplist-board-views, .toplist-board-date, .toplist-board-comments, .toplist-board-size{
   display: flex;
   flex-direction: row;
+  height: 30px;
   margin-right: 15px;
-  border: solid 1px;
 }
 
 .toplist-board-views .icon, .toplist-board-date .icon, .toplist-board-comments .icon, .toplist-board-size .icon {
-  height: 100px;
-  margin-right: 15px;
+  /* height: 100px; */
+  height: 30px;
+  margin-right: 5px;
 }
 
 .toplist-board-info {

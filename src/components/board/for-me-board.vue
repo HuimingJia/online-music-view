@@ -1,6 +1,13 @@
 <template lang="html">
   <div id="for-me-board">
-    <slide-show :cases="slideShow"></slide-show>
+    <div class="swiper-show">
+      <swiper :options="swiperOption">
+        <swiper-slide v-for="slide in slideShow"><img class="swiper-show-img" height="100%" width="100%" v-lazy="slide.pic" @click="jump(slide.jumpurl)"></img></swiper-slide>
+        <div class="swiper-pagination" slot="pagination"></div>
+        <div class="swiper-button-prev" slot="button-prev"></div>
+        <div class="swiper-button-next" slot="button-next"></div>
+      </swiper>
+    </div>
     <div class="container-fluid hotlist">
       <divider color="#555555" title="Hot PlayList"></divider>
       <div class="row">
@@ -36,31 +43,53 @@ import divider from '@/components/utils/divider'
 import AlbumCover from '@/components/cover/album-cover'
 import SingerBar from '@/components/bar/singer-bar'
 import SongBar from '@/components/bar/song-bar'
-import SlideShow from '@/components/list/slide-show'
 import PlaylistCover from '@/components/cover/playlist-cover'
 import MvCover from '@/components/cover/mv-cover'
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
+
 
 export default {
   components: {
-    SlideShow,
     divider,
     AlbumCover,
     SingerBar,
     SongBar,
     PlaylistCover,
-    MvCover
+    MvCover,
+    swiper,
+    swiperSlide
   },
   data() {
     return {
-      song_list: [
-        {name: "fantastic baby", singer: "Big bang"},
-        {name: "fantastic baby", singer: "Big bang"},
-        {name: "fantastic baby", singer: "Big bang"},
-      ],
       slideShow: null,
       radioList: [],
       playlists: [],
       mvList: [],
+      swiperOption: {
+        initialSlide: 3,
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 3,
+        initialSlide: 0,
+        spaceBetween: 0,
+        coverflowEffect: {
+          rotate: 30,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows : true
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        }
+      }
     }
   },
   activated: function () {
@@ -74,6 +103,11 @@ export default {
       this.loadingState = 'loading failed'
     })
   },
+  methods: {
+    jump: function(url) {
+      window.open(url);
+    }
+  }
 }
 </script>
 
@@ -81,5 +115,41 @@ export default {
 #for-me-board {
   background: rgba(255, 255, 255, 0);
   flex: 1;
+}
+.swiper-show {
+  margin: 15px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.swiper-inner {
+  width: 100%;
+  height: 500px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  -webkit-box-shadow:
+  0 15px 30px 0 rgba(0,0,0,0.44),
+  0 5px 15px 0 rgba(0,0,0,0.32);
+          box-shadow:
+  0 15px 30px 0 rgba(0,0,0,0.44),
+  0 5px 15px 0 rgba(0,0,0,0.32);
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 400px;
+  height: 200px;
+}
+
+.swiper-show-img{
+  transition: all 0.5s;
+}
+
+.swiper-show-img:hover{
+  opacity: 0.5
+}
+.swiper-button-prev, .swiper-button-next {
+
 }
 </style>
