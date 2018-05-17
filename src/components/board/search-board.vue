@@ -29,7 +29,7 @@
           <album-bar
           :img="album.pic"
           :title="album.name"
-          :id="album.mid"
+          :mid="album.mid"
           :singer="album.singer">
         </album-bar>
       </div>

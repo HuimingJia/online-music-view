@@ -28,6 +28,7 @@ export default {
   left: 0;
   top: 0;
   width: 100%;
+  z-index: 5;
   flex: 1;
   border-radius: 15px;
   box-shadow:

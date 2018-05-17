@@ -2,6 +2,7 @@
   <div class="playlist-cover" @click="goTo(id)">
     <div class="playlist-cover-above">
       <img class="playlist-cover-img" width="100%" v-lazy="img" :alt="alt">
+      <div class="playlist-cover-mask text-center"><v-icon name="disc"></v-icon></div>
     </div>
 
     <div class="playlist-cover-down text-center">
@@ -83,11 +84,25 @@ export default {
 }
 
 .playlist-cover-mask {
-  background: rgba(0, 0, 0, 1);
   position: relative;
-  height: 100%;
-  width: 100%;
-  z-index: 10;
+  margin-top: -100%;
+  top: 0px;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.8);
+  transition: all 0.5s;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.playlist-cover:hover .playlist-cover-mask{
+  opacity: 1;
+}
+
+.playlist-cover-mask .icon {
+  color: white;
+  flex: 1;
+  margin: 25%;
 }
 
 .playlist-cover-down {

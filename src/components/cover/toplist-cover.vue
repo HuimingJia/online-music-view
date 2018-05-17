@@ -1,8 +1,8 @@
 <template lang="html">
   <div class="toplist-cover" @click="goTo(id)">
     <div class="toplist-cover-left">
-      <img class="toplist-cover-img" height="100%" v-lazy="img" :alt="alt">
-      <div class="toplist-cover-btn"></div>
+      <img class="toplist-cover-img" height="100%" width="100%" v-lazy="img" :alt="alt">
+      <div class="toplist-cover-mask text-center"><v-icon name="zap"></v-icon></div>
     </div>
     <div class="toplist-cover-right my-auto">
       <h5 class="toplist-cover-title">{{title}}</h5>
@@ -73,8 +73,27 @@ export default {
   overflow: hidden;
 }
 
-.toplist-cover-btn {
-  float: right;
+.toplist-cover-mask {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  margin-top: -100%;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.8);
+  transition: all 0.5s;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.toplist-cover:hover .toplist-cover-mask{
+  opacity: 1;
+}
+
+.toplist-cover-mask .icon {
+  color: white;
+  flex: 1;
+  padding: 25%;
 }
 
 .toplist-cover-right {

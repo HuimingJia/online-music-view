@@ -4,10 +4,12 @@
     <img class="singer-board-img" height="200px" width="200px" v-lazy="singerImg">
     <div class="singer-board-right">
       <div class="singer-board-name">{{singernName}}</div>
+      <div class="singer-board-statistic">
         <div class="singer-board-album"><v-icon name="disc"></v-icon><span>{{albumTotal}}</span></div>
         <div class="singer-board-songs"><v-icon name="headphones"></v-icon><span>{{songTotal}}</span></div>
         <div class="toplist-board-mvs"><v-icon name="video"></v-icon><span>{{mvTotal}}</span></div>
-      <div class="singer-board-desc" v-html="singerDesc"></div>
+      </div>
+      <div class="singer-board-desc-wrapper"><div class="singer-board-desc" v-html="singerDesc"></div></div>
     </div>
   </div>
 
@@ -18,16 +20,18 @@
           <album-cover
           :img="album.pic"
           :title="album.name"
-          :id="album.albummid">
+          :mid="album.albummid"
+          :id="album.id"
+          :date="album.publish_date">
         </album-cover>
       </div>
     </div>
 
     <divider color="#555555" title="Hot Music Video"></divider>
     <div class="row">
-      <div class="col-12 col-sm-6" v-for="mv in mvList"  v-if="mv !== null">
+      <div class="col-12 col-xl-6" v-for="mv in mvList"  v-if="mv !== null">
         <mv-cover
-        :img="mvimg(mv.vid)"
+        :mv_id="mv.vid"
         :title="mv.title"
         :date="mv.pubdate"
         :singer="singernName"
@@ -119,6 +123,7 @@ export default {
   },
   activated: function() {
     this.$store.dispatch('getSinger', this.$route.params.id).then((response) => {
+
       this.singernName = response.data.data.singer_name
       this.singerDesc = response.data.data.SingerDesc
       this.albumTotal = response.data.data.albumTotal
@@ -149,7 +154,6 @@ export default {
   flex: 1;
 }
 
-
 .singer-board-info {
   display: flex;
   flex-direction: row;
@@ -167,37 +171,65 @@ export default {
   flex: 1;
 }
 
-
 .singer-board-name {
   font-size: 28px;
   font-weight: 900;
 }
 
+.singer-board-statistic {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+}
+
+.singer-board-album, .singer-board-songs, .toplist-board-mvs{
+  display: flex;
+  flex-direction: row;
+  margin-right: 15px;
+}
+
+.singer-board-album .icon, .singer-board-songs .icon, .toplist-board-mvs .icon {
+  height: 24px;
+  margin-right: 15px;
+}
+
+.singer-board-desc-wrapper {
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.5);
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
 .singer-board-desc {
-
+  height: 190px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 15px;
 }
 
-.singer-board-album {
-
+.singer-board-desc::-webkit-scrollbar {
+    width: 10px;
 }
 
-.singer-board-album .icon {
-  height: 24px;
+.singer-board-desc::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.5);
 }
 
-.singer-board-songs {
-
+/* Handle */
+.singer-board-desc::-webkit-scrollbar-thumb {
+    border: solid 1px grey;
+    background: rgba(255,255,255,0.8);
+    border-radius: 10px;
 }
 
-.singer-board-songs .icon {
-  height: 24px;
+/* Handle on hover */
+.singer-board-desc::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.3);
 }
 
-.toplist-board-mvs {
 
-}
-
-.toplist-board-mvs .icon {
-  height: 24px;
-}
 </style>

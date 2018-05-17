@@ -13,7 +13,7 @@
       </div>
 
 
-      <div class="special text-justify" v-if="specialUrl"><span>Special</span>  <a class="special-link" :href="specialUrl">{{specialKey}}</a></div>
+      <div class="special text-justify" v-if="specialUrl"><span>Special</span>  <a class="special-link" :href="specialUrl" target="_blank">{{specialKey}}</a></div>
       <div class="hotkey-list">
         <div v-for="(key, index) in hotKey" class="hotkey" @click="search(key.k)">
           {{index + 1}}. {{key.k}}  <span class="badge badge-dark text-right">{{convert(key.n)}}</span>
@@ -98,7 +98,7 @@ export default {
   width: 450px;
   top: 15px;
   right: 15px;
-  z-index: 3;
+  z-index: 8;
   color: white;
   box-shadow:
   0 15px 30px 0 rgba(0,0,0,0.44),

@@ -52,7 +52,7 @@ export default new Router({
       component: SingerBoard
     },
     {
-      path: '/album',
+      path: '/album/:id',
       name: 'album',
       component: AlbumBoard
     },{

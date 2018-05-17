@@ -98,7 +98,7 @@ export default {
   width: 250px;
   bottom: 15px;
   right: 15px;
-  z-index: 3;
+  z-index: 8;
   overflow: scroll;
   color: white;
   box-shadow:

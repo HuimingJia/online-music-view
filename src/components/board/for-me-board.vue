@@ -15,14 +15,15 @@
     </div>
     <divider color="#555555" title="Hot Music Video"></divider>
     <div class="row">
-      <div class="col-12 col-sm-6" v-for="mv in mvList">
+      <div class="col-12 col-xl-6" v-for="mv in mvList">
         <mv-cover
         :img="mv.picurl"
         :title="mv.mvtitle"
         :desc="mv.mvdesc"
         :date="mv.pub_date"
         :singer="mv.singer_name"
-        :views="mv.listennum">
+        :views="mv.listennum"
+        :mv_id="mv.vid">
       </mv-cover>
     </div>
   </div>

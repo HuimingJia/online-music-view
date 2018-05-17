@@ -4,11 +4,13 @@
       <img class="toplist-board-img" height="200px" width="200px" v-lazy="img">
       <div class="toplist-board-info-right">
         <h3 class="toplist-board-name">{{name}}</h3>
+        <div class="toplist-board-statistic">
+          <div class="toplist-board-views align-bottom"><v-icon name="eye"></v-icon><div class="py-auto">{{getViews(views)}}</div></div>
+          <div class="toplist-board-date align-bottom"><v-icon name="calendar"></v-icon>{{getDate(date)}}</div>
+          <div class="toplist-board-comments align-bottom"><v-icon name="list"></v-icon>{{comments}}</div>
+          <div class="toplist-board-size align-bottom"><v-icon name="music"></v-icon>{{size}}</div>
+        </div>
         <div class="toplist-board-info" v-html="info"></div>
-        <div class="toplist-board-views">{{views}}</div>
-        <div class="toplist-board-date">{{date}}</div>
-        <div class="toplist-board-comments">{{comments}}</div>
-        <div class="toplist-board-size">{{size}}</div>
       </div>
     </div>
     <div class="toplist-board-top">
@@ -71,6 +73,33 @@ export default {
       }
     }
   },
+  methods: {
+    getDate(key) {
+      this.setKey(key)
+      this.addHistory(key)
+      this.$router.push({name: 'search', params: {key: key}})
+    },
+    getViews(views) {
+      if (views >= 1000000) {
+        return (views / 1000000).toFixed(2) + 'M'
+      } else if (views >= 1000) {
+        return (views / 1000).toFixed(2) + 'K'
+      } else {
+        return views;
+      }
+    },
+    getDate(date) {
+      if (date.includes("_")) {
+        var dates = date.split("_")
+        return dates.join("-")
+      } else if (date.includes("-")) {
+        var dates = date.split("-")
+        return dates.join("-")
+      } else {
+        return date
+      }
+    }
+  },
   activated: function() {
     this.$store.dispatch('getTopList', this.$route.params.id).then((response) => {
       this.img = response.data.topinfo.MacDetailPicUrl;
@@ -107,6 +136,24 @@ export default {
 .toplist-board-info-right {
   margin-left: 15px;
   flex: 1;
+}
+
+.toplist-board-statistic {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+}
+
+.toplist-board-views, .toplist-board-date, .toplist-board-comments, .toplist-board-size{
+  display: flex;
+  flex-direction: row;
+  margin-right: 15px;
+  border: solid 1px;
+}
+
+.toplist-board-views .icon, .toplist-board-date .icon, .toplist-board-comments .icon, .toplist-board-size .icon {
+  height: 100px;
+  margin-right: 15px;
 }
 
 .toplist-board-info {

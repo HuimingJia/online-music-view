@@ -32,6 +32,7 @@ export default {
 <style lang="css">
 .loading {
   width: 100%;
+  padding-top: 25px;
 }
 
 .equilizer {

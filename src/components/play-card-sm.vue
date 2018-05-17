@@ -1,12 +1,15 @@
 <template lang="html">
-<div id="play-card-sm" @click="togglePlayCardLg()">
-  <img class="play-card-img-sm" height="75px" width="75px" v-lazy="curcAlbumImg" :alt="curSongname">
-  <div class="play-card-sm-right my-auto">
-    <div class="play-card-sm-name">{{curSongname}}</div>
-    <div class="play-card-sm-album">{{curAlbumname}}</div>
-    <div class="play-card-sm-singernames">{{curSingernames}}</div>
+  <div id="play-card-sm" @click="togglePlayCardLg()">
+    <div class="play-card-sm-left">
+      <img class="play-card-img-sm" height="100%" width="100%" v-lazy="curcAlbumImg">
+      <div class="play-card-sm-mask text-center"><v-icon name="maximize-2"></v-icon></div>
+    </div>
+    <div class="play-card-sm-right my-auto">
+      <div class="play-card-sm-name">{{curSongname}}</div>
+      <div class="play-card-sm-album">{{curAlbumname}}</div>
+      <div class="play-card-sm-singernames">{{curSingernames}}</div>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -49,8 +52,34 @@ export default {
   transform: scale(1.1) translateX(10px)  translateY(-5px);
 }
 
-.play-card-img-sm {
-  background: black;
+.play-card-sm-left {
+  width: 70px;
+  height: 100%;
+  overflow: hidden;
+}
+
+.play-card-sm-mask {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  margin-top: -100%;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.8);
+  transition: all 0.5s;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#play-card-sm:hover .play-card-sm-mask{
+  opacity: 1;
+  /* transform: scale(1.1) translateX(10px)  translateY(-5px); */
+}
+
+.play-card-sm-mask .icon {
+  color: white;
+  flex: 1;
+  padding: 25%;
 }
 
 .play-card-sm-right {
@@ -62,7 +91,7 @@ export default {
   font-size: 18px;
   font-weight: bold;
   -o-text-overflow: ellipsis;
-     text-overflow: ellipsis;
+  text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -70,7 +99,7 @@ export default {
 .play-card-sm-album {
   font-size: 14px;
   -o-text-overflow: ellipsis;
-     text-overflow: ellipsis;
+  text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -78,7 +107,7 @@ export default {
 .play-card-sm-singernames {
   font-size: 14px;
   -o-text-overflow: ellipsis;
-     text-overflow: ellipsis;
+  text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }

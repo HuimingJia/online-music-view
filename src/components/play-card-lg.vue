@@ -14,7 +14,11 @@
           </transition>
         </div>
         <div class="lyric-board text-center">
-          <p v-for="sentence in lyric">{{sentence}}</p>
+          <div class="miss" v-if="!hasLyric">
+            <p class="miss-text">Can not find lyric</p>
+            <div><v-icon name="alert-octagon"></v-icon></div>
+          </div>
+          <div v-else class="lyric"><p v-for="sentence in lyric">{{sentence}}</p></div>
         </div>
       </div>
     </div>
@@ -31,19 +35,25 @@ export default {
   components: {
     MusicAnimation
   },
+  data() {
+    return {
+      lyric:[],
+      hasLyric: false,
+    }
+  },
   methods: {
     ...mapMutations([
       'hidePlayCardLg'
     ])
   },
   activated: function() {
+    var vm = this
+    this.hasLyric = false;
     this.$store.dispatch('getLyric', this.mid).then((response) => {
       console.log(response)
-      if (response.data.lyric == null) {
-        this.lyric = ["can not get lyric"]
-      } else {
-
-        this.lyric = Decoder.decode(response.data.lyric)
+      if (response.data != null && response.data.lyric != null) {
+        vm.hasLyric = true;
+        vm.lyric = Decoder.decode(response.data.lyric)
         .split('[')
         .slice(5)
         .map(str => {
@@ -53,7 +63,7 @@ export default {
         .reduce((a, b) => {
           return {...a, ...b}
         })
-        console.log(this.lyric)
+        console.log(vm.lyric)
       }
     }, (response) => {
       console.log(response)
@@ -92,14 +102,6 @@ export default {
     ...mapGetters([
       'curSongname', 'curAlbumname', 'curSingernames', 'curcAlbumImg'
     ])
-  },
-  data() {
-    return {
-      lyric: {
-        type: String,
-        default: null,
-      }
-    }
   }
 }
 </script>
@@ -109,7 +111,7 @@ export default {
   display: flex;
   flex-direction: row;
   position: absolute;
-  z-index: 3;
+  z-index: 5;
   top: 0px;
   bottom: 0px;
   left: 250px;
@@ -186,6 +188,26 @@ export default {
   box-shadow:
   0 15px 30px 0 rgba(0,0,0,0.44),
   0 5px 15px 0 rgba(0,0,0,0.32);
+}
+
+.miss {
+  display: flex;
+  flex-direction: column;
+}
+
+.miss-text {
+  font-size: 28px;
+  font-weight: 600;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.lyric-board .icon {
+  height: 100px;
+  color: white;
+  background: rgba(0,0,0,0);
 }
 
 .record-img {

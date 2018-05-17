@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12 col-lg-6 col-xl-4" v-for="(singer, index) in singerList"  v-if="singer !== null">
+        <div class="col-12 col-lg-6 col-xl-4" v-for="(singer, index) in singerList.slice(0, 30)"  v-if="singer !== null">
           <singer-bar
           :id = "singer.Fsinger_id"
           :mid = "singer.Fsinger_mid"

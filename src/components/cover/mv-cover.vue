@@ -1,8 +1,8 @@
 <template lang="html">
-  <div class="mv-cover" @click="goTo(id)">
+  <div class="mv-cover" @click="goTo(mv_id)">
     <div class="mv-cover-left">
-      <img class="mv-cover-img" height="100%" v-lazy="img">
-      <div class="mv-cover-btn"></div>
+      <img class="mv-cover-img" height="100%" width="100%" v-lazy="mvImg">
+      <div class="mv-cover-mask text-center"><v-icon name="video"></v-icon></div>
     </div>
     <div class="mv-cover-right my-auto">
       <div class="mv-cover-title">{{title}}</div>
@@ -21,7 +21,8 @@ export default {
   props: {
     img: {
       type: String,
-      default: require("@/assets/imgs/album-cover.jpg"),
+      default: null,
+      // default: require("@/assets/imgs/album-cover.jpg"),
     },
     title: {
       type: String,
@@ -52,14 +53,22 @@ export default {
       default: null,
     },
     mv_id: {
-      type: Number,
+      type: String,
       default: null,
+    }
+  },
+  computed: {
+    mvImg: function(){
+      if (this.img == null) {
+        return "http://puui.qpic.cn/qqvideo/0/" + this.mv_id + "/0";
+      } else {
+        return this.img
+      }
     }
   },
   methods: {
     goTo: function(id) {
-      alert("Goto Page " + id)
-      this.$router.push({name: 'toplist', params: {id: id}})
+      window.open("https://y.qq.com/n/yqq/mv/v/" + id + ".html");
     }
   }
 }
@@ -96,13 +105,32 @@ export default {
 }
 
 .mv-cover-left {
-  width: 200px;
+  width: 400px;
   height: 100%;
   overflow: hidden;
 }
 
-.mv-cover-btn {
-  float: right;
+.mv-cover-mask {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  margin-top: -200px;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.8);
+  transition: all 0.5s;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.mv-cover:hover .mv-cover-mask{
+  opacity: 1;
+}
+
+.mv-cover-mask .icon {
+  color: white;
+  flex: 1;
+  padding: 50px;
 }
 
 .mv-cover-right {
