@@ -1,6 +1,7 @@
 <template lang="html">
 <div id="singer-board">
-  <div class="singer-board-info">
+  <board-loading-animation v-if="loading"></board-loading-animation>
+  <div class="singer-board-info"  v-if="!loading">
     <img class="singer-board-img" height="200px" width="200px" v-lazy="singerImg">
     <div class="singer-board-right">
       <div class="singer-board-name">{{singernName}}</div>
@@ -13,7 +14,7 @@
     </div>
   </div>
 
-  <div class="container-fluid">
+  <div class="container-fluid"  v-if="!loading">
       <divider color="#555555" title="Albums"></divider>
       <div class="row">
         <div class="col-12 col-sm-6 col-md-4 col-xl-2" v-for="album in albumList" v-if="album !== null">
@@ -61,6 +62,7 @@ import divider from '@/components/utils/divider'
 import AlbumCover from '@/components/cover/album-cover'
 import MvCover from '@/components/cover/mv-cover'
 import SongBar from '@/components/bar/song-bar'
+import BoardLoadingAnimation from '@/components/utils/board-loading-animation'
 
 export default {
   components: {
@@ -69,10 +71,12 @@ export default {
     MvCover,
     SongBar,
     SongBar,
+    BoardLoadingAnimation
 
   },
   data() {
     return {
+      loading: true,
       singernName: {
         type: String,
         default: null,
@@ -138,6 +142,7 @@ export default {
       vm.fans = response.data.fans
       console.log(response.data)
       console.log(typeof(this.albumList))
+      vm.loading = false;
     }, (response) => {
       console.log(response)
     });

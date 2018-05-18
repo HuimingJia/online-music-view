@@ -1,6 +1,7 @@
 <template lang="html">
   <div id="for-me-board">
-    <div class="swiper-show">
+    <board-loading-animation v-if="loading"></board-loading-animation>
+    <div class="swiper-show" v-if="!loading">
       <swiper :options="swiperOption">
         <swiper-slide v-for="slide in slideShow"><img class="swiper-show-img" height="100%" width="100%" v-lazy="slide.pic" @click="jump(slide.jumpurl)"></img></swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
@@ -8,7 +9,7 @@
         <div class="swiper-button-next" slot="button-next"></div>
       </swiper>
     </div>
-    <div class="container-fluid hotlist">
+    <div class="container-fluid hotlist" v-if="!loading">
       <divider color="#555555" title="Hot PlayList"></divider>
       <div class="row">
         <div class="col-12 col-sm-6 col-md-4 col-xl-2" v-for="playlist in playlists">
@@ -20,7 +21,7 @@
         </playlist-cover>
       </div>
     </div>
-    <divider color="#555555" title="Hot Music Video"></divider>
+    <divider color="#555555" title="Hot Music Video" v-if="!loading"></divider>
     <div class="row">
       <div class="col-12 col-xl-6" v-for="mv in mvList">
         <mv-cover
@@ -45,6 +46,7 @@ import SingerBar from '@/components/bar/singer-bar'
 import SongBar from '@/components/bar/song-bar'
 import PlaylistCover from '@/components/cover/playlist-cover'
 import MvCover from '@/components/cover/mv-cover'
+import BoardLoadingAnimation from '@/components/utils/board-loading-animation'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 
@@ -58,10 +60,12 @@ export default {
     PlaylistCover,
     MvCover,
     swiper,
-    swiperSlide
+    swiperSlide,
+    BoardLoadingAnimation
   },
   data() {
     return {
+      loading: true,
       slideShow: null,
       radioList: [],
       playlists: [],
@@ -100,6 +104,7 @@ export default {
       vm.slideShow = response.data.data.focus
       vm.playlists = response.data.data.hotdiss.list.slice(0,6);
       vm.mvList = response.data.data.shoubomv.all.slice(0,6);
+      vm.loading = false;
     }, (response) => {
       vm.loadingState = 'loading failed'
     })

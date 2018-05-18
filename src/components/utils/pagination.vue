@@ -1,8 +1,10 @@
 <template lang="html">
-<div class="pagination">
-  <button class="btn btn-dark pagination-btn" @click="lastPage()" :disabled="curPage == 0">Last Page</button>
-  <button class="btn btn-dark pagination-btn" @click="nextPage()" :disabled="curPage == pages - 1">Next Page</button>
-</div>
+  <div class="pagination d-flex justify-content-between">
+    <!-- <div class="pagination-wrapper"> -->
+      <button class="btn btn-light pagination-btn-left  float-left" @click="lastPage()" :disabled="curPage == 0">&#171; Last Page</button>
+      <button class="btn btn-light pagination-btn-right float-right" @click="nextPage()" :disabled="curPage == pages - 1">Next Page &#187;</button>
+    <!-- </div> -->
+  </div>
 </template>
 
 <script>
@@ -30,10 +32,24 @@ export default {
 
 <style lang="css" scoped>
 .pagination {
-  display: flex;
-  flex-direction: row;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  width: 100%;
 }
-/* .pagination-btn {
-  opacity: 0.5
-} */
+
+.pagination-btn-left, .pagination-btn-right {
+  /* background: white;
+  color: black; */
+  opacity: 0.8;
+  margin: 0;
+}
+.pagination-btn-left{
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.pagination-btn-right{
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
 </style>

@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="search-board">
-    <div class="container-fluid">
-
+    <board-loading-animation v-if="loading"></board-loading-animation>
+    <div class="container-fluid" v-if="!loading">
       <divider color="#555555" title="Songs" v-if="songList.length > 0"></divider>
       <song-bar v-for="(song, index) in songList" v-if="song"
         :index="index"
@@ -56,6 +56,7 @@ import AlbumBar from '@/components/bar/album-bar'
 import MvCover from '@/components/cover/mv-cover'
 import SongBar from '@/components/bar/song-bar'
 import SingerBar from '@/components/bar/singer-bar'
+import BoardLoadingAnimation from '@/components/utils/board-loading-animation'
 
 export default {
   components: {
@@ -63,10 +64,12 @@ export default {
     SongBar,
     SingerBar,
     AlbumBar,
-    divider
+    divider,
+    BoardLoadingAnimation
   },
   data() {
     return {
+      loading: true,
       albumList: [],
       mvList: [],
       singerList: [],
@@ -96,11 +99,11 @@ export default {
         vm.mvList = []
         vm.singerList = []
         vm.songList = []
-
         vm.albumList = response.data.data.album.itemlist;
         vm.mvList = response.data.data.mv.itemlist;
         vm.singerList = response.data.data.singer.itemlist;
         vm.songList = response.data.data.song.itemlist;
+        vm.loading = false;
       }, (response) => {
         console.log(response)
       })

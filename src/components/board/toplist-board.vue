@@ -1,6 +1,7 @@
 <template lang="html">
   <div id="toplist-board">
-    <div class="toplist-board-info">
+    <board-loading-animation v-if="loading"></board-loading-animation>
+    <div class="toplist-board-info" v-if="!loading">
       <img class="toplist-board-img" height="200px" width="200px" v-lazy="img">
       <div class="toplist-board-info-right">
         <h3 class="toplist-board-name">{{name}}</h3>
@@ -21,7 +22,7 @@
         <div class="toplist-board-info" v-html="info"></div>
       </div>
     </div>
-    <div class="toplist-board-top">
+    <div class="toplist-board-top" v-if="!loading">
       <divider color="#555555" title="HitS"></divider>
       <song-bar v-for="(song, index) in songList.slice(curPage * 10, curPage * 10 + 10)"
         :index="curPage * 10 + index"
@@ -42,14 +43,17 @@
 import divider from '@/components/utils/divider'
 import Pagination from '@/components/utils/pagination'
 import SongBar from '@/components/bar/song-bar'
+import BoardLoadingAnimation from '@/components/utils/board-loading-animation'
 export default {
   components: {
     divider,
     SongBar,
-    Pagination
+    Pagination,
+    BoardLoadingAnimation
   },
   data() {
     return {
+      loading: true,
       songList: {
         type: Array,
         default: null,
@@ -139,6 +143,7 @@ export default {
       vm.comments = response.data.comment_num,
       vm.size = response.data.cur_song_num,
       vm.songList = response.data.songlist;
+      vm.loading = false;
     }, (response) => {
       console.log(response)
     })

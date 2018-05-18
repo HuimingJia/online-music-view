@@ -1,6 +1,7 @@
 <template lang="html">
   <div id="singers-board" >
-    <div class="container-fluid">
+    <board-loading-animation v-if="loading"></board-loading-animation>
+    <div class="container-fluid" v-if="!loading">
       <divider color="#555555" title="Singer List"></divider>
       <div class="row">
         <div class="col-12">
@@ -29,14 +30,17 @@
 import divider from '@/components/utils/divider'
 import SingerBar from '@/components/bar/singer-bar'
 import SingerSelectorBar from '@/components/bar/singer-selector-bar'
+import BoardLoadingAnimation from '@/components/utils/board-loading-animation'
 export default {
   components: {
     SingerBar,
     divider,
     SingerSelectorBar,
+    BoardLoadingAnimation
   },
   data() {
     return {
+      loading: true,
       singerList: [],
       key: "all_all_all",
       pagenum: 1,
@@ -59,6 +63,7 @@ export default {
         console.log(response.data)
         // console.log(response.data.data.list)
         vm.singerList = response.data.data.list
+        vm.loading = false;
       }, (response) => {
         console.log("error")
         console.log(response)

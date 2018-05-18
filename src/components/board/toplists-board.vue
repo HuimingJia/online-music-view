@@ -1,6 +1,7 @@
 <template lang="html">
   <div id="for-me-board">
-    <div class="container-fluid">
+    <board-loading-animation v-if="loading"></board-loading-animation>
+    <div class="container-fluid" v-if="!loading">
       <divider color="#555555" title="Top Charts"></divider>
       <div class="row">
         <div class="col-12 col-lg-6 col-xl-4" v-for="toplist in topList"  v-if="toplist !== null">
@@ -19,13 +20,16 @@
 <script>
 import divider from '@/components/utils/divider'
 import toplistCover from '@/components/cover/toplist-cover'
+import BoardLoadingAnimation from '@/components/utils/board-loading-animation'
 export default {
   components: {
     toplistCover,
-    divider
+    divider,
+    BoardLoadingAnimation
   },
   data() {
     return {
+      loading: true,
       topList: {
         type: Array,
         default: null,
@@ -37,6 +41,7 @@ export default {
     this.$store.dispatch('getTopLists').then((response) => {
       console.log(response.data.data.topList)
       vm.topList = response.data.data.topList
+      vm.loading = false;
     }, (response) => {
       vm.loadingState = 'loading failed'
     })
