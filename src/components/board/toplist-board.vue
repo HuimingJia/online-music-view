@@ -23,8 +23,8 @@
     </div>
     <div class="toplist-board-top">
       <divider color="#555555" title="HitS"></divider>
-      <song-bar v-for="(song, index) in songList"
-        :index="index"
+      <song-bar v-for="(song, index) in songList.slice(curPage * 10, curPage * 10 + 10)"
+        :index="curPage * 10 + index"
         :songname="song.data.songname"
         :albumname="song.data.albumname"
         :id="song.data.songid"
@@ -33,17 +33,20 @@
         :singer="song.data.singer"
         :albummid="song.data.albummid"
       ></song-bar>
+      <Pagination @nextPage="nextPage()" @lastPage="lastPage()" :pages="pages" :curPage="curPage"></Pagination>
     </div>
   </div>
 </template>
 
 <script>
 import divider from '@/components/utils/divider'
+import Pagination from '@/components/utils/pagination'
 import SongBar from '@/components/bar/song-bar'
 export default {
   components: {
     divider,
-    SongBar
+    SongBar,
+    Pagination
   },
   data() {
     return {
@@ -78,7 +81,14 @@ export default {
       size: {
         type: Number,
         default: null,
-      }
+      },
+      pageSize: 10,
+      curPage: 0
+    }
+  },
+  computed: {
+    pages: function() {
+      return this.songList.length / this.pageSize;
     }
   },
   methods: {
@@ -97,6 +107,7 @@ export default {
       }
     },
     getDate(date) {
+      if (date == null || date == '') return 'unknown'
       if (date.includes("_")) {
         var dates = date.split("_")
         return dates.join("-")
@@ -106,18 +117,28 @@ export default {
       } else {
         return date
       }
+    },
+    nextPage() {
+      if (this.curPage < this.pages - 1)
+        this.curPage = this.curPage + 1;
+    },
+    lastPage() {
+      if (this.curPage > 0)
+        this.curPage = this.curPage - 1;
     }
   },
   activated: function() {
+    var vm = this
     this.$store.dispatch('getTopList', this.$route.params.id).then((response) => {
-      this.img = response.data.topinfo.MacDetailPicUrl;
-      this.name = response.data.topinfo.ListName;
-      this.info = response.data.topinfo.info;
-      this.views =  response.data.topinfo.listennum;
-      this.date = response.data.date,
-      this.comments = response.data.comment_num,
-      this.size = response.data.cur_song_num,
-      this.songList = response.data.songlist;
+      vm.curPage = 0
+      vm.img = response.data.topinfo.MacDetailPicUrl;
+      vm.name = response.data.topinfo.ListName;
+      vm.info = response.data.topinfo.info;
+      vm.views =  response.data.topinfo.listennum;
+      vm.date = response.data.date,
+      vm.comments = response.data.comment_num,
+      vm.size = response.data.cur_song_num,
+      vm.songList = response.data.songlist;
     }, (response) => {
       console.log(response)
     })
@@ -157,6 +178,10 @@ export default {
   flex-direction: row;
   height: 30px;
   margin-right: 15px;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .toplist-board-views .icon, .toplist-board-date .icon, .toplist-board-comments .icon, .toplist-board-size .icon {

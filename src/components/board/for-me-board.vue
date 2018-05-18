@@ -93,14 +93,15 @@ export default {
     }
   },
   activated: function () {
+    var vm = this
     this.$store.dispatch('getFirstPage').then((response) => {
-      this.loading = false
+      vm.loading = false
       console.log(response.data)
-      this.slideShow = response.data.data.focus
-      this.playlists = response.data.data.hotdiss.list.slice(0,6);
-      this.mvList = response.data.data.shoubomv.all.slice(0,6);
+      vm.slideShow = response.data.data.focus
+      vm.playlists = response.data.data.hotdiss.list.slice(0,6);
+      vm.mvList = response.data.data.shoubomv.all.slice(0,6);
     }, (response) => {
-      this.loadingState = 'loading failed'
+      vm.loadingState = 'loading failed'
     })
   },
   methods: {

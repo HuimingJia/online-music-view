@@ -12,8 +12,9 @@ export default {
       state.history = []
     },
     addHistory(state, key) {
-      if (state.history.indexOf(key) == -1)
-        state.history.push(key)
+      if (key == null || key.trim() == '') return
+      if (state.history.indexOf(key.trim()) == -1)
+        state.history.push(key.trim())
     }
   }
 }

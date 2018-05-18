@@ -122,19 +122,20 @@ export default {
     },
   },
   activated: function() {
+    var vm = this
     this.$store.dispatch('getSinger', this.$route.params.id).then((response) => {
 
-      this.singernName = response.data.data.singer_name
-      this.singerDesc = response.data.data.SingerDesc
-      this.albumTotal = response.data.data.albumTotal
-      this.songTotal = response.data.data.total
-      this.mvTotal = response.data.data.mvTotal
+      vm.singernName = response.data.data.singer_name
+      vm.singerDesc = response.data.data.SingerDesc
+      vm.albumTotal = response.data.data.albumTotal
+      vm.songTotal = response.data.data.total
+      vm.mvTotal = response.data.data.mvTotal
 
-      this.albumList = response.data.data.albumlist
-      this.songList = response.data.data.list
-      this.mvList = response.data.data.mvlist
+      vm.albumList = response.data.data.albumlist
+      vm.songList = response.data.data.list
+      vm.mvList = response.data.data.mvlist
 
-      this.fans = response.data.fans
+      vm.fans = response.data.fans
       console.log(response.data)
       console.log(typeof(this.albumList))
     }, (response) => {
@@ -186,6 +187,10 @@ export default {
   display: flex;
   flex-direction: row;
   margin-right: 15px;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .singer-board-album .icon, .singer-board-songs .icon, .toplist-board-mvs .icon {

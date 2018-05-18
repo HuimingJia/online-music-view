@@ -33,11 +33,12 @@ export default {
     }
   },
   activated: function () {
+    var vm = this
     this.$store.dispatch('getTopLists').then((response) => {
       console.log(response.data.data.topList)
-      this.topList = response.data.data.topList
+      vm.topList = response.data.data.topList
     }, (response) => {
-      this.loadingState = 'loading failed'
+      vm.loadingState = 'loading failed'
     })
   },
 }

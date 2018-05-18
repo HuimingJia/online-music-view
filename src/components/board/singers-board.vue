@@ -53,11 +53,12 @@ export default {
         channel: 'singer',
         key: key
       }
+      var vm = this
       this.$store.dispatch('getSingerList', params).then((response) => {
         console.log("data")
         console.log(response.data)
         // console.log(response.data.data.list)
-        this.singerList = response.data.data.list
+        vm.singerList = response.data.data.list
       }, (response) => {
         console.log("error")
         console.log(response)
